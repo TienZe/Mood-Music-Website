@@ -1,0 +1,81 @@
+﻿@model LoginModel
+@{
+    ViewData["Title"] = "Login Page";
+    Layout = "_Layout";
+}
+
+<div class="grid">
+    <div class="grid_row">
+        <div class="grid_2_column">
+            <div class="Login-form">
+                <div class="Login-form_icon">
+                    <img src="~/img/Vector.png" alt="" class="Login-form_iconPerson" />
+                </div>
+                <div class="Login-form_title">
+                    Login with Rhythm account
+                </div>
+
+                <div class="Login-form_form">
+                    <form asp-controller="Account" asp-action="Login" method="post">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="Login-form_text_field">
+                            <label asp-for="Email">Email</label>
+                            <div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <input asp-for="Email" />
+                        </div>
+
+                        <div class="Login-form_text_field">
+                            <label asp-for="Password">Password</label>
+                            <div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <input asp-for="Password" />
+                        </div>
+
+                        <input type="submit" value="Login" />
+
+                        <div class="signup_link">
+                            Don't have account? Just <a asp-controller="Account" asp-action="Register">Sign up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid_2_column">
+            <div class="Vinyl_with_Reader">
+                <img src="~/img/Vinyl with Reader.png" alt="" class="Login-form_Vinyl" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@model LoginModel
+
+@{
+    ViewData["title"] = "Login Page";
+}
+<h3>Login</h3>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div>
+        <label asp-for="Email">Email</label>
+        <div>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="Password">Password</label>
+        <div>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <input asp-for="Password" />
+    </div>
+    <button type="submit" class="btn btn-primary">Log In</button>
+</form>*@

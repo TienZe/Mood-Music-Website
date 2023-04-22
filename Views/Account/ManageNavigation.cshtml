@@ -1,0 +1,17 @@
+﻿@{
+    ManagePage activePage = (ManagePage)ViewData["ActivePage"]!;
+}
+<ul class="nav nav-pills flex-column">
+    <li class="nav-item">
+        <a class="nav-link @(activePage == ManagePage.ManageProfile ? "active" : "")" 
+            asp-controller="Account" asp-action="ManageProfile">
+            Profile
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link @(activePage == ManagePage.ChangePassword ? "active" : "")" 
+            asp-controller="Account" asp-action="ChangePassword">
+            Password
+        </a>
+    </li>
+</ul>

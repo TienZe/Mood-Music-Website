@@ -1,0 +1,138 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "SignUp Page";
+    Layout = "_Layout";
+}
+<div class="grid">
+    <div class="grid_row">
+
+        <div class="grid_2_column">
+            <div class="Vinyl_with_Reader">
+                <img src="~/img/Vinyl with Reader.png" alt="" class="Login-form_Vinyl" />
+            </div>
+        </div>
+
+        <div class="grid_2_column">
+            <div class="SignUp_form">
+                <div class="SignUp-form_icon">
+                    <img src="~/img/Vector.png" alt="" class="SignUp-form_iconPerson" />
+                </div>
+
+                <div class="SignUp_form-form">
+                    <form asp-action="Register" method="post">
+                        <div class="SignUp-form_text_field">
+                            <input asp-for="Email" />
+                            <div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <label asp-for="Email"></label>
+                        </div>
+
+                        <div class="SignUp-form_text_field">
+                            <input asp-for="Name" class="form-control" />
+                            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+                            <label asp-for="Name"></label>
+                        </div>
+                        <div class="SignUp-form_radio_button">
+                            <label>Gender</label>
+                            <input type="radio" asp-for="Gender" id="male" value="1">
+                            <label for="male">Male</label>
+                            <input type="radio" asp-for="Gender" id="female" value="2">
+                            <label for="female">Female</label>
+                            <input type="radio" asp-for="Gender" id="optional" value="3">
+                            <label for="optional">Optional</label>
+                            <div><span asp-validation-for="Gender" class="text-danger"></span></div>
+                        </div>
+
+                        <div class="SignUp-form_Date">
+                            <label asp-for="BirthDay">Date of birth</label>
+                            <div><span asp-validation-for="BirthDay" class="text-danger"></span></div>
+                            <input asp-for="BirthDay" />
+                        </div>
+                        <div class="SignUp-form_text_field">
+                            <input asp-for="Password" />
+                            <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                            <label asp-for="Password"></label>
+                        </div>
+                        <div class="SignUp-form_text_field">
+                            <input asp-for="ConfirmPassword" />
+                            <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+                            <label asp-for="ConfirmPassword"></label>
+                        </div>
+                        <input type="submit" value="Sign Up" />
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@*@model RegisterModel
+@{
+    ViewData["title"] = "Register Page";
+}
+
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Register" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div><span asp-validation-for="Email" class="text-danger"></span></div>
+            <div class="form-floating"> 
+                <input asp-for="Email" class="form-control" />
+                <label asp-for="Email"></label>
+            </div>
+
+            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+            <div class="form-floating">
+                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name"></label>
+            </div>
+
+            <div><span asp-validation-for="Gender" class="text-danger"></span></div>
+            <div class="form-floating">
+                <div class="form-group">
+                    <label class="form-label" asp-for="Gender">Gender:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" id="male" value="1">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" id="female" value="2">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" asp-for="Gender" id="optional" value="3">
+                        <label class="form-check-label" for="optional">Optional</label>
+                    </div>
+                </div>
+            </div>
+
+            <div><span asp-validation-for="BirthDay" class="text-danger"></span></div>
+            <div class="form-floating">
+                <label asp-for="BirthDay"></label>
+                <input asp-for="BirthDay" class="form-control" />
+            </div>
+
+            <div><span asp-validation-for="Password" class="text-danger"></span></div>
+            <div class="form-floating">
+                <input asp-for="Password" class="form-control" />
+                <label asp-for="Password"></label>
+            </div>
+
+            <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+            <div class="form-floating">
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <label asp-for="ConfirmPassword"></label>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+        </form>
+    </div>
+</div>*@

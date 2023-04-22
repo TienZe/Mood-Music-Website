@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Test.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="Header">
+        <div class="grid">
+            <nav class="Header_navbar">
+                <h1 class="Header_navbar-Rhythm">Rhythm</h1>
+
+                <ul class="Header_navbar-list">
+                    <li class="Header_navbar-item">
+                        <a href="" class="Header_navbar-link">Discover</a>
+                    </li>
+                    <li class="Header_navbar-item">
+                        <a href="" class="Header_navbar-link">Emotion Song</a>
+                    </li>
+                    <li class="Header_navbar-item">
+                        <a href="" class="Header_navbar-link">Storii</a>
+                    </li>
+                    @*Các nút Login/Signup hoặc Manage Logout*@
+                    <partial name="_LoginPartial" />
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+    <div class="grid">
+        <div class="spliter"></div>
+    </div>
+
+    <div>
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <div class="grid">
+        <div class="spliter"></div>
+    </div>
+
+    <footer class="Footer">
+        <div class="grid">
+            <div class="grid_row">
+                <div class="grid_column">
+                    <img src="~/img/O.png" alt="" class="Footer_logo" />
+                </div>
+
+                <div class="grid_column_2">
+                    <div class="grid_2_row">
+
+                        <div class="grid_column_3">
+                            <ul class="Footer_list">
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">About us</a>
+                                </li>
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">Contact team</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="grid_column_3">
+                            <ul class="Footer_list">
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">Terms of use</a>
+                                </li>
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">Help</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="grid_column_3">
+                            <ul class="Footer_list">
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">Resources</a>
+                                </li>
+                                <li class="Footer_item">
+                                    <a href="" class="Footer_link">Thanks For</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="grid_2_row">
+                        <p class="Footer_para">
+                            Đây là một trang web nhỏ được thiết kế chỉ riêng cho mục đích phục
+                            vụ giáo dục, không có bất cứ mục đích thương mại nào. Xin cảm ơn!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
