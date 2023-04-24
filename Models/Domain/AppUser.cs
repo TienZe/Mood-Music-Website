@@ -16,5 +16,9 @@ namespace PBL3.Models.Domain
 
         [Range(1, 3, ErrorMessage = "Please enter your gender")]
         public Gender? Gender { get; set; }
+        // Các Order được thực hiện bởi User
+        public List<Order> Orders { get; } = new();
+        // Danh sách story mà ng dùng đã mua
+        public List<Story> Stories { get; } = new();
     }
 }
