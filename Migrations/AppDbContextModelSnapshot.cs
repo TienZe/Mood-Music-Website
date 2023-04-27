@@ -22,7 +22,7 @@ namespace PBL3.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("AppUserStory", b =>
+            modelBuilder.Entity("AppUserStories", b =>
                 {
                     b.Property<int>("StoryId")
                         .HasColumnType("int");
@@ -34,7 +34,7 @@ namespace PBL3.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AppUserStory");
+                    b.ToTable("AppUserStories");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -312,7 +312,7 @@ namespace PBL3.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,3)");
 
                     b.HasKey("OrderId");
 
@@ -419,7 +419,7 @@ namespace PBL3.Migrations
                     b.ToTable("Stories");
                 });
 
-            modelBuilder.Entity("SongEmotion", b =>
+            modelBuilder.Entity("SongEmotions", b =>
                 {
                     b.Property<int>("EmotionId")
                         .HasColumnType("int");
@@ -431,10 +431,10 @@ namespace PBL3.Migrations
 
                     b.HasIndex("SongId");
 
-                    b.ToTable("SongEmotion");
+                    b.ToTable("SongEmotions");
                 });
 
-            modelBuilder.Entity("SongGenre", b =>
+            modelBuilder.Entity("SongGenres", b =>
                 {
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
@@ -446,10 +446,10 @@ namespace PBL3.Migrations
 
                     b.HasIndex("SongId");
 
-                    b.ToTable("SongGenre");
+                    b.ToTable("SongGenres");
                 });
 
-            modelBuilder.Entity("AppUserStory", b =>
+            modelBuilder.Entity("AppUserStories", b =>
                 {
                     b.HasOne("PBL3.Models.Domain.Story", null)
                         .WithMany()
@@ -548,7 +548,7 @@ namespace PBL3.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SongEmotion", b =>
+            modelBuilder.Entity("SongEmotions", b =>
                 {
                     b.HasOne("PBL3.Models.Domain.Emotion", null)
                         .WithMany()
@@ -563,7 +563,7 @@ namespace PBL3.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SongGenre", b =>
+            modelBuilder.Entity("SongGenres", b =>
                 {
                     b.HasOne("PBL3.Models.Domain.Genre", null)
                         .WithMany()

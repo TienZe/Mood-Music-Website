@@ -17,7 +17,7 @@ namespace PBL3.Models.Domain
                 .HasMany(song => song.Emotions)
                 .WithMany(emotion => emotion.Songs)
                 .UsingEntity(
-                    "SongEmotion",
+                    "SongEmotions",
                     r => r.HasOne(typeof(Emotion)).WithMany().HasForeignKey("EmotionId"),
                     l => l.HasOne(typeof(Song)).WithMany().HasForeignKey("SongId"));
 
@@ -26,7 +26,7 @@ namespace PBL3.Models.Domain
                 .HasMany(song => song.Genres)
                 .WithMany(genre => genre.Songs)
                 .UsingEntity(
-                    "SongGenre",
+                    "SongGenres",
                     r => r.HasOne(typeof(Genre)).WithMany().HasForeignKey("GenreId"),
                     l => l.HasOne(typeof(Song)).WithMany().HasForeignKey("SongId"));
 
@@ -35,6 +35,7 @@ namespace PBL3.Models.Domain
                 .HasMany(user => user.Stories)
                 .WithMany(story => story.Users)
                 .UsingEntity(
+                    "AppUserStories",
                     r => r.HasOne(typeof(Story)).WithMany().HasForeignKey("StoryId"),
                     l => l.HasOne(typeof(AppUser)).WithMany().HasForeignKey("UserId"));
         }

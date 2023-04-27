@@ -93,7 +93,7 @@ namespace PBL3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SongEmotion",
+                name: "SongEmotions",
                 columns: table => new
                 {
                     EmotionId = table.Column<int>(type: "int", nullable: false),
@@ -101,15 +101,15 @@ namespace PBL3.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SongEmotion", x => new { x.EmotionId, x.SongId });
+                    table.PrimaryKey("PK_SongEmotions", x => new { x.EmotionId, x.SongId });
                     table.ForeignKey(
-                        name: "FK_SongEmotion_Emotions_EmotionId",
+                        name: "FK_SongEmotions_Emotions_EmotionId",
                         column: x => x.EmotionId,
                         principalTable: "Emotions",
                         principalColumn: "EmotionId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SongEmotion_Songs_SongId",
+                        name: "FK_SongEmotions_Songs_SongId",
                         column: x => x.SongId,
                         principalTable: "Songs",
                         principalColumn: "SongId",
@@ -117,7 +117,7 @@ namespace PBL3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SongGenre",
+                name: "SongGenres",
                 columns: table => new
                 {
                     GenreId = table.Column<int>(type: "int", nullable: false),
@@ -125,15 +125,15 @@ namespace PBL3.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SongGenre", x => new { x.GenreId, x.SongId });
+                    table.PrimaryKey("PK_SongGenres", x => new { x.GenreId, x.SongId });
                     table.ForeignKey(
-                        name: "FK_SongGenre_Genres_GenreId",
+                        name: "FK_SongGenres_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "GenreId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SongGenre_Songs_SongId",
+                        name: "FK_SongGenres_Songs_SongId",
                         column: x => x.SongId,
                         principalTable: "Songs",
                         principalColumn: "SongId",
@@ -141,7 +141,7 @@ namespace PBL3.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppUserStory",
+                name: "AppUserStories",
                 columns: table => new
                 {
                     StoryId = table.Column<int>(type: "int", nullable: false),
@@ -149,15 +149,15 @@ namespace PBL3.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppUserStory", x => new { x.StoryId, x.UserId });
+                    table.PrimaryKey("PK_AppUserStories", x => new { x.StoryId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_AppUserStory_AspNetUsers_UserId",
+                        name: "FK_AppUserStories_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AppUserStory_Stories_StoryId",
+                        name: "FK_AppUserStories_Stories_StoryId",
                         column: x => x.StoryId,
                         principalTable: "Stories",
                         principalColumn: "StoryId",
@@ -172,7 +172,7 @@ namespace PBL3.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Value = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Value = table.Column<decimal>(type: "decimal(18,3)", nullable: false),
                     Payment = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     OrderTypeId = table.Column<int>(type: "int", nullable: false),
@@ -208,8 +208,8 @@ namespace PBL3.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppUserStory_UserId",
-                table: "AppUserStory",
+                name: "IX_AppUserStories_UserId",
+                table: "AppUserStories",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -233,29 +233,29 @@ namespace PBL3.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SongEmotion_SongId",
-                table: "SongEmotion",
+                name: "IX_SongEmotions_SongId",
+                table: "SongEmotions",
                 column: "SongId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SongGenre_SongId",
-                table: "SongGenre",
+                name: "IX_SongGenres_SongId",
+                table: "SongGenres",
                 column: "SongId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AppUserStory");
+                name: "AppUserStories");
 
             migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "SongEmotion");
+                name: "SongEmotions");
 
             migrationBuilder.DropTable(
-                name: "SongGenre");
+                name: "SongGenres");
 
             migrationBuilder.DropTable(
                 name: "OrderStatuses");
