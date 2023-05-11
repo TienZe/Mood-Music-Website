@@ -1,0 +1,15 @@
+﻿@model Genre
+
+<h3>Edit Genre</h3>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="GenreId" />
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <div><span asp-validation-for="Name"></span></div>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

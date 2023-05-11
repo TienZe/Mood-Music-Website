@@ -1,4 +1,6 @@
-﻿namespace PBL3.Models.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PBL3.Models.Domain
 {
     public class Genre
     {

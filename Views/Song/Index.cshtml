@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ListSongItem>
+
+@{
+    ViewData["Title"] = "List of songs";
+}
+
+@if (Model.Count() > 0)
+{
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Author</th>
+            <th>Singer</th>
+            <th>Genres</th>
+            <th>Emotions</th>
+            <th>Source</th>
+            <th></th>
+        </tr>
+        @foreach (ListSongItem item in Model)
+        {
+            <tr>
+                <th>@item.Song.Name</th>
+                <th>@item.Song.Author</th>
+                <th>@item.Song.Singer</th>
+                <th>@item.GenreNames</th>
+                <th>@item.EmotionNames</th>
+                <th>@item.Song.Source</th>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" asp-route-id="@item.Song.SongId" class="btn btn-secondary">Edit</a>
+                        <input type="hidden" name="id" value="@item.Song.SongId" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="text-center">No Song</div>
+}
+
+<a asp-action="Create" class="btn btn-primary">Add new Song</a>

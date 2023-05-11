@@ -83,9 +83,13 @@ namespace PBL3.Repositories.Implementation
                 Gender = model.Gender
             };
             // có validate thông qua IUserValidator và IPasswordValidator
-            return await userManager.CreateAsync(user, model.Password);
+            var res = await userManager.CreateAsync(user, model.Password);
+            if (res.Succeeded)
+            {
+                return await userManager.AddToRoleAsync(user, Role.Member);
+            }
+            return res;
         }
-
         public async Task<IdentityResult> UpdateUserAsync(AppUser user)
         {
             if (user == null)
