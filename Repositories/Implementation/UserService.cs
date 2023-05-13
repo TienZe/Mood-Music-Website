@@ -77,7 +77,6 @@ namespace PBL3.Repositories.Implementation
             AppUser user = new AppUser()
             {
                 UserName = model.Email,
-                Name = model.Name,
                 Email = model.Email,
                 Birthday = model.BirthDay,
                 Gender = model.Gender

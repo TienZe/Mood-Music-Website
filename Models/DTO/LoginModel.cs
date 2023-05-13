@@ -5,6 +5,7 @@ namespace PBL3.Models.DTO
     public class LoginModel
     {
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

@@ -8,6 +8,6 @@ namespace PBL3.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index() => View();
-        public IActionResult Test() => View("IndexSignUp");
+        public IActionResult Storii() => View();
     }
 }

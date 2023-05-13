@@ -3,13 +3,13 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+    @*<li class="nav-item">
         <a class="nav-link text-dark" asp-controller="Account" asp-action="ManageProfile" title="Manage">
             Manage Profile
         </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">
+    </li>*@
+    <li class="Header_navbar-item-Login">
+        <a class="Header_navbar-Login" asp-controller="Account" asp-action="Logout">
             Log out
         </a>
     </li>
@@ -19,12 +19,5 @@ else
     <li class="Header_navbar-item-Login">
         <a class="Header_navbar-Login" asp-controller="Account" asp-action="Login">Log in / Sign up</a>
     </li>
-   
-    @*<li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
-        </li>*@
 }
 
