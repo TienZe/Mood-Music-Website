@@ -9,7 +9,7 @@
 
         <div class="grid_2_column">
             <div class="Vinyl_with_Reader">
-                <img src="~/img/Vinyl with Reader.png" alt="" class="Login-form_Vinyl" />
+                <img src="~/img/Vinyl with Reader green.png" alt="" class="SignUp-form_Vinyl" />
             </div>
         </div>
 
@@ -17,14 +17,14 @@
 
             <div class="SignUp_form">
                 <div class="SignUp-form_icon">
-                    <img src="~/img/Vector.png" alt="" class="SignUp-form_iconPerson" />
+                    <img src="~/img/🦆 icon _person_.png" alt="" class="SignUp-form_iconPerson" />
                 </div>
 
                 <div class="SignUp_form-form">
                     <form asp-action="Register" method="post">
                         <div class="SignUp-form_text_field">
                             <input id="email" asp-for="Email" autocomplete="off" />
-                            <span asp-validation-for="Email"></span>
+                            <span asp-validation-for="Email" class="text-danger"></span>
                             <label for="email">Email</label>
                         </div>
 
@@ -36,24 +36,24 @@
                             <label for="female">Female</label>
                             <input id="optional" type="radio" asp-for="Gender" value="3" />
                             <label for="optional">Optional</label>
-                            <span asp-validation-for="Gender"></span>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
                         </div>
 
                         <div class="SignUp-form_Date">
                             <label for="date">Date of birth</label>                       
                             <input id="date" asp-for="BirthDay" placeholder=" " />
-                            <span asp-validation-for="BirthDay"></span>
+                            <span asp-validation-for="BirthDay" class="text-danger"></span>
                         </div>
 
                         <div class="SignUp-form_text_field">
                             <input id="password" asp-for="Password" />                         
-                            <span asp-validation-for="Password"></span>
+                            <span asp-validation-for="Password" class="text-danger"></span>
                             <label for="password">Password</label>
                         </div>
 
                         <div class="SignUp-form_text_field">
                             <input id="confirm-password" asp-for="ConfirmPassword" />
-                            <span asp-validation-for="ConfirmPassword"></span>
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                             <label for="confirm-password">Confirm password</label>
                         </div>
 
