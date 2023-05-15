@@ -54,7 +54,16 @@ namespace PBL3.Controllers
         {
             if (ModelState.IsValid)
             {
-                var res = await userService.Register(registerModel);
+                // Tạo user mới
+                AppUser newUser = new AppUser()
+                {
+                    UserName = registerModel.Email,
+                    Email = registerModel.Email,
+                    Birthday = registerModel.BirthDay,
+                    Gender = registerModel.Gender
+                };
+                // Đăng kí user mới với role Role.Member
+                var res = await userService.Register(newUser, registerModel.Password!);
                 if (res.Succeeded)
                 {
                     // Chuyển hướng sang trang đăng nhập

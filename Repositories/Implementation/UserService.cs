@@ -49,7 +49,7 @@ namespace PBL3.Repositories.Implementation
                 await signInManager.SignOutAsync();
                 SignInResult signInRes = await signInManager
                     .PasswordSignInAsync(user, password, false, false);
-
+                
                 if (signInRes.Succeeded)
                 {
                     return IdentityResult.Success;
@@ -72,20 +72,13 @@ namespace PBL3.Repositories.Implementation
         {
             await signInManager.SignOutAsync();
         }
-        public async Task<IdentityResult> Register(RegisterModel model)
+        public async Task<IdentityResult> Register(AppUser newUser, string password)
         {
-            AppUser user = new AppUser()
-            {
-                UserName = model.Email,
-                Email = model.Email,
-                Birthday = model.BirthDay,
-                Gender = model.Gender
-            };
             // có validate thông qua IUserValidator và IPasswordValidator
-            var res = await userManager.CreateAsync(user, model.Password);
+            var res = await userManager.CreateAsync(newUser, password);
             if (res.Succeeded)
             {
-                return await userManager.AddToRoleAsync(user, Role.Member);
+                return await userManager.AddToRoleAsync(newUser, Role.Member);
             }
             return res;
         }
