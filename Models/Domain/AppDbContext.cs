@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace PBL3.Models.Domain
@@ -38,6 +39,34 @@ namespace PBL3.Models.Domain
                     "AppUserStories",
                     r => r.HasOne(typeof(Story)).WithMany().HasForeignKey("StoryId"),
                     l => l.HasOne(typeof(AppUser)).WithMany().HasForeignKey("UserId"));
+        }
+        public static async Task SeedData(IServiceProvider serviceProvider, IConfiguration configuration)
+        {
+            UserManager<AppUser> userMgr = 
+                serviceProvider.GetRequiredService<UserManager<AppUser>>();
+            RoleManager<IdentityRole> roleMgr = 
+                serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            // seed roles
+            if (!await roleMgr.RoleExistsAsync(Role.Admin))
+            {
+                await roleMgr.CreateAsync(new IdentityRole(Role.Admin));
+            }
+            if (!await roleMgr.RoleExistsAsync(Role.Member))
+            {
+                await roleMgr.CreateAsync(new IdentityRole(Role.Member));
+            }
+            // seed admin account
+            string email = configuration["Data:Admin:Email"];
+            if (await userMgr.FindByEmailAsync(email) == null)
+            {
+                AppUser admin = new AppUser()
+                {
+                    Email = email,
+                    UserName = email
+                };
+                await userMgr.CreateAsync(admin, configuration["Data:Admin:Password"]);
+                await userMgr.AddToRoleAsync(admin, Role.Admin);
+            }
         }
         public DbSet<Song> Songs { get; set; }
         public DbSet<Emotion> Emotions { get; set; }

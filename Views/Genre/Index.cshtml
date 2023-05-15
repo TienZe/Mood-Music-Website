@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Genre>
+
+@{
+    ViewData["Title"] = "List of genres";
+}
+
+@if (Model.Count() > 0)
+{
+
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+        @foreach (Genre genre in Model)
+        {
+            <tr>
+                <td>@genre.Name</td>
+                <td>
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" asp-route-id="@genre.GenreId" class="btn btn-secondary">Edit</a>
+                        <input type="hidden" name="id" value="@genre.GenreId" />
+                        <button type="submit" class="btn btn-sm btn-danger">
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div class="text-center">No Genres</div>
+}
+
+<a asp-action="Create" class="btn btn-primary">Add new genre</a>

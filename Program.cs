@@ -33,6 +33,10 @@ builder.Services.Configure<IdentityOptions>(options =>
 // Custom service
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<IRepository<Genre>, Repository<Genre>>();
+builder.Services.AddScoped<IRepository<Emotion>, Repository<Emotion>>();
+builder.Services.AddScoped<IRepository<Song>, Repository<Song>>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -49,9 +53,11 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Genre}/{action=Index}/{id?}");
 
 // Applies any pending migrations for the context to the database
 app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>().Database.Migrate();
+// Seed data
+await AppDbContext.SeedData(app.Services.CreateScope().ServiceProvider, app.Configuration);
 
 app.Run();

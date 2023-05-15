@@ -1,0 +1,43 @@
+﻿@model CreateSongModel
+
+<h3>Add Song</h3>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <div><span asp-validation-for="Name" class="text-danger"></span></div>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Author"></label>
+        <div><span asp-validation-for="Author" class="text-danger"></span></div>
+        <input asp-for="Author" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Singer"></label>
+        <div><span asp-validation-for="Singer" class="text-danger"></span></div>
+        <input asp-for="Singer" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="GenreIds">Genre</label>
+        <div><span asp-validation-for="GenreIds" class="text-danger"></span></div>
+        <select asp-items="@ViewBag.Genres" asp-for="GenreIds" multiple>
+            <option value="">-Select genres-</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmotionIds">Emotion</label>
+        <div><span asp-validation-for="EmotionIds" class="text-danger"></span></div>
+        <select asp-items="@ViewBag.Emotions" asp-for="EmotionIds" multiple>
+            <option value="">-Select emotions-</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Source"></label>
+        <div><span asp-validation-for="Source" class="text-danger"></span></div>
+        <input asp-for="Source" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
