@@ -1,0 +1,1 @@
+demo về view Detail dùng List Appuser (là lớp TestDetail.cs nằm trong Model.DTO) + có tạo 1 Controller Admin để test, sau này chỉnh sửa lại phần backend liên quan tới CSDL, câu lệnh truy vấn và trang layout
