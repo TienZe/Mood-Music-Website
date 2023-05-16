@@ -748,9 +748,16 @@ button.accept-policy {
 }
 
 .Manage-Profile_Show {
-    background: rgba(218, 216, 216, 0.52);
     font-weight: 700;
     font-family: "poppin";
+    background: rgba(218, 216, 216, 0.52);
+}
+
+.Manage-Profile_Show input {
+    border: none;
+    outline: none;
+    width: 100%;
+    background: border-box;
 }
 
 .Manage-Profile_Show i {
