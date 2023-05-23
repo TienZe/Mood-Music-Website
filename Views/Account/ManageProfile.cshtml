@@ -1,38 +1,149 @@
 ﻿@model ManageProfileModel
 @{
-    Layout = "_ManageLayout";
-    ViewData["Title"] = "Manage Profile";
-    ViewData["ActivePage"] = ManagePage.ManageProfile;
+	Layout = "_Layout";
 }
 
-<h3>@ViewData["Title"]</h3>
+<div class="Manage-Profile">
+	<div class="Manage-Profile_Avatar">
+		<img src="/img/Daijin.png" />
+	</div>
 
-<div asp-validation-summary="All" class="text-danger"></div>
+	<div class="Manage-Profile_Information">
+		
+		<form asp-action="ManageProfile" method="post">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<table>
+				@*User name*@
+				<tr>
+					<td>
+						User name
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						@*Thêm id "MyInput " để viết sự kiện bỏ thuộc tính readonly*@
+						<input type="text" id="MyInput1" asp-for="Name" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput1"></i>
+					</td>
+				</tr>
+				<tr>
+					<td><span asp-validation-for="Name" class="text-danger"></span></td>
+				</tr>
+				@*Account*@
+				<tr>
+					<td>
+						Account
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input asp-for="Account" readonly />
+					</td>
+				</tr>
 
-<div class="row">
-    <div class="col-md-6">
-        <form asp-action="ManageProfile" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Email" class="form-control" readonly />
-                <label asp-for="Email" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Name" class="form-control" />
-                <label asp-for="Name" class="form-label"></label>
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Birthday" class="form-control" />
-                <label asp-for="Birthday" class="form-label"></label>
-                <span asp-validation-for="Birthday" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Gender" class="form-control" />
-                <label asp-for="Gender" class="form-label"></label>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
-    </div>
+				@*Password*@
+				<tr>
+					<td>
+						Password
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input type="text" value="******" readonly />
+						<i class="fa-solid fa-pen iconChangePassword"></i>
+					</td>
+				</tr>
+				
+				@*New password*@
+				<tr class="hide" id="ChangePassword">
+					<td>
+						New Password
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show_NewPassword hide">
+					<td>
+						<input id="New_Password" asp-for="NewPassword" />
+					</td>
+					<td><span asp-validation-for="NewPassword" class="text-danger"></span></td>
+				</tr>
+				@*Confirm password*@
+				<tr class="hide" id="ChangePassword2">
+					<td>
+						Confirm Password
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show_NewPassword hide">
+					<td>
+						<input id="Confirm_Password" asp-for="ConfirmPassword" />
+					</td>
+					<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
+				</tr>
+
+				@*Phone number*@
+				<tr>
+					<td>
+						Phone number
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input id="MyInput3" asp-for="PhoneNumber" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput3"></i>
+					</td>
+				</tr>
+				<tr>
+					<td><span asp-validation-for="PhoneNumber" class="text-danger"></span></td>
+				</tr>
+				
+
+				@*Age*@
+				<tr>
+					<td>
+						Age
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input asp-for="Age" readonly />
+					</td>
+				</tr>
+
+				@*Birthday*@
+				<tr>
+					<td>
+						Birthday
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input id="MyInput4" asp-for="Birthday" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput4"></i>
+					</td>
+				</tr>
+				<tr>
+					<td><span asp-validation-for="Birthday" class="text-danger"></span></td>
+				</tr>
+
+				@*Gender*@
+				<tr>
+					<td>
+						Gender
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show">
+					<td>
+						<input id="MyInput5" asp-for="Gender" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput5"></i>
+						
+					</td>
+				</tr>
+				<tr>
+					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
+				</tr>
+			</table>
+			<div class="Manage-Profile_btnSave">
+				<button type="submit">Save now</button>
+			</div>
+		</form>
+	</div>
 </div>

@@ -103,8 +103,10 @@ namespace PBL3.Controllers
             AppUser user = await userService.GetUserAsync(User);
             return View(new ManageProfileModel()
             {
-                Email = user.Email,
+                Account = user.Email,
                 Name = user.Name,
+                PhoneNumber = user.PhoneNumber,
+                Age = (DateTime.Now.Year - user.Birthday?.Year),
                 Birthday = user.Birthday,
                 Gender = user.Gender
             });
@@ -121,6 +123,13 @@ namespace PBL3.Controllers
                 user.Name = model.Name;
                 user.Birthday = model.Birthday;
                 user.Gender = model.Gender;
+                user.PhoneNumber = model.PhoneNumber;
+
+                if (model.NewPassword != null)
+                {
+                    // Thay doi mat khau
+
+                }
 
                 // Update lại trong CSDL
                 IdentityResult res = await userService.UpdateUserAsync(user);

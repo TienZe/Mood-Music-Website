@@ -38,6 +38,7 @@ namespace PBL3.Repositories.Implementation
                 // Làm mới thông tin đăng nhập của người dùng mà ko cần yêu cầu đăng nhập lại
                 await signInManager.RefreshSignInAsync(appUser);
             }
+            // Error
             return result;
         }
 

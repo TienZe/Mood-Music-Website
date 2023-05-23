@@ -5,23 +5,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PBL3.Models.DTO
 {
-    public enum ManagePage
-    {
-        ManageProfile, 
-        ChangePassword
-    };
     public class ManageProfileModel
     {
-        public string Email { get; set; }
+        public string Account { get; set; } // luu bang Email
 
         [Required]
-        public string? Name { get; set; }
+        public string? Name { get; set; } // User name
+
+		[DataType(DataType.Password)]
+		public string? NewPassword { get; set; }
+
+		[DataType(DataType.Password)]
+		[Compare("NewPassword", ErrorMessage = "The password and confirmation password do not match.")]
+        public string? ConfirmPassword { get; set; }
+
+        [Phone(ErrorMessage = "Please enter a valid phone number")]
+        [Required]
+        public string? PhoneNumber { get; set; }
+
+        public int? Age { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
         public DateTime? Birthday { get; set; }
 
-        [Range(1, 3, ErrorMessage = "Please enter your gender")]
+        [Required]
         public Gender? Gender { get; set; }
     }
 }

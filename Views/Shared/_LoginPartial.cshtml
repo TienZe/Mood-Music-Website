@@ -9,13 +9,13 @@
         </a>
     </li>*@
     <li class="Header_navbar-item">
-        <a class="Header_navbar-link" asp-controller="UserManagement" asp-action="UserManagement">
-            Hello AnhTien1609... 
+        <a class="Header_navbar-link" asp-controller="Account" asp-action="ManageProfile">
+            Hello @ViewContext.HttpContext.User.Identity?.Name 
         </a>
         <i class="fa-solid fa-bars"></i>
         <ul class="bars-down hide">
             <li>
-                <a asp-controller="UserManagement" asp-action="UserManagement">
+                <a asp-controller="Account" asp-action="ManageProfile">
                     Profile
 @*                    <i class="fa-regular fa-user"></i>*@
                 </a>
@@ -29,7 +29,7 @@
                 
             </li>
             <li>
-                <a asp-controller="" asp-action="">
+                <a asp-controller="Account" asp-action="Logout">
                     Log out
 @*                    <i class="fa-regular fa-arrow-right-from-bracket"></i>*@
                 </a>
