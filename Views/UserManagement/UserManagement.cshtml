@@ -17,8 +17,9 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input type="text" value="Nguyễn Đình Anh Tiến" readonly />
-						<i class="fa-solid fa-pen"></i>
+						@*Thêm id "MyInput " để viết sự kiện bỏ thuộc tính readonly*@
+						<input type="text" id="MyInput1" value="Nguyễn Đình Anh Tiến" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput1"></i>
 					</td>
 				</tr>
 				<tr>
@@ -33,13 +34,33 @@
 				</tr>
 				<tr>
 					<td>
-						password
+						Password
 					</td>
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input type="text" value="**********************" readonly/>
-						<i class="fa-solid fa-pen"></i>
+						<input type="text" value="**********************" readonly />
+						<i class="fa-solid fa-pen iconChangePassword"></i>
+					</td>
+				</tr>
+				<tr class="hide" id="ChangePassword">
+					<td>
+						New Password
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show_NewPassword hide">
+					<td>
+						<input type="text" id="New_Password" value="**********************" />
+					</td>
+				</tr>
+				<tr class="hide" id="ChangePassword2">
+					<td>
+						Confirm Password
+					</td>
+				</tr>
+				<tr class="Manage-Profile_Show_NewPassword hide">
+					<td>
+						<input type="text" id="Confirm_Password" value="**********************" />
 					</td>
 				</tr>
 				<tr>
@@ -49,8 +70,8 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input type="text" value="0123xxxxxxxx" readonly />
-						<i class="fa-solid fa-pen"></i>
+						<input type="text" id="MyInput3" value="0123xxxxxxxx" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput3"></i>
 					</td>
 				</tr>
 				<tr>
@@ -70,8 +91,8 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input type="text" value="16/09/2003" readonly/>
-						<i class="fa-solid fa-pen"></i>
+						<input type="text" id="MyInput4" value="16/09/2003" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput4"></i>
 					</td>
 				</tr>
 				<tr>
@@ -81,8 +102,8 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input type="text" value="Male" readonly />
-						<i class="fa-solid fa-pen"></i>
+						<input type="text" id="MyInput5" value="Male" readonly />
+						<i class="fa-solid fa-pen" data-input-id="MyInput5"></i>
 					</td>
 				</tr>
 			</table>

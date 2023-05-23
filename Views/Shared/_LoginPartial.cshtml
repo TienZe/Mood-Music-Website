@@ -10,8 +10,32 @@
     </li>*@
     <li class="Header_navbar-item">
         <a class="Header_navbar-link" asp-controller="UserManagement" asp-action="UserManagement">
-            Hello AnhTien1609... <i class="fa-solid fa-bars"></i>
+            Hello AnhTien1609... 
         </a>
+        <i class="fa-solid fa-bars"></i>
+        <ul class="bars-down hide">
+            <li>
+                <a asp-controller="UserManagement" asp-action="UserManagement">
+                    Profile
+@*                    <i class="fa-regular fa-user"></i>*@
+                </a>
+                
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">
+                    Order
+@*                    <i class="fa-regular fa-phone"></i>*@
+                </a>
+                
+            </li>
+            <li>
+                <a asp-controller="" asp-action="">
+                    Log out
+@*                    <i class="fa-regular fa-arrow-right-from-bracket"></i>*@
+                </a>
+                
+            </li>
+        </ul>
     </li>
 }
 else
