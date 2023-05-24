@@ -10,7 +10,7 @@
 
 	<div class="Manage-Profile_Information">
 		
-		<form asp-action="ManageProfile" method="post">
+		<form id="form-profile" asp-action="ManageProfile" method="post">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<table>
 				@*User name*@
@@ -40,7 +40,9 @@
 						<input asp-for="Account" readonly />
 					</td>
 				</tr>
-
+				<tr>
+					<td></td>
+				</tr>
 				@*Password*@
 				<tr>
 					<td>
@@ -53,7 +55,9 @@
 						<i class="fa-solid fa-pen iconChangePassword"></i>
 					</td>
 				</tr>
-				
+				<tr>
+					<td></td>
+				</tr>
 				@*New password*@
 				<tr class="hide" id="ChangePassword">
 					<td>
@@ -64,6 +68,8 @@
 					<td>
 						<input id="New_Password" asp-for="NewPassword" />
 					</td>
+				</tr>
+				<tr class="hide">
 					<td><span asp-validation-for="NewPassword" class="text-danger"></span></td>
 				</tr>
 				@*Confirm password*@
@@ -76,9 +82,10 @@
 					<td>
 						<input id="Confirm_Password" asp-for="ConfirmPassword" />
 					</td>
+				</tr>
+				<tr class="hide">
 					<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
 				</tr>
-
 				@*Phone number*@
 				<tr>
 					<td>
@@ -106,6 +113,9 @@
 					<td>
 						<input asp-for="Age" readonly />
 					</td>
+				</tr>
+				<tr>
+					<td></td>
 				</tr>
 
 				@*Birthday*@
@@ -141,9 +151,9 @@
 					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
 				</tr>
 			</table>
-			<div class="Manage-Profile_btnSave">
-				<button type="submit">Save now</button>
-			</div>
 		</form>
+		<div class="Manage-Profile_btnSave">
+			<button form="form-profile" type="submit">Save now</button>
+		</div>
 	</div>
 </div>
