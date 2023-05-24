@@ -3,11 +3,6 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    @*<li class="nav-item">
-        <a class="nav-link text-dark" asp-controller="Account" asp-action="ManageProfile" title="Manage">
-            Manage Profile
-        </a>
-    </li>*@
     <li class="Header_navbar-item">
         <a class="Header_navbar-link" asp-controller="Account" asp-action="ManageProfile">
             Hello @ViewContext.HttpContext.User.Identity?.Name 

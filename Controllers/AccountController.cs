@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using PBL3.Models.Domain;
 using PBL3.Models.DTO;
 using PBL3.Repositories.Abstract;
+using PBL3.Infrastructures;
 using System.Diagnostics;
 using System.Text.Json.Serialization.Metadata;
 
@@ -35,7 +36,7 @@ namespace PBL3.Controllers
                 IdentityResult res = await userService.LoginAsync(loginModel.Email, loginModel.Password);
                 if (res.Succeeded)
                     return Redirect(loginModel.ReturnUrl);
-                AddErrorFromResult(res);
+                ModelState.AddModelError(res);
             }
             return View(loginModel);
         }
@@ -69,7 +70,7 @@ namespace PBL3.Controllers
                     // Chuyển hướng sang trang đăng nhập
                     return RedirectToAction(nameof(Login));
                 }
-                AddErrorFromResult(res);
+                ModelState.AddModelError(res);
             }
             return View(registerModel);
         }
@@ -91,7 +92,7 @@ namespace PBL3.Controllers
                 }
                 else
                 {
-                    AddErrorFromResult(res);
+                    ModelState.AddModelError(res);
                 }
             }
             return View(model);
@@ -137,16 +138,9 @@ namespace PBL3.Controllers
                 {
                     return RedirectToAction(nameof(ManageProfile));
                 }
-                AddErrorFromResult(res);
+                ModelState.AddModelError(res);
             }
             return View(model);
-        }
-        private void AddErrorFromResult(IdentityResult res)
-        {
-            foreach (var error in res.Errors) 
-            {
-                ModelState.AddModelError(string.Empty, error.Description);
-            }
         }
     }
 }
