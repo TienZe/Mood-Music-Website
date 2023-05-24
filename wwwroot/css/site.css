@@ -4,7 +4,7 @@
     --white-color: #fff;
     --black-color: #000;
     --text-color: #333;
-    --Error-color: #FFFFFF;
+    --Error-color: #c31d1d;
     --primary-color: #84D9BA;
 }
 
@@ -338,6 +338,14 @@ input[type="submit"] {
     margin: 32px auto;
 }
 
+.validation-summary-errors {
+    color: var(--Error-color);
+    transform: translateX(200px);
+    margin-top: 30px;
+}
+
+/*SignUp form*/
+
 .SignUp_form {
     box-sizing: border-box;
     height: 850px;
@@ -444,7 +452,7 @@ input[type=date] {
     background: none;
     outline: none;
     color: #FFFFFF;
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-color);
     width: 100%;
     border-bottom: 2px solid #FFFFFF;
 }
@@ -477,7 +485,8 @@ input[type=date] {
 }
 
 ::-webkit-calendar-picker-indicator {
-    border: 2px solid #FFFFFF;
+
+    border: 2px solid #000;
 }
 
 input[value='Sign Up'] {
@@ -761,10 +770,20 @@ button.accept-policy {
     background: border-box;
 }
 
+.Manage-Profile_Show input[type=date] {
+    color: #000;
+    width: 20%;
+}
+
 .Manage-Profile_Show i {
     cursor: pointer;
     font-size: 15px;
     padding-top: 8px;
+}
+
+.OptionGender {
+    border: none;
+    background: border-box;
 }
 
 .Manage-Profile_btnSave {
@@ -780,14 +799,16 @@ button.accept-policy {
     margin: 20px 0;
 }
 
-.Manage-Profile_btnSave a {
-    text-decoration: none;
+
+.Manage-Profile_btnSave button {
+    border: none;
+    outline: none;
     font-size: 20px;
-    color: #ffff;
+    color: #000;
+    background: border-box;
 }
 
 /*Home*/
-
 .Discover {
     width: 100%;
     height: 3000px;

@@ -26,7 +26,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput1"></i>
 					</td>
 				</tr>
-				<tr>
+				<tr class="Show-Error hide">
 					<td><span asp-validation-for="Name" class="text-danger"></span></td>
 				</tr>
 				@*Account*@
@@ -40,7 +40,7 @@
 						<input asp-for="Account" readonly />
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td></td>
 				</tr>
 				@*Password*@
@@ -55,7 +55,7 @@
 						<i class="fa-solid fa-pen iconChangePassword"></i>
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td></td>
 				</tr>
 				@*New password*@
@@ -98,7 +98,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput3"></i>
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td><span asp-validation-for="PhoneNumber" class="text-danger"></span></td>
 				</tr>
 				
@@ -114,7 +114,7 @@
 						<input asp-for="Age" readonly />
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td></td>
 				</tr>
 
@@ -130,7 +130,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput4"></i>
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td><span asp-validation-for="Birthday" class="text-danger"></span></td>
 				</tr>
 
@@ -142,12 +142,17 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						<input id="MyInput5" asp-for="Gender" readonly />
-						<i class="fa-solid fa-pen" data-input-id="MyInput5"></i>
+						@*<input id="MyInput5" asp-for="Gender" readonly />*@
+						<select class="OptionGender" id="myComboBox" name="myComboBox" asp-for="Gender">
+							<option value="option1">Male</option>
+							<option value="option2">Female</option>
+							<option value="option3">Optional</option>
+						</select>
+						@*<i class="fa-solid fa-pen" data-input-id="MyInput5"></i>*@
 						
 					</td>
 				</tr>
-				<tr>
+				<tr class="hide">
 					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
 				</tr>
 			</table>

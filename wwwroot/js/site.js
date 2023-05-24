@@ -192,3 +192,37 @@ icon.addEventListener("click", function () {
 });
 
 
+
+$(document).ready(function () {
+    // Lắng nghe sự kiện khi người dùng thay đổi giá trị trong trường input
+    $('input[data-val="true"]').on('input', function () {
+        validateInput($(this));
+    });
+
+    // Lắng nghe sự kiện khi trang web hoàn toàn được tải xong
+    $(window).on('load', function () {
+        $('input[data-val="true"]').each(function () {
+            validateInput($(this));
+        });
+    });
+
+    function validateInput(input) {
+        var validationMessage = $('span[data-valmsg-for="' + input.attr('name') + '"]');
+        var parentRow = validationMessage.closest('tr');
+
+        console.log('Validate ' + input.attr('name'));
+
+        // Trigger validation on the input field
+        if (!input.hasClass('input-validation-error')) input.valid();
+
+        // Kiểm tra xem trường input có lỗi không
+        if (input.hasClass('input-validation-error')) {
+            console.log('Invalid ' + input.attr('name'));
+            parentRow.removeClass('hide'); // Hiển thị dòng thông báo lỗi
+        } else {
+            console.log('Valid ' + input.attr('name'));
+            parentRow.addClass('hide'); // Ẩn dòng thông báo lỗi
+        }
+    }
+});
+
