@@ -338,11 +338,15 @@ input[type="submit"] {
     margin: 32px auto;
 }
 
-.validation-summary-errors {
+.login-validation-summary-errors {
     color: var(--Error-color);
-    transform: translateX(200px);
+    width: 80%;
     margin-top: 30px;
 }
+
+    .login-validation-summary-errors li {
+        text-align: center;
+    }
 
 /*SignUp form*/
 
