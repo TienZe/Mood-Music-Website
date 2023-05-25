@@ -1,17 +1,31 @@
-﻿@model ManageProfileModel
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model ManageProfileModel
 @{
 	Layout = "_Layout";
-}
 
+	Func<string, string> isHide = property =>
+	{
+		if (ViewContext.ModelState.GetValidationState(property) != ModelValidationState.Invalid)
+		{
+			// Nếu hợp lệ thì ẩn
+			return "hide";
+		}
+		return "";
+	};
+}
 <div class="Manage-Profile">
 	<div class="Manage-Profile_Avatar">
 		<img src="/img/Daijin.png" />
 	</div>
 
 	<div class="Manage-Profile_Information">
-		
+		@if (TempData["Message"] != null)
+		{
+			<div class="alert alert-success text-center display-6 text-success">@TempData["Message"]</div>
+		}
+		<div asp-validation-summary="ModelOnly"></div>
+
 		<form id="form-profile" asp-action="ManageProfile" method="post">
-			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<table>
 				@*User name*@
 				<tr>
@@ -26,7 +40,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput1"></i>
 					</td>
 				</tr>
-				<tr class="Show-Error hide">
+				<tr class="Show-Error @isHide("Name")">
 					<td><span asp-validation-for="Name" class="text-danger"></span></td>
 				</tr>
 				@*Account*@
@@ -40,9 +54,7 @@
 						<input asp-for="Account" readonly />
 					</td>
 				</tr>
-				<tr class="hide">
-					<td></td>
-				</tr>
+			
 				@*Password*@
 				<tr>
 					<td>
@@ -55,9 +67,7 @@
 						<i class="fa-solid fa-pen iconChangePassword"></i>
 					</td>
 				</tr>
-				<tr class="hide">
-					<td></td>
-				</tr>
+
 				@*New password*@
 				<tr class="hide" id="ChangePassword">
 					<td>
@@ -69,7 +79,7 @@
 						<input id="New_Password" asp-for="NewPassword" />
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr class="@isHide("NewPassword")">
 					<td><span asp-validation-for="NewPassword" class="text-danger"></span></td>
 				</tr>
 				@*Confirm password*@
@@ -83,7 +93,7 @@
 						<input id="Confirm_Password" asp-for="ConfirmPassword" />
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr class="@isHide("ConfirmPassword")">
 					<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
 				</tr>
 				@*Phone number*@
@@ -98,11 +108,10 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput3"></i>
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr class="@isHide("PhoneNumber")">
 					<td><span asp-validation-for="PhoneNumber" class="text-danger"></span></td>
 				</tr>
 				
-
 				@*Age*@
 				<tr>
 					<td>
@@ -113,9 +122,6 @@
 					<td>
 						<input asp-for="Age" readonly />
 					</td>
-				</tr>
-				<tr class="hide">
-					<td></td>
 				</tr>
 
 				@*Birthday*@
@@ -130,7 +136,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput4"></i>
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr class="@isHide("Birthday")">
 					<td><span asp-validation-for="Birthday" class="text-danger"></span></td>
 				</tr>
 
@@ -142,17 +148,14 @@
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
-						@*<input id="MyInput5" asp-for="Gender" readonly />*@
-						<select class="OptionGender" id="myComboBox" name="myComboBox" asp-for="Gender">
-							<option value="option1">Male</option>
-							<option value="option2">Female</option>
-							<option value="option3">Optional</option>
+						<select class="OptionGender" id="myComboBox" asp-for="Gender">
+							<option value="Male">Male</option>
+							<option value="Female">Female</option>
+							<option value="Optional">Optional</option>
 						</select>
-						@*<i class="fa-solid fa-pen" data-input-id="MyInput5"></i>*@
-						
 					</td>
 				</tr>
-				<tr class="hide">
+				<tr class="@isHide("Gender")">
 					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
 				</tr>
 			</table>
@@ -162,3 +165,31 @@
 		</div>
 	</div>
 </div>
+
+@section Scripts {
+	<script type="text/javascript">
+		$(document).ready(function () {
+			// Lắng nghe sự kiện khi người dùng thay đổi giá trị trong trường input
+			$('input[data-val="true"]').on('input', function () {
+				validateInput($(this));
+			});
+
+			function validateInput(input) {
+				var validationMessage = $('span[data-valmsg-for="' + input.attr('name') + '"]');
+				var parentRow = validationMessage.closest('tr');
+
+				// Trigger validation on the input field at client-side
+				input.valid();
+
+				// Kiểm tra xem trường input có lỗi không
+				if (input.hasClass('input-validation-error')) {
+					console.log('Invalid ' + input.attr('name'));
+					parentRow.removeClass('hide'); // Hiển thị dòng thông báo lỗi
+				} else {
+					console.log('Valid ' + input.attr('name'));
+					parentRow.addClass('hide'); // Ẩn dòng thông báo lỗi
+				}
+			}
+		});
+	</script>
+}

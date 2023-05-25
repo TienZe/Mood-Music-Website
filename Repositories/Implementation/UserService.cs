@@ -41,6 +41,12 @@ namespace PBL3.Repositories.Implementation
             // Error
             return result;
         }
+        public async Task<IdentityResult> ResetPasswordAsync(ClaimsPrincipal user, string newPassword)
+        {
+			AppUser appUser = await userManager.GetUserAsync(user);
+            string token = await userManager.GeneratePasswordResetTokenAsync(appUser);
+            return await userManager.ResetPasswordAsync(appUser, token, newPassword);
+        }
 
         public async Task<IdentityResult> LoginAsync(string email, string password)
         {

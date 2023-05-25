@@ -75,28 +75,6 @@ namespace PBL3.Controllers
             return View(registerModel);
         }
 
-        [HttpGet]
-        public IActionResult ChangePassword() => View();
-        
-        [HttpPost]
-        public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                IdentityResult res = await userService.ChangePasswordAsync(User
-                    , model.CurrentPassword, model.NewPassword);
-                if (res.Succeeded)
-                {
-                    // Tạm thời sau khi change password thành công sẽ chuyển hướng sang /Home/Index
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError(res);
-                }
-            }
-            return View(model);
-        }
         [Route("[controller]/Manage/Profile")]
         [HttpGet]
         public async Task<IActionResult> ManageProfile()
@@ -118,28 +96,39 @@ namespace PBL3.Controllers
         {
             if (ModelState.IsValid) 
             {
-                AppUser user = await userService.GetUserAsync(User);
+				// Thay đổi mật khẩu, gần hơn là Reset mật khẩu vì không yêu cầu ng dùng
+				// nhập lại mật khẩu
+				if (model.NewPassword != null)
+				{
+					// Thay doi mat khau
+					IdentityResult resetPasswordRes = await userService.ResetPasswordAsync(User
+						, model.NewPassword);
+					if (!resetPasswordRes.Succeeded)
+                    {
+						ModelState.AddModelError(resetPasswordRes);
+                        return View(model);
+					}
+				}
 
-                // Set
-                user.Name = model.Name;
-                user.Birthday = model.Birthday;
-                user.Gender = model.Gender;
-                user.PhoneNumber = model.PhoneNumber;
+                // Cập nhật thông tin người dùng
+				AppUser user = await userService.GetUserAsync(User);
+				// Set
+				user.Name = model.Name;
+				user.Birthday = model.Birthday;
+				user.Gender = model.Gender;
+				user.PhoneNumber = model.PhoneNumber;
 
-                if (model.NewPassword != null)
-                {
-                    // Thay doi mat khau
-
-                }
-
-                // Update lại trong CSDL
-                IdentityResult res = await userService.UpdateUserAsync(user);
-                if (res.Succeeded)
-                {
-                    return RedirectToAction(nameof(ManageProfile));
-                }
-                ModelState.AddModelError(res);
-            }
+				// Update lại trong CSDL
+				IdentityResult res = await userService.UpdateUserAsync(user);
+				if (!res.Succeeded)
+				{
+					ModelState.AddModelError(res);
+                    return View(model);
+				}
+                // Thành công
+				TempData["Message"] = "Your changes have been updated";
+				return RedirectToAction(nameof(ManageProfile));
+			}
             return View(model);
         }
     }

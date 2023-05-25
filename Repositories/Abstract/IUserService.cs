@@ -13,6 +13,8 @@ namespace PBL3.Repositories.Abstract
         Task<IdentityResult> Register(AppUser newUser, string password);
         Task<IdentityResult> ChangePasswordAsync(ClaimsPrincipal user, string currentPassword
             , string newPassword);
-        Task<IdentityResult> UpdateUserAsync(AppUser user);
+        Task<IdentityResult> ResetPasswordAsync(ClaimsPrincipal user, string newPassword);
+
+		Task<IdentityResult> UpdateUserAsync(AppUser user);
     }
 }
