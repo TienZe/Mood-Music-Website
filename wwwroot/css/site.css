@@ -338,15 +338,26 @@ input[type="submit"] {
     margin: 32px auto;
 }
 
+<<<<<<< HEAD
 .login-val-summary-errors {
+=======
+.login-validation-summary-errors {
+>>>>>>> 092c1b8933cb16ae76b0dbe44ee42c9055dd5c31
     color: var(--Error-color);
     width: 80%;
     margin-top: 30px;
 }
 
+<<<<<<< HEAD
 .login-val-summary-errors li {
     text-align: center;
 }
+=======
+    .login-validation-summary-errors li {
+        text-align: center;
+    }
+
+>>>>>>> 092c1b8933cb16ae76b0dbe44ee42c9055dd5c31
 /*SignUp form*/
 .SignUp_form {
     box-sizing: border-box;
