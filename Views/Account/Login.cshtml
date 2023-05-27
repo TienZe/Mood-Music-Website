@@ -21,7 +21,7 @@
                 <div class="Login-form_form">
                     <form asp-action="Login" method="post">
 
-                        <div asp-validation-summary="ModelOnly"></div>
+                        <div asp-validation-summary="ModelOnly" class="login-val-summary-errors"></div>
 
                         <div class="Login-form_text_field">
                             <input id="email" asp-for="Email" autocomplete="off" />
