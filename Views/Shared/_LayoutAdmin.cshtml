@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
+</head>
+<style>
+    .Admin_sidebar_navigation {
+        height: 800px;
+        width: 300px;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: rgb(204, 255, 220);
+        overflow-x: hidden;
+       
+    }
+
+    .Admin_sidebar_navigation_contents a {
+        font-size: 30px;
+        font-weight:400;
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+    .Admin_sidebar_navigation_contents a:hover{
+        background-color:powderblue;
+        border-radius:10px;
+    }
+
+    .Admin_sidebar_navigation_contents{
+        padding-top:10%;
+        padding-left:10%;
+    }
+
+    .Admin_sidebar_navigation_resources_contents{
+        padding-left:10%;
+    }
+
+    .Admin_sidebar_navigation_resources_contents a:hover {
+            background-color: powderblue;
+            border-radius: 10px;
+            
+    }
+
+    .Admin_sidebar_navigation_resources_contents_a{
+        font-size:20px;
+    }
+    
+</style>
+<body>
+    <header class="Header">
+        <div class="grid">
+            <nav class="Header_navbar">
+                <h1 class="Header_navbar-Rhythm">Rhythm</h1>
+
+                <ul class="Header_navbar-list">
+                    
+                    @*Các nút Login/Signup hoặc Logout*@
+                    <partial name="_LoginPartial" />
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+    <div class="grid">
+        <div class="spliter"></div>
+    </div>
+
+    <div>
+        
+        <main role="main" style="background-color:white; max-height:100%">
+            <div class="Admin_sidebar_navigation">
+                <div class="Admin_sidebar_navigation_contents">
+                    <a href="#"><i class="fa-regular fa-user" style="color: #000000;"></i><strong>  Member</strong></a>
+                    <br /><br />
+                    <a href="#"><i class="fa-solid fa-bars"></i><strong>   Recources</strong></a>
+                    <br /><br />
+                    <div class="Admin_sidebar_navigation_resources_contents">
+                        <a href="#" style="font-size:20px"><i class="fa-solid fa-music"></i>   Song</a>
+                        <br /><br />
+                        <a href="#" style="font-size:20px"><i class="fa-solid fa-bars-staggered"></i>   Genre</a>
+                        <br /><br />
+                        <a href="#" style="font-size:20px"><i class="fa-regular fa-paper-plane"></i>   Emotion</a>
+                    </div>
+                    <br /><br />
+                    <a href="#"><i class="fa-solid fa-cart-shopping"></i><strong>  Order</strong></a>
+                    
+                </div>
+            </div>
+            @RenderBody()
+        </main>
+    </div>
+
+    @*<div class="grid">
+        <div class="spliter"></div>
+    </div>*@
+
+    
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
