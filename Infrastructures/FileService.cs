@@ -9,8 +9,8 @@
 		}
 
 		// Upload file vào đường dẫn tương ứng
-		// Trả về tên file được upload nếu thành công, ngược lại trả về null
-		public string? UploadFile(IFormFile file, string relativeFolderPath)
+		// Trả về tên file được upload nếu thành công, ngược lại ném Exception
+		public string UploadFile(IFormFile file, string relativeFolderPath)
 		{
 			try
 			{
@@ -29,11 +29,30 @@
 				}
 				return uniqueFileName;
 			}
-			catch (Exception) 
+			catch (Exception)
 			{
-				return null;
+				throw new Exception("Cannot upload this file name " + file.FileName
+					+ ", something went wrong!");
 			}
 		}
+
+		// Thực hiện upload file audio
+		// Trả về tên file được upload nếu thành công
+		// Ném exception nếu file extension ko đúng hoặc upload file lỗi
+		public string UploadAudio(IFormFile audio, string relativeFolderPath)
+		{
+			// Validate file extension
+			string fileExtension = Path.GetExtension(audio.FileName);
+			string[] acceptExtensions = { ".mp3", ".wav" };
+			if (!acceptExtensions.Contains(fileExtension))
+			{
+				throw new Exception("Can only upload files with the extension "
+					+ string.Join(", ", acceptExtensions));
+			}
+			string fileName = UploadFile(audio, relativeFolderPath);
+			return fileName;
+		}
+
 
 		// Thực hiện xóa file có đương dẫn tương ứng
 		// Trả về true nếu xóa file thành công

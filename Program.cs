@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using PBL3.Infrastructures;
 using PBL3.Models.Domain;
 using PBL3.Repositories.Abstract;
 using PBL3.Repositories.Implementation;
@@ -33,6 +34,8 @@ builder.Services.Configure<IdentityOptions>(options =>
 // Custom service
 builder.Services.AddScoped<IUserService, UserService>();
 
+builder.Services.AddScoped<FileService>();
+
 builder.Services.AddScoped<IRepository<Genre>, Repository<Genre>>();
 builder.Services.AddScoped<IRepository<Emotion>, Repository<Emotion>>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
@@ -53,7 +56,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Song}/{action=Index}/{id?}");
 
 // Applies any pending migrations for the context to the database
 app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>().Database.Migrate();

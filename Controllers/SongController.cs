@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using PBL3.Infrastructures;
 using PBL3.Models.Domain;
 using PBL3.Models.DTO;
 using PBL3.Repositories.Abstract;
@@ -11,19 +13,20 @@ using System.Xml.Linq;
 
 namespace PBL3.Controllers
 {
-    [Authorize(Roles = Role.Admin)]
+    //[Authorize(Roles = Role.Admin)]
     public class SongController : Controller
     {
         private readonly ISongRepository songRepository;
         private readonly IRepository<Genre> genreRepository;
         private readonly IRepository<Emotion> emotionRepository;
-
+        private readonly FileService fileService;
         public SongController(ISongRepository songService, IRepository<Genre> genreService
-            , IRepository<Emotion> emotionService) 
+            , IRepository<Emotion> emotionService, FileService fileService) 
         {
             this.songRepository = songService;
             this.genreRepository = genreService;
             this.emotionRepository = emotionService;
+            this.fileService = fileService;
         }
         public IActionResult Index()
         {
@@ -45,26 +48,40 @@ namespace PBL3.Controllers
             ViewBag.Emotions = emotions;
             ViewBag.Genres = genres;
         }
+        private IActionResult ViewWithSelectList(object? model = null)
+        {
+            AddSelectListToView();
+			return View(model);
+        }
 
         [HttpGet]
         public IActionResult Create()
         {
-            AddSelectListToView();
-            return View();
-        }
+            return ViewWithSelectList();
+		}
         [HttpPost]
         public IActionResult Create(CreateSongModel model)
         {
-            if (ModelState.IsValid)
+			if (ModelState.IsValid)
             {
-                // Validate hợp lệ, thực hiện thêm Song
-                Song song = new Song()
+				// Validate hợp lệ, thực hiện thêm Song
+				Song song = new Song()
                 {
                     Name = model.Name!,
-                    Author = model.Author!,
-                    Singer = model.Singer!,
-                    Source = model.Source!
+                    Artist = model.Artist!
                 };
+                
+                try
+				{
+                    // Upload audio và set file name vào song.Source
+					song.Source = fileService.UploadAudio(model.Audio!, "audio");
+				}
+                catch (Exception ex) 
+                {
+                    ModelState.AddModelError(nameof(model.Audio), ex.Message);
+					return ViewWithSelectList(model);
+				}
+
                 // Set relationship
 				songRepository.SetRelatedEmotion(song, model.EmotionIds!);
 				songRepository.SetRelatedGenre(song, model.GenreIds!);
@@ -73,9 +90,8 @@ namespace PBL3.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            AddSelectListToView();
-            return View(model);
-        }
+			return ViewWithSelectList(model);
+		}
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -86,16 +102,14 @@ namespace PBL3.Controllers
             {
                 SongId = song.SongId,
                 Name = song.Name,
-                Author = song.Author,
-                Singer = song.Singer,
-                Source = song.Source
+                Artist = song.Artist,
+                CurrentAudio = song.Source,
             };
             viewModel.EmotionIds = song.Emotions.Select(e => e.EmotionId);
 			viewModel.GenreIds = song.Genres.Select(g => g.GenreId);
 
-			AddSelectListToView();
-			return View(viewModel);
-        }
+			return ViewWithSelectList(viewModel);
+		}
         [HttpPost]
         public IActionResult Edit(EditSongModel model)
         {
@@ -106,9 +120,27 @@ namespace PBL3.Controllers
 
                 // set
                 song.Name = model.Name!;
-                song.Author = model.Author!;
-                song.Singer = model.Singer!;
-                song.Source = model.Source!;
+                song.Artist = model.Artist!;
+                // Có thể upload audio mới và xóa audio hiện tại
+                if (model.NewAudio != null)
+                {
+                    string oldAudio = song.Source;
+					try
+					{
+                        // Upload new audio và set file name cho Source
+						song.Source = fileService.UploadAudio(model.NewAudio, "audio");
+					}
+					catch (Exception ex)
+					{
+						ModelState.AddModelError(nameof(model.NewAudio), ex.Message);
+						return ViewWithSelectList();
+					}
+                    // Delete current audio
+                    if (oldAudio != "")
+                    {
+						fileService.DeleteFile("audio/" + oldAudio);
+					}
+				}
                 // set relationship
                 songRepository.SetRelatedEmotion(song, model.EmotionIds!);
                 songRepository.SetRelatedGenre(song, model.GenreIds!);
@@ -117,12 +149,17 @@ namespace PBL3.Controllers
 
 				return RedirectToAction(nameof(Index));
 			}
-			AddSelectListToView();
-			return View(model);
-        }
+			return ViewWithSelectList(model);
+		}
         [HttpPost]
         public IActionResult Delete(int id)
         {
+            // Xóa audio tương ứng
+            Song? song = songRepository.GetById(id);
+            if (song != null && song.Source != "")
+            {
+                fileService.DeleteFile("audio/" + song.Source);
+            }
             songRepository.Delete(id);
             return RedirectToAction(nameof(Index));
         }
