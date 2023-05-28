@@ -6,6 +6,7 @@ namespace PBL3.Repositories.Implementation
 {
     public class Repository<T> : IRepository<T> where T : class
     {
+        // 1 DbContext sẽ được tạo cho mỗi Request
         protected readonly AppDbContext context;
         protected readonly DbSet<T> table;
         public Repository(AppDbContext context)
@@ -33,7 +34,7 @@ namespace PBL3.Repositories.Implementation
         public virtual void Update(T obj)
         {
             table.Update(obj);
-            context.SaveChanges();
+			context.SaveChanges();
         }
         public virtual void Delete(int id)
         {
@@ -44,5 +45,11 @@ namespace PBL3.Repositories.Implementation
                 context.SaveChanges();
             }
         }
+        public virtual void LogChangeTracker()
+        {
+			context.ChangeTracker.DetectChanges();
+            Console.WriteLine("Tracked entities at current request : ");
+			Console.WriteLine(context.ChangeTracker.DebugView.LongView);
+		}
     }
 }

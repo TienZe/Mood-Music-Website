@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +11,14 @@ using System.Xml.Linq;
 
 namespace PBL3.Controllers
 {
+    [Authorize(Roles = Role.Admin)]
     public class SongController : Controller
     {
-        private readonly IRepository<Song> songRepository;
+        private readonly ISongRepository songRepository;
         private readonly IRepository<Genre> genreRepository;
         private readonly IRepository<Emotion> emotionRepository;
 
-        public SongController(IRepository<Song> songService, IRepository<Genre> genreService
+        public SongController(ISongRepository songService, IRepository<Genre> genreService
             , IRepository<Emotion> emotionService) 
         {
             this.songRepository = songService;
@@ -25,7 +27,7 @@ namespace PBL3.Controllers
         }
         public IActionResult Index()
         {
-            var listSong = songRepository.AsQueryable().Include(s => s.Genres).Include(s => s.Emotions)
+            var listSong = songRepository.GetAllWithRelatedGenreAndEmotion()
                 .Select(s => new ListSongItem()
                 {
                     Song = s,
@@ -53,41 +55,21 @@ namespace PBL3.Controllers
         [HttpPost]
         public IActionResult Create(CreateSongModel model)
         {
-            if (model.GenreIds == null)
-            {
-                ModelState.AddModelError(nameof(model.GenreIds), "Please choose genre of this song");
-            }
-            if (model.EmotionIds == null)
-            {
-                ModelState.AddModelError(nameof(model.EmotionIds), "Please choose emotion of this song");
-            }
             if (ModelState.IsValid)
             {
                 // Validate hợp lệ, thực hiện thêm Song
                 Song song = new Song()
                 {
-                    Name = model.Name,
-                    Author = model.Author,
-                    Singer = model.Singer,
-                    Source = model.Source
+                    Name = model.Name!,
+                    Author = model.Author!,
+                    Singer = model.Singer!,
+                    Source = model.Source!
                 };
-                foreach (int genreId in model.GenreIds)
-                {
-                    Genre? genre = genreRepository.GetById(genreId);
-                    if (genre != null)
-                    {
-                        song.Genres.Add(genre);
-                    }
-                }
-                foreach (int emotionId in model.EmotionIds)
-                {
-                    Emotion? emotion = emotionRepository.GetById(emotionId);
-                    if (emotion != null)
-                    {
-                        song.Emotions.Add(emotion);
-                    }
-                }
-                songRepository.Add(song);
+                // Set relationship
+				songRepository.SetRelatedEmotion(song, model.EmotionIds!);
+				songRepository.SetRelatedGenre(song, model.GenreIds!);
+                // Add
+				songRepository.Add(song);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -97,7 +79,46 @@ namespace PBL3.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            return View();
+            Song? song = songRepository.GetByIdWithRelatedEntity(id);
+            if (song == null) return NotFound();
+
+            EditSongModel viewModel = new EditSongModel()
+            {
+                SongId = song.SongId,
+                Name = song.Name,
+                Author = song.Author,
+                Singer = song.Singer,
+                Source = song.Source
+            };
+            viewModel.EmotionIds = song.Emotions.Select(e => e.EmotionId);
+			viewModel.GenreIds = song.Genres.Select(g => g.GenreId);
+
+			AddSelectListToView();
+			return View(viewModel);
+        }
+        [HttpPost]
+        public IActionResult Edit(EditSongModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Song? song = songRepository.GetByIdWithRelatedEntity(model.SongId);
+                if (song == null) return NotFound();
+
+                // set
+                song.Name = model.Name!;
+                song.Author = model.Author!;
+                song.Singer = model.Singer!;
+                song.Source = model.Source!;
+                // set relationship
+                songRepository.SetRelatedEmotion(song, model.EmotionIds!);
+                songRepository.SetRelatedGenre(song, model.GenreIds!);
+                // update
+                songRepository.Update(song);
+
+				return RedirectToAction(nameof(Index));
+			}
+			AddSelectListToView();
+			return View(model);
         }
         [HttpPost]
         public IActionResult Delete(int id)

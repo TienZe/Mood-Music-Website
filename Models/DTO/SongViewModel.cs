@@ -19,7 +19,15 @@ namespace PBL3.Models.DTO
         public string? Singer { get; set; }
         [Required]
         public string? Source { get; set; }
-        public List<int>? EmotionIds { get; set; }
-        public List<int>? GenreIds { get; set; }
+
+        [Required(ErrorMessage = "Please choose genre of this song")]
+        public IEnumerable<int>? EmotionIds { get; set; }
+
+		[Required(ErrorMessage = "Please choose emotion of this song")]
+		public IEnumerable<int>? GenreIds { get; set; }
+    }
+    public class EditSongModel : CreateSongModel
+    {
+        public int SongId { get; set; }
     }
 }
