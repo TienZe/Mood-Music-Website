@@ -56,11 +56,15 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Song}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Applies any pending migrations for the context to the database
-app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>().Database.Migrate();
+var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<AppDbContext>();
+context.Database.Migrate();
 // Seed data
 await AppDbContext.SeedData(app.Services.CreateScope().ServiceProvider, app.Configuration);
+
+// Seed example data
+SeedData.SeedExampleData(context);
 
 app.Run();

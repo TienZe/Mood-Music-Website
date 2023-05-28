@@ -1,0 +1,57 @@
+﻿@model List<Song>
+@if (Model.Count > 0)
+{
+    <div>
+        <h2>@Model[0].Name</h2>
+        <h3>@Model[0].Artist</h3>
+    </div>
+
+    <audio id="audio-player" controls>
+        <source src="~/audio/@Model[0].Source" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <button id="previous-btn">Previous</button>
+    <button id="next-btn">Next</button>
+
+    @section Scripts {
+    <script>
+        var songs = @Html.Raw(Json.Serialize(Model));
+        console.log(songs);
+        var currentSongIndex = 0;
+        var audioPlayer = document.getElementById("audio-player");
+        var previousButton = document.getElementById("previous-btn");
+        var nextButton = document.getElementById("next-btn");
+
+        previousButton.addEventListener("click", function () {
+            currentSongIndex--;
+            if (currentSongIndex < 0) {
+                currentSongIndex = songs.length - 1;
+            }
+            changeSong();
+        });
+
+        nextButton.addEventListener("click", function () {
+            currentSongIndex++;
+            if (currentSongIndex >= songs.length) {
+                currentSongIndex = 0;
+            }
+            changeSong();
+        });
+
+        function changeSong() {
+            var song = songs[currentSongIndex];
+            audioPlayer.src = 'audio/' + song.source;
+            audioPlayer.play();
+
+            document.querySelector("h2").textContent = song.name;
+            document.querySelector("h3").textContent = song.artist;
+        }
+    </script>
+    }
+}
+else
+{
+    <h2>No Song available</h2>
+}
+

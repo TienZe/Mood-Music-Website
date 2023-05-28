@@ -34,7 +34,7 @@ namespace PBL3.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AppUserStories");
+                    b.ToTable("AppUserStories", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -259,7 +259,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("EmotionId");
 
-                    b.ToTable("Emotions");
+                    b.ToTable("Emotions", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.Genre", b =>
@@ -276,7 +276,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.Order", b =>
@@ -324,7 +324,7 @@ namespace PBL3.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.OrderStatus", b =>
@@ -345,7 +345,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("OrderStatusId");
 
-                    b.ToTable("OrderStatuses");
+                    b.ToTable("OrderStatuses", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.OrderType", b =>
@@ -362,7 +362,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("OrderTypeId");
 
-                    b.ToTable("OrderTypes");
+                    b.ToTable("OrderTypes", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.Song", b =>
@@ -387,7 +387,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("SongId");
 
-                    b.ToTable("Songs");
+                    b.ToTable("Songs", (string)null);
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.Story", b =>
@@ -412,7 +412,7 @@ namespace PBL3.Migrations
 
                     b.HasKey("StoryId");
 
-                    b.ToTable("Stories");
+                    b.ToTable("Stories", (string)null);
                 });
 
             modelBuilder.Entity("SongEmotions", b =>
@@ -427,7 +427,7 @@ namespace PBL3.Migrations
 
                     b.HasIndex("SongId");
 
-                    b.ToTable("SongEmotions");
+                    b.ToTable("SongEmotions", (string)null);
                 });
 
             modelBuilder.Entity("SongGenres", b =>
@@ -442,7 +442,7 @@ namespace PBL3.Migrations
 
                     b.HasIndex("SongId");
 
-                    b.ToTable("SongGenres");
+                    b.ToTable("SongGenres", (string)null);
                 });
 
             modelBuilder.Entity("AppUserStories", b =>

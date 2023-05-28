@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using PBL3.Infrastructures;
 namespace PBL3.Models.Domain
 {
     public class AppDbContext : IdentityDbContext<AppUser>

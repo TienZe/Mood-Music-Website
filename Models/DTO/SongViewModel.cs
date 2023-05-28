@@ -38,7 +38,7 @@ namespace PBL3.Models.DTO
 		[Required(ErrorMessage = "Please choose emotion of this song")]
 		public IEnumerable<int>? GenreIds { get; set; }
 
-		public string CurrentAudio { get; set; }
+		public string? CurrentAudio { get; set; }
         public IFormFile? NewAudio { get; set; }
     }
 }
