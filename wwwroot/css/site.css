@@ -709,6 +709,10 @@ button.accept-policy {
     margin-top: 40px;
 }
 
+.ST-Contents-text i {
+    cursor: pointer;
+}
+
 .ST-Contents-img {
     width: 30%;
     float: left;
@@ -875,33 +879,93 @@ button.accept-policy {
     display: none;
 }
 
+/*Emotion Song*/
+
 .EmotionSong-container {
-    width: 80%;
+    width: 100%;
     height: 100%;
-    margin: 50px auto;
-    border: 2px solid #000;
-    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
     text-align: center;
+}
+
+.EmotionSong-InitEmote {
+    width: 35%;
+    border: 1px solid #000;
     background: #fff;
+    border-radius: 30px;
+    margin: 50px 50px;
+    padding: 25px 0;
+}
+
+.EmotionSong-Disc {
+    width : 100%;
+}
+
+.EmotionSong-OptionEmote {
+    width: 30%;
+    font-size: 20px;
+    color: #FF6E41;
+    letter-spacing: 3.5px;
+    border-radius: 5px;
+    margin: 25px 0;
 }
 
 .EmotionSong-lyrics {
     font-family: 'Clicker Script', cursive;
     width: 80%;
-    font-size: 40px;
+    font-size: 24px;
     margin: 0 auto;
     line-height: 2.5;
     letter-spacing: 2.5px;
+    font-weight: 600;
 }
 
-.EmotionSong-img {
+.EmotionSong-btnPlayMusic {
+    width: 50%;
+    font-size: 22px;
+    background: #424242;
+    color: #fff;
+    border-radius: 50px;
+    font-family: "AM VINYL";
+    font-weight: 900;
+    margin: 20px 0;
+}
+
+.EmotionSong-btnPlayMusic img {
+    width: 10%;
+    height: 10%;
+    margin-bottom: 5px;
+}
+
+
+.EmotionSong-ListenMusic {
+    width: 40%;
+    height: 100%;
+    border: 1px solid #000;
+    background: #fff;
+    border-radius: 20px;
+    margin: 50px 50px;
+}
+
+.EmotionSong-ListenMusic img {
     width: 80%;
     height: 80%;
+    margin-top: 25px;
+}
+
+.EmotionSong-SongName {
+    margin: 30px 0;
+    font-size: 30px;
+    letter-spacing: 4px;
+    font-weight: 100;
+    text-decoration: underline;
 }
 
 .EmotionSong-Icons {
     width: 80%;
-    font-size: 70px;
+    font-size: 50px;
     display: flex;
     justify-content: space-between;
     margin: 20px auto;
