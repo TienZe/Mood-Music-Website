@@ -8,8 +8,8 @@ namespace PBL3.Controllers
     [Authorize(Roles = Role.Admin)]
     public class EmotionController : Controller
     {
-        private readonly IRepository<Emotion> repository;
-        public EmotionController(IRepository<Emotion> repoService)
+        private readonly IEmotionRepository repository;
+        public EmotionController(IEmotionRepository repoService)
         {
             repository = repoService;
         }

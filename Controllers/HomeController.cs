@@ -9,5 +9,7 @@ namespace PBL3.Controllers
     {
         public IActionResult Index() => View();
         public IActionResult Storii() => View();
+        public IActionResult InitEmotion() => View();
+        public IActionResult EmotionSong() => View();
     }
 }

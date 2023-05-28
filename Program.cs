@@ -37,7 +37,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<FileService>();
 
 builder.Services.AddScoped<IRepository<Genre>, Repository<Genre>>();
-builder.Services.AddScoped<IRepository<Emotion>, Repository<Emotion>>();
+builder.Services.AddScoped<IEmotionRepository, EmotionRepository>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 
 var app = builder.Build();

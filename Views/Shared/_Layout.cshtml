@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="Header">
@@ -19,7 +22,7 @@
                         <a asp-controller="Home" asp-action="Index" class="Header_navbar-link">Discover</a>
                     </li>
                     <li class="Header_navbar-item">
-                        <a href="" class="Header_navbar-link">Emotion Song</a>
+                        <a asp-controller="Music" asp-action="Index" class="Header_navbar-link">Emotion Song</a>
                     </li>
                     <li class="Header_navbar-item">
                         <a asp-controller="Home" asp-action="Storii" class="Header_navbar-link">Storii</a>

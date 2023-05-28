@@ -18,10 +18,10 @@ namespace PBL3.Controllers
     {
         private readonly ISongRepository songRepository;
         private readonly IRepository<Genre> genreRepository;
-        private readonly IRepository<Emotion> emotionRepository;
+        private readonly IEmotionRepository emotionRepository;
         private readonly FileService fileService;
         public SongController(ISongRepository songService, IRepository<Genre> genreService
-            , IRepository<Emotion> emotionService, FileService fileService) 
+            , IEmotionRepository emotionService, FileService fileService) 
         {
             this.songRepository = songService;
             this.genreRepository = genreService;

@@ -1,0 +1,147 @@
+﻿@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@model List<Song>
+@{
+    bool isEmpty = Model.Count == 0;
+    var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+    string jsonModel = JsonSerializer.Serialize(Model, options);
+}
+<div class="EmotionSong-container">
+    <div class="EmotionSong-InitEmote">
+        <div class="EmotionSong-Disc">
+            <img src="~/img/image 4.png" />
+        </div>
+
+        <form id="form-select-emotion" asp-controller="Music" asp-action="Index" method="get">
+            <select id="selectEmotion" class="EmotionSong-OptionEmote" 
+                asp-items="@ViewBag.SelectListEmotion" name="selectEmotion">
+                <option value="">Emotion</option>
+            </select>
+            <span id="selectEmotionError" style="color: red; display: none;">Please select an emotion.</span>
+        </form>
+        <p class="EmotionSong-lyrics">
+            Amidst the twinkling stars, a gentle
+            breeze whispered secrets to the night.
+            Shadows danced whimsically casting
+            there ethereal embrace upon the world. In
+            the depths of imagination, dreams took
+            flight, painting vivid story accross the
+            canvas of the might.
+        </p>
+
+        <button form="form-select-emotion" type="submit" class="EmotionSong-btnPlayMusic">
+            <img src="~/img/Disc.png" />
+            Play music now!
+        </button>
+
+    </div>
+
+    @*Trình phát nhạc*@
+    <div class="EmotionSong-ListenMusic">
+        <audio id="audio-player" hidden autoplay>
+            <source src="@(isEmpty ? "not_find_source_audio" : "audio/" + Model[0].Source)"
+                    type="audio/mpeg">
+        </audio>
+        <img src="~/img/Template Storii_StoriiTheme.jpg" />
+
+        <img src="~/img/Frame 12.png" />
+
+        <h3 id="songname-artist" class="EmotionSong-SongName">
+            @(isEmpty ? "Song name - Artist" : Model[0].Name + " - " + Model[0].Artist)
+        </h3>
+
+        <div class="EmotionSong-Icons">
+            <i id="previous-btn" class="fa-solid fa-circle-arrow-left"></i>
+
+            <i id="play-btn" class="fa-regular fa-circle-play"></i>
+
+            <i id="next-btn" class="fa-solid fa-circle-arrow-right"></i>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    @*Validate select emotion*@
+    <script>
+        document.getElementById("form-select-emotion").addEventListener("submit", function (event) {
+            var selectEmotion = document.querySelector("select[name='selectEmotion']");
+            var selectEmotionError = document.getElementById("selectEmotionError");
+
+            if (selectEmotion.value === "") {
+                selectEmotionError.style.display = "block";
+                event.preventDefault(); // Ngăn chặn việc submit form
+            } else {
+                selectEmotionError.style.display = "none";
+            }
+        });
+        document.getElementById("selectEmotion").addEventListener("input", function () {
+            var selectEmotion = document.querySelector("select[name='selectEmotion']");
+            var selectEmotionError = document.getElementById("selectEmotionError");
+
+            if (selectEmotion.value === "") {
+                selectEmotionError.style.display = "block";
+            } else {
+                selectEmotionError.style.display = "none";
+            }
+        })
+    </script>
+
+    @*Nếu có nhạc thì cần thêm sự kiện cho trình phát nhạc*@
+    @if (!isEmpty)
+    {
+        @*Phát nhạc*@
+        <script>
+            var songs = @Html.Raw(jsonModel);
+
+            console.log(songs);
+            console.log("Current song : ");
+            console.log(songs.$values[0]);
+
+            var currentSongIndex = 0;
+            var audioPlayer = document.getElementById("audio-player");
+            var previousButton = document.getElementById("previous-btn");
+            var nextButton = document.getElementById("next-btn");
+            var playButton = document.getElementById("play-btn");
+
+            playButton.addEventListener("click", function () {
+                if (audioPlayer.paused) {
+                    audioPlayer.play();
+                } else {
+                    audioPlayer.pause();
+                }
+            });
+
+            previousButton.addEventListener("click", function () {
+                if (songs.$values.length == 0) return;
+                currentSongIndex--;
+                if (currentSongIndex < 0) {
+                    currentSongIndex = songs.$values.length - 1;
+                }
+                changeSong();
+            });
+
+            nextButton.addEventListener("click", function () {
+                if (songs.$values.length == 0) return;
+                currentSongIndex++;
+                if (currentSongIndex >= songs.$values.length) {
+                    currentSongIndex = 0;
+                }
+                changeSong();
+            });
+
+            function changeSong() {
+                var song = songs.$values[currentSongIndex];
+
+                console.log("Current song : ");
+                console.log(song);
+
+                audioPlayer.src = 'audio/' + song.Source;
+                audioPlayer.play();
+                document.getElementById("songname-artist").textContent = song.Name + " - " + song.Artist;
+            }
+        </script>
+    }
+}

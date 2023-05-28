@@ -159,7 +159,9 @@ function ToggleBar()
     Down.classList.toggle("hide");
 }
 
-BarDown.addEventListener("click", ToggleBar);
+if (BarDown) {
+    BarDown.addEventListener("click", ToggleBar);
+}
 
 
 function EnableInput(inputId) {
@@ -187,7 +189,7 @@ function toggleNewPassword() {
     confirmPasswordRow.classList.toggle("hide");
 }
 
-icon.addEventListener("click", function () {
-    toggleNewPassword();
-});
+if (icon) {
+    icon.addEventListener("click", toggleNewPassword);
+}
 
