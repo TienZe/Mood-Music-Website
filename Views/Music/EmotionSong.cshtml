@@ -56,7 +56,7 @@
         <div class="EmotionSong-Icons">
             <i id="previous-btn" class="fa-solid fa-circle-arrow-left"></i>
 
-            <i id="play-btn" class="fa-regular fa-circle-play"></i>
+            <i id="play-btn" class="fa-regular @(isEmpty ? "fa-circle-play" : "fa-circle-pause") "></i>
 
             <i id="next-btn" class="fa-solid fa-circle-arrow-right"></i>
         </div>
@@ -109,8 +109,12 @@
             playButton.addEventListener("click", function () {
                 if (audioPlayer.paused) {
                     audioPlayer.play();
+                    playButton.classList.remove("fa-circle-pause");
+                    playButton.classList.add("fa-circle-play");
                 } else {
                     audioPlayer.pause();
+                    playButton.classList.remove("fa-circle-play");
+                    playButton.classList.add("fa-circle-pause");
                 }
             });
 
