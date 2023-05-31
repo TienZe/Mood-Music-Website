@@ -972,3 +972,217 @@ button.accept-policy {
     cursor: pointer;
 }
 
+/*Admin*/
+
+.Admin-contents {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.Admin_sidebar_navigations {
+    width: 20%;
+    height: 100%;
+    background: #caf1e3;
+    padding: 40px 8px;
+}
+
+.Admin_sidebar_navigation-item {
+    padding: 5px 15px;
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.Admin_sidebar_navigation-item:hover {
+    background: #67AB8E;
+}
+
+.Admin_sidebar_navigation-item i {
+    font-size: 35px;
+    padding-right: 15px;
+}
+
+.Admin_sidebar_navigation-item a {
+    text-decoration: none;
+    font-size: 30px;
+    color: #000;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+#Resources-list {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.Admin_sidebar_navigation-Resources-item {
+    padding: 15px 55px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.Admin_sidebar_navigation-Resources-item:hover {
+    background: #67AB8E;
+}
+
+.Admin_sidebar_navigation-Resources-item i {
+    font-size: 20px;
+}
+
+.Admin_sidebar_navigation-Resources-item a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    padding-left: 15px;
+}
+
+.Admin-container {
+    width: 80%;
+    height: 100%;
+    background: #e8e5e5;
+    position: relative;
+}
+
+
+/*Admin-AddNewSong*/
+
+.Admin-AddNewSong {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.Admin-AddNewSong i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.Admin-AddNewSong a {
+    font-size: 18px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.Admin-AddNewSong h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.Admin-AddNewSong_text_field label {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.Admin-AddNewSong_text_field input {
+    width: 100%;
+    height: 30px;
+    font-size: 18px;
+    background: rgba(243, 243, 243, 0.68);
+    border: none;
+    outline: none;
+}
+
+#Directory-path {
+    width: 97%;
+}
+
+.Admin-AddNewSong_text_field i {
+    display: inline-block;
+    align-self: center;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 5px;
+    transform: translateY(2px);
+}
+
+.Admin-AddNewSong-Category {
+    display: flex;
+    margin: 50px 0;
+}
+
+.Admin-AddNewSong-Category label{
+    font-size: 15px;
+    font-weight: bold;
+    width: 7%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+/*.Admin-AddNewSong-Category input[type=text] {
+    width: 80%;
+    height: 30px;
+    background: rgba(243, 243, 243, 0.68);
+    border: none;
+    outline: none;
+}*/
+
+.Category-Show {
+    width: 80%;
+    height: 30px;
+    background: rgba(243, 243, 243, 0.68);
+    display: flex;
+    align-items: center;
+}
+
+.Category-Show-item {
+    background: #fff;
+    border: 1px solid #000;
+    height: 20px;
+    padding: 3px;
+    margin-left: 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.Category-Show-item i {
+    font-size: 10px;
+    
+}
+
+.Category-List {
+    width: 12%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 0 10px;
+}
+
+.Category-List i {
+    display: flex;
+    justify-content: end;
+}
+
+.Category-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.btn-AddNewSong {
+    display: flex;
+    justify-content: end;
+    margin-top: 30px;
+}
+
+.btn-AddNewSong button {
+    width: 13%;
+    height: 35px;
+    font-size: 16px;
+    background: #000;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+}
