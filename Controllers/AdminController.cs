@@ -10,5 +10,7 @@ namespace PBL3.Controllers
         {
             return View();
         }
+
+        public IActionResult AddNewSong() => View();
     }
 }

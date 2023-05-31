@@ -11,50 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
 </head>
-<style>
-    .Admin_sidebar_navigation {
-        height: 800px;
-        width: 300px;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        background-color: rgb(204, 255, 220);
-        overflow-x: hidden;
-       
-    }
 
-    .Admin_sidebar_navigation_contents a {
-        font-size: 30px;
-        font-weight:400;
-        color: inherit;
-        text-decoration: inherit;
-    }
-
-    .Admin_sidebar_navigation_contents a:hover{
-        background-color:powderblue;
-        border-radius:10px;
-    }
-
-    .Admin_sidebar_navigation_contents{
-        padding-top:10%;
-        padding-left:10%;
-    }
-
-    .Admin_sidebar_navigation_resources_contents{
-        padding-left:10%;
-    }
-
-    .Admin_sidebar_navigation_resources_contents a:hover {
-            background-color: powderblue;
-            border-radius: 10px;
-            
-    }
-
-    .Admin_sidebar_navigation_resources_contents_a{
-        font-size:20px;
-    }
-    
-</style>
 <body>
     <header class="Header">
         <div class="grid">
@@ -71,38 +28,58 @@
         </div>
     </header>
 
-    <div class="grid">
-        <div class="spliter"></div>
-    </div>
-
-    <div>
-        
-        <main role="main" style="background-color:white; max-height:100%">
-            <div class="Admin_sidebar_navigation">
-                <div class="Admin_sidebar_navigation_contents">
-                    <a href="#"><i class="fa-regular fa-user" style="color: #000000;"></i><strong>  Member</strong></a>
-                    <br /><br />
-                    <a href="#"><i class="fa-solid fa-bars"></i><strong>   Recources</strong></a>
-                    <br /><br />
-                    <div class="Admin_sidebar_navigation_resources_contents">
-                        <a href="#" style="font-size:20px"><i class="fa-solid fa-music"></i>   Song</a>
-                        <br /><br />
-                        <a href="#" style="font-size:20px"><i class="fa-solid fa-bars-staggered"></i>   Genre</a>
-                        <br /><br />
-                        <a href="#" style="font-size:20px"><i class="fa-regular fa-paper-plane"></i>   Emotion</a>
-                    </div>
-                    <br /><br />
-                    <a href="#"><i class="fa-solid fa-cart-shopping"></i><strong>  Order</strong></a>
-                    
-                </div>
+    <div class="Admin-contents">
+        <div class="Admin_sidebar_navigations">
+            <div class="Admin_sidebar_navigation-item">
+                <i class="fa-regular fa-user"></i>
+                <a asp-controller="" asp-action="">
+                    Member
+                </a>
             </div>
-            @RenderBody()
-        </main>
-    </div>
 
-    @*<div class="grid">
-        <div class="spliter"></div>
-    </div>*@
+            <div class="Admin_sidebar_navigation-item" id="Resources-list">
+                <i class="fa-solid fa-bars"></i>
+                Resources
+            </div>
+
+            <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Song">
+                <i class="fa-solid fa-music"></i>
+                <a asp-controller="Admin" asp-action="AddNewSong">
+                    Song
+                </a>
+            </div>
+
+            <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Genre">
+                <i class="fa-solid fa-bars-staggered"></i>
+                <a asp-controller="" asp-action="">
+                    Genre
+                </a>
+            </div>
+
+            <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Emotion">
+                <i class="fa-regular fa-paper-plane"></i>
+                <a asp-controller="" asp-action="">
+                    Emotion
+                </a>
+            </div>
+
+            <div class="Admin_sidebar_navigation-item" style="padding-left: 8px">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <a asp-controller="" asp-action="">
+                    Order
+                </a>
+            </div>
+        </div>
+
+        <div class="Admin-container">
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+    
+
+
 
     
 
