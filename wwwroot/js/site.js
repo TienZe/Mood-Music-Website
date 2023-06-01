@@ -277,3 +277,4 @@ fileInput.addEventListener('change', (event) => {
     filePath.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
 });
 
+

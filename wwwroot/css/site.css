@@ -1063,12 +1063,14 @@ button.accept-policy {
     cursor: pointer;
 }
 
+
 .Admin-AddNewSong a {
     font-size: 18px;
     padding-left: 10px;
     text-decoration: none;
     color: #000;
     font-weight: bold;
+
 }
 
 .Admin-AddNewSong h1 {
