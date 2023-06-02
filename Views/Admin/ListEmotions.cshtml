@@ -1,31 +1,28 @@
-﻿
-@{
+﻿@{
     Layout = "_LayoutAdmin";
 }
 
 <div class="Model-Container">
     <div class="Model-Search-Box">
         <div class="Model-Search">
-            <input type="text" placeholder="Find song here - Eg: Anti hero ..." />
+            <input type="text" placeholder="Find emotion here - Eg: Nostalgia ..." />
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
 
-        <div class="Model-btn-AddNewSong">
-            <a asp-controller="Admin" asp-action="AddNewSong">Add new song</a>
+        <div class="Model-btn-AddNewModel">
+            <a asp-controller="Admin" asp-action="AddNewEmotion">Add new emotion</a>
         </div>
     </div>
 
     <div class="Model-Show">
-        <h1>List song using</h1>
+        <h1>List emotions</h1>
 
         <table class="Model-table">
             <thead>
                 <tr>
                     <td class="table-STT">STT</td>
                     <td>Name</td>
-                    <td>Artist</td>
-                    <td>Genre</td>
-                    <td>Emotion</td>
+                    <td>ID</td>
                     <td class="table-Delete-Edit"></td>
                 </tr>
             </thead>
@@ -33,34 +30,8 @@
             <tbody>
                 <tr class="Model-table-data">
                     <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
-                    <td class="Model-table-data-del-edit">
-                        <i class="fa-regular fa-rectangle-xmark"></i>
-                        <img src="~/img/🦆 icon _pencil outline_.png"/>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
-                    <td class ="Model-table-data-del-edit">
-                        <i class="fa-regular fa-rectangle-xmark"></i>
-                        <img src="~/img/🦆 icon _pencil outline_.png" />
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>Anger</td>
+                    <td>E001</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -68,11 +39,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>2</td>
+                    <td>Anxiety</td>
+                    <td>E002</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -80,11 +49,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>3</td>
+                    <td>Dreamy</td>
+                    <td>E003</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -92,11 +59,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>4</td>
+                    <td>Energetic</td>
+                    <td>E004</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -104,11 +69,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>5</td>
+                    <td>Happy</td>
+                    <td>E005</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -116,11 +79,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>6</td>
+                    <td>Lonely</td>
+                    <td>E006</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -128,11 +89,9 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>7</td>
+                    <td>Mournful</td>
+                    <td>E007</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -140,11 +99,29 @@
                 </tr>
 
                 <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Blue Tequila</td>
-                    <td>Táo</td>
-                    <td>Pop, Rap</td>
-                    <td>Sad, Torment, Solitary</td>
+                    <td>8</td>
+                    <td>Nostalgia</td>
+                    <td>E008</td>
+                    <td class="Model-table-data-del-edit">
+                        <i class="fa-regular fa-rectangle-xmark"></i>
+                        <img src="~/img/🦆 icon _pencil outline_.png" />
+                    </td>
+                </tr>
+
+                <tr class="Model-table-data">
+                    <td>9</td>
+                    <td>Optimistic</td>
+                    <td>E009</td>
+                    <td class="Model-table-data-del-edit">
+                        <i class="fa-regular fa-rectangle-xmark"></i>
+                        <img src="~/img/🦆 icon _pencil outline_.png" />
+                    </td>
+                </tr>
+
+                <tr class="Model-table-data">
+                    <td>10</td>
+                    <td>Sorrow</td>
+                    <td>E010</td>
                     <td class="Model-table-data-del-edit">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         <img src="~/img/🦆 icon _pencil outline_.png" />
@@ -156,7 +133,7 @@
         <div class="Model-Page">
             <div class="Model-GoToPage">
                 <a href="">Go to page: </a>
-                <input type="text" value="1"/>
+                <input type="text" value="1" />
             </div>
 
             <div class="Model-prev-pagenumber-next-last">

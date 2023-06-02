@@ -3,7 +3,7 @@
     Layout = "_LayoutAdmin";
 }
 
-<div class="Admin-AddNewSong">
+<div class="Admin-AddNewModel">
     <i class="fa-solid fa-arrow-left-long"></i>
 
     <a asp-controller="Admin" asp-action="ListSongUsing">Back</a>
@@ -13,7 +13,7 @@
     <form>
         <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
 
-        <div class="Admin-AddNewSong_text_field">
+        <div class="Admin-AddNewModel_text_field">
             <label>Directory path</label>
             
             <input type="text" id="Directory-path" readonly/>
@@ -24,19 +24,19 @@
 
         </div>
 
-        <div class="Admin-AddNewSong_text_field">
+        <div class="Admin-AddNewModel_text_field">
             <label>Name</label>
             <input type="text" />
             <span class="text-danger"></span>
         </div>
 
-        <div class="Admin-AddNewSong_text_field">
+        <div class="Admin-AddNewModel_text_field">
             <label>Artist</label>
             <input type="text" />
             <span class="text-danger"></span>
         </div>
 
-        <div class="Admin-AddNewSong-Category">
+        <div class="Admin-AddNewModel-Category">
             <label>Genre</label>
 
             @*Hiển thị các Genre đã chọn lên ô chứa Genre*@
@@ -100,7 +100,7 @@
         </div>
 
 
-        <div class="Admin-AddNewSong-Category">
+        <div class="Admin-AddNewModel-Category">
             <label>Emotion</label>
 
             @*Hiển thị các Emotion đã chọn lên ô chứa Emotion*@
@@ -165,7 +165,7 @@
         </div>
     </form>
 
-    <div class="btn-AddNewSong">
+    <div class="btn-AddNewModel">
         <button>Add new song</button>
     </div>
 </div>

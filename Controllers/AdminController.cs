@@ -12,5 +12,9 @@ namespace PBL3.Controllers
         }
         public IActionResult ListSongUsing() => View();
         public IActionResult AddNewSong() => View();
+        public IActionResult ListGenresOfSong() => View();
+        public IActionResult AddNewGenre() => View();
+        public IActionResult ListEmotions() => View();
+        public IActionResult AddNewEmotion() => View();
     }
 }

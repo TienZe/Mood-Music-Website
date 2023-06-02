@@ -1043,9 +1043,9 @@ button.accept-policy {
 }
 
 
-/*Admin-AddNewSong*/
+/*Admin-AddNewModel*/
 
-.Admin-AddNewSong {
+.Admin-AddNewModel {
     position: absolute;
     width: 95%;
     height: 95%;
@@ -1057,13 +1057,13 @@ button.accept-policy {
     padding: 25px;
 }
 
-.Admin-AddNewSong i {
+.Admin-AddNewModel i {
     font-size: 20px;
     cursor: pointer;
 }
 
 
-.Admin-AddNewSong a {
+.Admin-AddNewModel a {
     font-size: 18px;
     padding-left: 10px;
     text-decoration: none;
@@ -1072,20 +1072,20 @@ button.accept-policy {
 
 }
 
-.Admin-AddNewSong h1 {
+.Admin-AddNewModel h1 {
     font-size: 40px;
     font-weight: bold;
     margin: 10px 0;
 }
 
-.Admin-AddNewSong_text_field label {
+.Admin-AddNewModel_text_field label {
     display: block;
     font-size: 15px;
     font-weight: bold;
     margin: 5px 0;
 }
 
-.Admin-AddNewSong_text_field input {
+.Admin-AddNewModel_text_field input {
     width: 100%;
     height: 30px;
     font-size: 18px;
@@ -1098,7 +1098,7 @@ button.accept-policy {
     width: 97%;
 }
 
-.Admin-AddNewSong_text_field i {
+.Admin-AddNewModel_text_field i {
     display: inline-block;
     align-self: center;
     font-size: 25px;
@@ -1107,12 +1107,12 @@ button.accept-policy {
     transform: translateY(2px);
 }
 
-.Admin-AddNewSong-Category {
+.Admin-AddNewModel-Category {
     display: flex;
     margin: 50px 0;
 }
 
-.Admin-AddNewSong-Category label{
+.Admin-AddNewModel-Category label{
     font-size: 15px;
     font-weight: bold;
     width: 7%;
@@ -1121,7 +1121,7 @@ button.accept-policy {
     align-items: center;
 }
 
-/*.Admin-AddNewSong-Category input[type=text] {
+/*.Admin-AddNewModel-Category input[type=text] {
     width: 80%;
     height: 30px;
     background: rgba(243, 243, 243, 0.68);
@@ -1172,13 +1172,13 @@ button.accept-policy {
     font-weight: bold;
 }
 
-.btn-AddNewSong {
+.btn-AddNewModel {
     display: flex;
     justify-content: end;
     margin-top: 30px;
 }
 
-.btn-AddNewSong button {
+.btn-AddNewModel button {
     width: 13%;
     height: 35px;
     font-size: 16px;
@@ -1190,13 +1190,13 @@ button.accept-policy {
 
 /* List song using */
 
-.ListSongUsing-Container {
+.Model-Container {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.ListSongUsing-Search-Box {
+.Model-Search-Box {
     width: 95%;
     height: 12%;
     margin: 10px auto;
@@ -1208,7 +1208,7 @@ button.accept-policy {
     padding: 0 30px;
 }
 
-.ListSongUsing-Search {
+.Model-Search {
     border: 1px solid #000;
     width: 50%;
     height: 35px;
@@ -1219,7 +1219,7 @@ button.accept-policy {
     border-radius: 5px;
 }
 
-.ListSongUsing-Search input {
+.Model-Search input {
     width: 100%;
     height: 30px;
     font-size: 20px;
@@ -1228,11 +1228,11 @@ button.accept-policy {
     padding-left: 10px;
 }
 
-.ListSongUsing-Search i {
+.Model-Search i {
     font-size: 20px;
 }
 
-.ListSongUsing-btn-AddNewSong {
+.Model-btn-AddNewModel {
     width: 15%;
     height: 35px;
     display: flex;
@@ -1242,14 +1242,14 @@ button.accept-policy {
     background: #000;
 }
 
-.ListSongUsing-btn-AddNewSong a {
+.Model-btn-AddNewModel a {
     text-decoration: none;
     font-size: 18px;
     color: #fff;
     font-weight: 500;
 }
 
-.ListSongUsing-Show {
+.Model-Show {
     width: 95%;
     height: 85%;
     background: #fff;
@@ -1258,11 +1258,11 @@ button.accept-policy {
     padding: 20px 25px;
 }
 
-.ListSongUsing-Show h1 {
+.Model-Show h1 {
     font-size: 40px;
 }
 
-.ListSongUsing-table {
+.Model-table {
     width: 100%;
     font-size: 20px;
     font-family: "Montserrat";
@@ -1270,7 +1270,7 @@ button.accept-policy {
     margin-top: 15px;
 }
 
-.ListSongUsing-table thead {
+.Model-table thead {
     background: #D9D9D9;
 }
 
@@ -1284,34 +1284,34 @@ button.accept-policy {
     border-bottom-right-radius: 10px;
 }
 
-.ListSongUsing-table td {
+.Model-table td {
     padding: 2px 10px;
 }
 
-.ListSongUsing-table-data td {
+.Model-table-data td {
     padding: 10px 10px;
 }
 
-.ListSongUsing-table-data-del-edit {
+.Model-table-data-del-edit {
     display: flex;
     justify-content: end;
     align-items: center;
     height: 51.6px;
 }
 
-.ListSongUsing-table-data-del-edit i {
+.Model-table-data-del-edit i {
     font-size: 22px;
     cursor: pointer;
 }
 
-.ListSongUsing-table-data-del-edit img {
+.Model-table-data-del-edit img {
     width: 18px;
     height: 18px;
     margin-left: 15px;
     cursor: pointer;
 }
 
-.ListSongUsing-Page {
+.Model-Page {
     width: 45%;
     display: flex;
     justify-content: space-between;
@@ -1322,17 +1322,17 @@ button.accept-policy {
     font-weight: bold;
 }
 
-.ListSongUsing-GoToPage {
+.Model-GoToPage {
     border: 1px solid #000;
     padding: 0 10px;
 }
 
-.ListSongUsing-GoToPage a {
+.Model-GoToPage a {
     text-decoration: none;
     color: #000;
 }
 
-.ListSongUsing-GoToPage input {
+.Model-GoToPage input {
     width: 30px;
     height: 18px;
     border: 1px solid #000;
@@ -1340,12 +1340,12 @@ button.accept-policy {
     text-align: center;
 }
 
-.ListSongUsing-prev-pagenumber-next-last {
+.Model-prev-pagenumber-next-last {
     border: 1px solid #000;
     padding: 0 10px;
 }
 
-.ListSongUsing-prev-pagenumber-next-last a {
+.Model-prev-pagenumber-next-last a {
     text-decoration: none;
     color: #000;
 }
