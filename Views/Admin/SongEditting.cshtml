@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "_LayoutAdmin";
 }
 
@@ -9,17 +8,17 @@
         Back
     </a>
 
-    <h1>New song</h1>
+    <h1>Song editting</h1>
 
     <form>
         <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
 
         <div class="Admin-AddNewModel_text_field">
             <label>Directory path</label>
-            
-            <input type="text" id="Directory-path" readonly/>
+
+            <input type="text" id="Directory-path" readonly />
             <input type="file" class="hide" />
-            
+
             <span class="text-danger"></span>
             <i class="fa-regular fa-folder-closed" id="folder"></i>
 
@@ -72,27 +71,27 @@
             <div class="Category-List">
                 <i class="fa-solid fa-caret-down" id="List-Genre"></i>
                 <div class="hide" id="Genre-Item">
-                    <div class="Category-item" >
+                    <div class="Category-item">
                         <input type="checkbox" checkbox-Category-id="checkbox-Pop" />
                         Pop
                     </div>
 
-                    <div class="Category-item" >
+                    <div class="Category-item">
                         <input type="checkbox" checkbox-Category-id="checkbox-Rap" />
                         Rap
                     </div>
 
-                    <div class="Category-item" >
+                    <div class="Category-item">
                         <input type="checkbox" checkbox-Category-id="checkbox-Classical" />
                         Classical
                     </div>
 
-                    <div class="Category-item" >
+                    <div class="Category-item">
                         <input type="checkbox" checkbox-Category-id="checkbox-Folksong" />
                         Folksong
                     </div>
 
-                    <div class="Category-item" >
+                    <div class="Category-item">
                         <input type="checkbox" checkbox-Category-id="checkbox-Country" />
                         Country
                     </div>

@@ -207,7 +207,39 @@ ResourcesList.addEventListener("click", function () {
     ResourcesEmotion.classList.toggle("hide");
 })
 
+// Add new song - list genre and emotion
 
+var ListGenre = document.querySelector("#List-Genre");
+var ListEmotion = document.querySelector("#List-Emotion");
+var GenreItem = document.querySelector("#Genre-Item");
+var EmotionItem = document.querySelector("#Emotion-Item");
+
+
+ListGenre.addEventListener("click", function () {
+    GenreItem.classList.toggle("hide");
+    EmotionItem.classList.add("hide");
+})
+
+ListEmotion.addEventListener("click", function () {
+    EmotionItem.classList.toggle("hide");
+    GenreItem.classList.add("hide");
+})
+
+// Add new song - click icon folfer
+
+var fileInput = document.querySelector("input[type='file']");
+var fileSelect = document.querySelector('#folder');
+var filePath = document.querySelector("#Directory-path");
+
+fileSelect.addEventListener("click", (event) => {
+    event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
+    fileInput.click(); // tự động gọi sự kiện của phần tử input file
+});
+
+fileInput.addEventListener('change', (event) => {
+    const selectedFile = event.target.files[0];
+    filePath.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
+});
 
 // Add new song - check box
 

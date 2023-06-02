@@ -1349,3 +1349,76 @@ button.accept-policy {
     text-decoration: none;
     color: #000;
 }
+
+/* Order */
+
+.Order-Header {
+    width: 22%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Order-Header img {
+    width: 40px;
+    height: 40px;
+}
+
+.Order-Wall {
+    border: 1px solid #000;
+    width: 1px;
+    height: 40px;
+}
+
+.Model-table-Order-details a{
+    color: #000;
+}
+
+.OrderDetails-Container {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.OrderDetails-Container i {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.OrderDetails-Container a {
+    font-size: 18px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+.OrderDetails-Title {
+    height: 55px;
+    border-radius: 8px;
+    background: #D2EEE4;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: 40px;
+    font-weight: bold;
+    
+}
+
+.OrderDetails-Show {
+    border: 1px solid #000;
+    height: 85%;
+}
+
+.OrderDetails-Show img {
+    width: 20%;
+    height: auto;
+    object-fit: cover;
+}
