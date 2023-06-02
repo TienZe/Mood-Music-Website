@@ -207,23 +207,7 @@ ResourcesList.addEventListener("click", function () {
     ResourcesEmotion.classList.toggle("hide");
 })
 
-// Add new song - list genre and emotion
 
-var ListGenre = document.querySelector("#List-Genre");
-var ListEmotion = document.querySelector("#List-Emotion");
-var GenreItem = document.querySelector("#Genre-Item");
-var EmotionItem = document.querySelector("#Emotion-Item");
-
-
-ListGenre.addEventListener("click", function () {
-    GenreItem.classList.toggle("hide");
-    EmotionItem.classList.add("hide");
-})
-
-ListEmotion.addEventListener("click", function () {
-    EmotionItem.classList.toggle("hide");
-    GenreItem.classList.add("hide");
-})
 
 // Add new song - check box
 
@@ -261,20 +245,18 @@ iconX.forEach(function (icon) {
     })
 })
 
-// Add new song - click icon folfer
-
-const fileInput = document.querySelector("input[type='file']");
-const fileSelect = document.querySelector('#folder');
-const filePath = document.querySelector("#Directory-path");
-
-fileSelect.addEventListener("click", (event) => {
-    event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
-    fileInput.click(); // tự động gọi sự kiện của phần tử input file
-});
-
-fileInput.addEventListener('change', (event) => {
-    const selectedFile = event.target.files[0];
-    filePath.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
-});
 
 
+// List song using - delete row
+
+//var DeleteRow = document.querySelectorAll(".ListSongUsing-table-data-del-edit i");
+
+//DeleteRow.forEach(function (button) {
+//    button.addEventListener("click", function () {
+//        // Xác định dòng chứa thẻ i được nhấn
+//        var row = button.parentNode.parentNode; // lấy thẻ tr chứa thẻ i
+
+//        // Xóa dòng
+//        row.remove();
+//    })
+//})
