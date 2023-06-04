@@ -1130,11 +1130,12 @@ button.accept-policy {
 }*/
 
 .Category-Show {
-    width: 80%;
+    width: 75%;
     height: 30px;
     background: rgba(243, 243, 243, 0.68);
     display: flex;
     align-items: center;
+    margin-right: 10px;
 }
 
 .Category-Show-item {
@@ -1153,23 +1154,10 @@ button.accept-policy {
 }
 
 .Category-List {
-    width: 12%;
+    width: 20%;
     border: 1px solid #000;
     border-radius: 5px;
-    margin-left: 10px;
     padding: 0 10px;
-}
-
-.Category-List i {
-    display: flex;
-    justify-content: end;
-}
-
-.Category-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-    font-weight: bold;
 }
 
 .btn-AddNewModel {
