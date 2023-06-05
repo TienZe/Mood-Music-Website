@@ -1,37 +1,70 @@
-﻿@model IEnumerable<Emotion>
-
+﻿@model PaginatedList<Genre>
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "List of emotions";
 }
 
-@if (Model.Count() > 0)
-{
+<div class="Model-Container">
+    <div class="Model-Search-Box">
+        <div class="Model-Search">
+            <input type="text" placeholder="Find genre here - Eg: Classical ..." />
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-        @foreach (Emotion emotion in Model)
-        {
-            <tr>
-                <td>@emotion.Name</td>
-                <td>
-                    <form asp-action="Delete" method="post">
-                        <a asp-action="Edit" asp-route-id="@emotion.EmotionId" class="btn btn-secondary">Edit</a>
-                        <input type="hidden" name="id" value="@emotion.EmotionId" />
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Delete
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div class="text-center">No Emotions</div>
-}
+        <div class="Model-btn-AddNewModel">
+            <a asp-controller="Genre" asp-action="Create">Add new genre</a>
+        </div>
+    </div>
 
-<a asp-action="Create" class="btn btn-primary">Add new emotion</a>
+    <div class="Model-Show">
+        <h1>List genres of song</h1>
+
+        <table class="Model-table">
+            <thead>
+                <tr>
+                    <td class="table-STT">STT</td>
+                    <td>Name</td>
+                    <td>ID</td>
+                    <td class="table-Delete-Edit"></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    Genre genre = Model[i];
+                    <tr class="Model-table-data">
+                        <td>@(Model.FirstItemIndex + i)</td>
+                        <td>@genre.Name</td>
+                        <td>@genre.GenreId</td>
+
+                        <td class="Model-table-data-del-edit">
+                            <form asp-controller="Genre" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@genre.GenreId">
+                                <i class="fa-regular fa-rectangle-xmark"></i>
+                            </form>
+                            <a asp-controller="Genre" asp-action="Edit" asp-route-id="@genre.GenreId">
+                                <img src="~/img/🦆 icon _pencil outline_.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <form asp-controller="Genre" asp-action="Index" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
+                           max="@Model.TotalPages" />
+                </form>
+            </div>
+
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Genre" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+            </div>
+        </div>
+    </div>
+</div>

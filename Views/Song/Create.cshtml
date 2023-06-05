@@ -4,7 +4,7 @@
 }
 
 <div class="Admin-AddNewModel">
-    <a asp-controller="Admin" asp-action="ListSongUsing">
+    <a asp-controller="Song" asp-action="Index">
         <i class="fa-solid fa-arrow-left-long"></i>
         Back
     </a>
@@ -51,10 +51,6 @@
                         @item.Text
                     </div>
                 }
-                @*<div class="Category-Show-item hide" id="checkbox-Pop">
-                    <i class="fa-solid fa-xmark" icon-Category-id="checkbox-Pop"></i>
-                    Pop
-                </div>*@
             </div>
 
             @*Hiển thị các checkbox Genre để chọn*@
@@ -72,10 +68,6 @@
                             @item.Text
                         </div>
                     }
-                    @*<div class="Category-item" >
-                        <input type="checkbox" checkbox-Category-id="checkbox-Pop" />
-                        Pop
-                    </div>*@
                 </div>
             </div>
            
@@ -102,10 +94,6 @@
                     <i class="fa-solid fa-xmark" icon-Category-id="checkbox-Active"></i>
                     Active
                 </div>
-               @* <div class="Category-Show-item hide" id="checkbox-Fun">
-                    <i class="fa-solid fa-xmark" icon-Category-id="checkbox-Fun"></i>
-                    Fun
-                </div>*@
             </div>
 
             @*Hiển thị các checkbox Emotion để chọn*@
@@ -124,10 +112,6 @@
                         </div>
 
                     }
-                    @*<div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Active" />
-                        Active
-                    </div>*@
                 </div>
             </div>
 

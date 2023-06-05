@@ -1,15 +1,33 @@
 ﻿@model Genre
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Create new genre";
+}
 
+<div class="Admin-AddNewModel">
+    <a asp-controller="Genre" asp-action="Index">
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back
+    </a>
 
-<h3>Add Genre</h3>
+    <h1>New genre</h1>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form id="create-genre-form" asp-controller="Genre" asp-action="Create" method="post">
+        <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <div><span asp-validation-for="Name"></span></div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
+        <div class="Admin-AddNewModel_text_field">
+            <label>ID</label>
+            <input type="text" readonly placeholder="Auto filling"/>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Name">Name</label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="Name" />
+        </div>
+    </form>
+
+    <div class="btn-AddNewModel">
+        <button form="create-genre-form" type="submit">Add new genre</button>
     </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
+</div>

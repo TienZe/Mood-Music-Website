@@ -26,10 +26,10 @@ namespace PBL3.Models.DTO
 		[Required]
 		public string? Artist { get; set; }
 
-		[Required(ErrorMessage = "Please choose genre of this song")]
+		[Required(ErrorMessage = "Please choose emotion of this song")]
 		public IEnumerable<int>? EmotionIds { get; set; }
 
-		[Required(ErrorMessage = "Please choose emotion of this song")]
+		[Required(ErrorMessage = "Please choose genre of this song")]
 		public IEnumerable<int>? GenreIds { get; set; }
 
 		public string? CurrentAudio { get; set; }
