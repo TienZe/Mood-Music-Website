@@ -1,12 +1,25 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
+    var user = await UserManager.GetUserAsync(User);
+    bool isAdmin = await UserManager.IsInRoleAsync(user, Role.Admin);
+
     <li class="Header_navbar-item">
-        <a class="Header_navbar-link" asp-controller="Admin" asp-action="MemberDetail">
-            Hello @ViewContext.HttpContext.User.Identity?.Name 
-        </a>
+        @if (isAdmin)
+        {
+            <a class="Header_navbar-link" asp-controller="Admin" asp-action="MemberDetail">
+                Hello @ViewContext.HttpContext.User.Identity?.Name
+            </a>
+        }
+        else
+        {
+            <a class="Header_navbar-link" asp-controller="Account" asp-action="ManageProfile">
+                Hello @ViewContext.HttpContext.User.Identity?.Name
+            </a>
+        }
         <i class="fa-solid fa-bars"></i>
         <ul class="bars-down hide">
             <li>

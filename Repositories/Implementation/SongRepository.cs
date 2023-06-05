@@ -19,7 +19,7 @@ namespace PBL3.Repositories.Implementation
 			context.Entry(song).Collection(s => s.Genres).Load();
 			return song;
 		}
-		public IEnumerable<Song> GetAllWithRelatedGenreAndEmotion()
+		public IQueryable<Song> GetAllWithRelatedGenreAndEmotion()
 		{
 			return context.Songs.Include(s => s.Genres).Include(s => s.Emotions);
 		}

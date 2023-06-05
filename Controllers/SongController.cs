@@ -20,6 +20,7 @@ namespace PBL3.Controllers
         private readonly IRepository<Genre> genreRepository;
         private readonly IEmotionRepository emotionRepository;
         private readonly FileService fileService;
+        private const int PageSize = 4;
         public SongController(ISongRepository songService, IRepository<Genre> genreService
             , IEmotionRepository emotionService, FileService fileService) 
         {
@@ -28,16 +29,27 @@ namespace PBL3.Controllers
             this.emotionRepository = emotionService;
             this.fileService = fileService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int? pageIndex, string searchString)
         {
-            var listSong = songRepository.GetAllWithRelatedGenreAndEmotion()
-                .Select(s => new ListSongItem()
-                {
-                    Song = s,
-                    GenreNames = string.Join(",", s.Genres.Select(g => g.Name)),
-                    EmotionNames = string.Join(",", s.Emotions.Select(e => e.Name))
-                });
-            return View(listSong);
+            // Server validation
+            pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
+
+            var listSongs = songRepository.GetAllWithRelatedGenreAndEmotion();
+
+            // Tiếp tục mở rộng truy vấn
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                // Thực hiện Search
+                listSongs = listSongs.Where(s => s.Name.Contains(searchString));
+            }
+            // Truyền filter hiện tại sang cho View
+            ViewBag.SearchString = searchString ?? string.Empty;
+
+            // Sắp xếp
+            listSongs = listSongs.OrderBy(s => s.SongId);
+
+            // Phân trang kết quả
+            return View(await PaginatedList<Song>.CreateAsync(listSongs, pageIndex.Value, PageSize));
         }
         private void AddSelectListToView()
         {
@@ -53,7 +65,12 @@ namespace PBL3.Controllers
             AddSelectListToView();
 			return View(model);
         }
-
+        [HttpGet]
+        public IActionResult Create1()
+        {
+            AddSelectListToView();
+            return View();
+        }
         [HttpGet]
         public IActionResult Create()
         {
@@ -161,6 +178,7 @@ namespace PBL3.Controllers
                 fileService.DeleteFile("audio/" + song.Source);
             }
             songRepository.Delete(id);
+
             return RedirectToAction(nameof(Index));
         }
     }
