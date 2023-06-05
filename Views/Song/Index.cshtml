@@ -86,10 +86,11 @@
             
             deleteButtons.forEach(function (button) {
                 button.addEventListener('click', function () {
-                    console.log("submit");
-                    var form = this.closest('form');
-                    console.log(form);
-                    form.submit();
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa không?");
+                    if (confirmation) {
+                        var form = this.closest('form');
+                        form.submit();
+                    }
                 });
             });
         });

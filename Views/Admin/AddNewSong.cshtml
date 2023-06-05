@@ -69,7 +69,7 @@
             </div>
 
             @*Hiển thị các checkbox Genre để chọn*@
-            <div class="Category-List">
+            @*<div class="Category-List">
                 <i class="fa-solid fa-caret-down" id="List-Genre"></i>
                 <div class="hide" id="Genre-Item">
                     <div class="Category-item" >
@@ -97,9 +97,17 @@
                         Country
                     </div>
                 </div>
-            </div>
+            </div>*@
+            <select class="Category-List" multiple multiselect-search="true" multiselect-silent-initial-value-set="true">
+                <option>Pop</option>
+                <option>Rap</option>
+                <option>Classical</option>
+                <option>Folksong</option>
+                <option>Country</option>
+            </select>
         </div>
-
+        
+        
 
         <div class="Admin-AddNewModel-Category">
             <label>Emotion</label>
@@ -133,7 +141,7 @@
             </div>
 
             @*Hiển thị các checkbox Emotion để chọn*@
-            <div class="Category-List">
+            @*<div class="Category-List">
                 <i class="fa-solid fa-caret-down" id="List-Emotion"></i>
                 <div class="hide" id="Emotion-Item">
                     <div class="Category-item">
@@ -161,8 +169,14 @@
                         Torment
                     </div>
                 </div>
-            </div>
-
+            </div>*@
+            <select class="Category-List" multiple>
+                <option>Active</option>
+                <option>Fun</option>
+                <option>Happy</option>
+                <option>Optimistic</option>
+                <option>Torment</option>
+            </select>
         </div>
     </form>
 

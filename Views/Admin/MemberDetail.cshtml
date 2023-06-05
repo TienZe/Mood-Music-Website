@@ -6,4 +6,83 @@
 }
 
 
+<style>
+    
 
+
+</style>
+
+
+<div class="MemberDetail_Searchbox_Zone">
+        <div class="MemberDetail_Searchbox">
+            <input type="text" class="MemberDetail_searchTerm" placeholder="Find member here - E.g: Nguyễn Đình Anh Tiến...">
+            <button type="submit" class="MemberDetail_searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+</div>
+
+<div class="MemberList_Zone">
+    <h1 class="MemberList_Header">Member list</h1>
+    <div class="MemberList_TableZone">
+        <table class="MemberList_Table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>User name</th>
+                    <th>Account</th>
+                    <th>Cart</th>
+                    <th>Register day</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(int i = 0 ; i <= 101 ; i++){
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>Nguyễn Đình Anh Tiến</td>
+                        <td>Anhtien1609@gmail.com</td>
+                        <td>12 Orders</td>
+                        <td>21/12/2023</td>
+                        <td><a href="#" style="color: inherit; text-decoration: inherit;">Go to profile details</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <a href="">Go to page: </a>
+                <input type="text" value="1"/>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Previous</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">2</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">3</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">4</a>
+            </div>
+
+            <div class="Model-3dots">...</div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Next</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Last</a>
+            </div>
+        </div>
+</div>
