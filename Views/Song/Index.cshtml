@@ -1,45 +1,99 @@
-﻿@model IEnumerable<ListSongItem>
-
+﻿@model PaginatedList<Song>
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "List of songs";
 }
 
-@if (Model.Count() > 0)
-{
+<div class="Model-Container">
+    <div class="Model-Search-Box">
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Name</th>
-            <th>Artist</th>
-            <th>Genres</th>
-            <th>Emotions</th>
-            <th>Source</th>
-            <th></th>
-        </tr>
-        @foreach (ListSongItem item in Model)
-        {
-            <tr>
-                <th>@item.Song.Name</th>
-                <th>@item.Song.Artist</th>
-                <th>@item.GenreNames</th>
-                <th>@item.EmotionNames</th>
-                <th>@item.Song.Source</th>
-                <td>
-                    <form asp-action="Delete" method="post">
-                        <a asp-action="Edit" asp-route-id="@item.Song.SongId" class="btn btn-secondary">Edit</a>
-                        <input type="hidden" name="id" value="@item.Song.SongId" />
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Delete
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div class="text-center">No Song</div>
-}
+        <form id="song-search-form" class="Model-Search" method="get"
+              asp-controller="Song" asp-action="Index">
+            <input type="text" placeholder="Find song here - Eg: Anti hero ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="song-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
 
-<a asp-action="Create" class="btn btn-primary">Add new Song</a>
+        <div class="Model-btn-AddNewModel">
+            <a asp-controller="Song" asp-action="Create">Add new song</a>
+        </div>
+    </div>
+
+    <div class="Model-Show">
+        <h1>List song using</h1>
+
+        <table class="Model-table">
+            <thead>
+                <tr>
+                    <td class="table-STT">STT</td>
+                    <td>Name</td>
+                    <td>Artist</td>
+                    <td>Genre</td>
+                    <td>Emotion</td>
+                    <td class="table-Delete-Edit"></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    Song song = Model[i];
+                    <tr class="Model-table-data">
+                        <td>@(Model.FirstItemIndex + i)</td>
+                        <td>@song.Name</td>
+                        <td>@song.Artist</td>
+                        <td>@String.Join(", ", song.Genres.Select(g => g.Name))</td>
+                        <td>@String.Join(", ", song.Emotions.Select(e => e.Name))</td>
+                        <td class="Model-table-data-del-edit">
+                            <form asp-controller="Song" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@song.SongId">
+                                <i class="fa-regular fa-rectangle-xmark"></i>
+                            </form>
+                            <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.SongId">
+                                <img src="~/img/🦆 icon _pencil outline_.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <form asp-controller="Song" asp-action="Index" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1" 
+                        max="@Model.TotalPages" />
+                </form>
+            </div>
+
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Song" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+            </div>
+
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('song-search-button').addEventListener('click', function () {
+                document.getElementById('song-search-form').submit();
+            });
+
+            var deleteButtons = document.querySelectorAll('.fa-regular.fa-rectangle-xmark');
+            
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa không?");
+                    if (confirmation) {
+                        var form = this.closest('form');
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}

@@ -1,13 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 
 namespace PBL3.Models.Domain
 {
     public class Emotion
     {
-        [Required]
         public int EmotionId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter the name of genre")]
         public string Name { get; set; } = string.Empty;
+
+        [BindNever]
         public List<Song> Songs { get; } = new();
     }
 }

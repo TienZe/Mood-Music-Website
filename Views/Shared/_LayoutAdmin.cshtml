@@ -20,7 +20,15 @@
                 <h1 class="Header_navbar-Rhythm">Rhythm</h1>
 
                 <ul class="Header_navbar-list">
-                    
+                    <li class="Header_navbar-item">
+                        <a asp-controller="Home" asp-action="Index" class="Header_navbar-link">Discover</a>
+                    </li>
+                    <li class="Header_navbar-item">
+                        <a asp-controller="Music" asp-action="Index" class="Header_navbar-link">Emotion Song</a>
+                    </li>
+                    <li class="Header_navbar-item">
+                        <a asp-controller="Home" asp-action="Storii" class="Header_navbar-link">Storii</a>
+                    </li>
                     @*Các nút Login/Signup hoặc Logout*@
                     <partial name="_LoginPartial" />
                 </ul>
@@ -33,7 +41,7 @@
         <div class="Admin_sidebar_navigations">
             <div class="Admin_sidebar_navigation-item">
                 <i class="fa-regular fa-user"></i>
-                <a asp-controller="" asp-action="">
+                <a asp-controller="Admin" asp-action="ListMembers">
                     Member
                 </a>
             </div>
@@ -45,21 +53,21 @@
 
             <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Song">
                 <i class="fa-solid fa-music"></i>
-                <a asp-controller="Admin" asp-action="ListSongUsing">
+                <a asp-controller="Song" asp-action="Index">
                     Song
                 </a>
             </div>
 
             <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Genre">
                 <i class="fa-solid fa-bars-staggered"></i>
-                <a asp-controller="Admin" asp-action="ListGenresOfSong">
+                <a asp-controller="Genre" asp-action="Index">
                     Genre
                 </a>
             </div>
 
             <div class="Admin_sidebar_navigation-Resources-item hide" id="Resources-Emotion">
                 <i class="fa-regular fa-paper-plane"></i>
-                <a asp-controller="Admin" asp-action="ListEmotions">
+                <a asp-controller="Emotion" asp-action="Index">
                     Emotion
                 </a>
             </div>

@@ -40,6 +40,9 @@ builder.Services.AddScoped<IRepository<Genre>, Repository<Genre>>();
 builder.Services.AddScoped<IEmotionRepository, EmotionRepository>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 
+// Seed data
+builder.Services.AddScoped<SeedData>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -65,6 +68,6 @@ context.Database.Migrate();
 await AppDbContext.SeedData(app.Services.CreateScope().ServiceProvider, app.Configuration);
 
 // Seed example data
-SeedData.SeedExampleData(context);
+app.Services.CreateScope().ServiceProvider.GetService<SeedData>()?.SeedExampleData();
 
 app.Run();

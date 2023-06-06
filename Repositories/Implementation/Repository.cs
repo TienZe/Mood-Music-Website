@@ -15,9 +15,9 @@ namespace PBL3.Repositories.Implementation
             this.table = context.Set<T>();
         }
         public IQueryable<T> AsQueryable() => table.AsQueryable();
-        public virtual IEnumerable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
-            return table.ToList();
+            return table;
         }
 
         public virtual T? GetById(int id)

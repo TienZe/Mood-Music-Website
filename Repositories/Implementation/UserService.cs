@@ -98,5 +98,9 @@ namespace PBL3.Repositories.Implementation
             // có validate thông qua IUserValidator và IPasswordValidator
             return await userManager.UpdateAsync(user);
         }
+        public async Task<IEnumerable<AppUser>> GetUsersInRoleAsync(string roleName)
+        {
+            return await userManager.GetUsersInRoleAsync(roleName);
+        }
     }
 }

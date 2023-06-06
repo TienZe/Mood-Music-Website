@@ -1,39 +1,129 @@
 ﻿@model CreateSongModel
+@{
+    Layout = "_LayoutAdmin";
+}
 
-<h3>Add Song</h3>
+<div class="Admin-AddNewModel">
+    <a asp-controller="Song" asp-action="Index">
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back
+    </a>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h1>New song</h1>
 
-<form enctype="multipart/form-data" asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <div><span asp-validation-for="Name" class="text-danger"></span></div>
-        <input asp-for="Name" class="form-control" />
+    <form id="create-song-form" asp-controller="Song" asp-action="Create" method="post"
+          enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for=Audio>Directory path</label>
+            <span asp-validation-for="Audio" class="text-danger"></span>
+            <input type="text" id="Directory-path" readonly />
+            <input asp-for="Audio" class="invisible_input" />
+            <i class="fa-regular fa-folder-closed" id="folder"></i>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Name">Name</label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="Name" />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Artist">Artist</label>
+            <span asp-validation-for="Artist" class="text-danger"></span>
+            <input asp-for="Artist" />
+        </div>
+
+        <div>
+            <span asp-validation-for="GenreIds" class="text-danger"></span>
+        </div>
+        <div class="Admin-AddNewModel-Category">
+
+            <label>Genre</label>
+
+            @*Hiển thị các Genre đã chọn lên ô chứa Genre*@
+            <div class="Category-Show">
+                @foreach (var item in ViewBag.Genres)
+                {
+                    int genreId = Convert.ToInt32(item.Value);
+                    bool isVisible = Model?.GenreIds?.Contains(genreId) ?? false;
+                    <div class="Category-Show-item @(isVisible? "" : "hide")" id="checkbox-genre-@genreId">
+                        <i class="fa-solid fa-xmark" icon-Category-id="checkbox-genre-@genreId"></i>
+                        @item.Text
+                    </div>
+                }
+            </div>
+
+            @*Hiển thị các checkbox Genre để chọn*@
+            <div class="Category-List">
+                <i class="fa-solid fa-caret-down" id="List-Genre"></i>
+                <div class="hide" id="Genre-Item">
+                    @foreach (var item in
+                    (ViewBag.Genres as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                    {
+                        int genreId = Convert.ToInt32(item.Value);
+                        bool? isChecked = Model?.GenreIds?.Contains(genreId);
+                        <div class="Category-item">
+                            <input type="checkbox" checkbox-Category-id="checkbox-genre-@genreId"
+                                   name="GenreIds" value="@genreId" checked="@isChecked" />
+                            @item.Text
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </div>
+
+        <div>
+            <span asp-validation-for="EmotionIds" class="text-danger"></span>
+        </div>
+        <div class="Admin-AddNewModel-Category">
+            <label>Emotion</label>
+
+            @*Hiển thị các Emotion đã chọn lên ô chứa Emotion*@
+            <div class="Category-Show">
+                @foreach (var item in
+                (ViewBag.Emotions as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                {
+                    int emotionId = Convert.ToInt32(item.Value);
+                    bool isVisible = Model?.EmotionIds?.Contains(emotionId) ?? false;
+                    <div class="Category-Show-item @(isVisible? "" : "hide")" id="checkbox-emotion-@emotionId">
+                        <i class="fa-solid fa-xmark" icon-Category-id="checkbox-emotion-@emotionId"></i>
+                        @item.Text
+                    </div>
+
+                }
+                <div class="Category-Show-item hide" id="checkbox-Active">
+                    <i class="fa-solid fa-xmark" icon-Category-id="checkbox-Active"></i>
+                    Active
+                </div>
+            </div>
+
+            @*Hiển thị các checkbox Emotion để chọn*@
+            <div class="Category-List">
+                <i class="fa-solid fa-caret-down" id="List-Emotion"></i>
+                <div class="hide" id="Emotion-Item">
+                    @foreach (var item in
+                    (ViewBag.Emotions as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                    {
+                        int emotionId = Convert.ToInt32(item.Value);
+                        bool isChecked = Model?.EmotionIds?.Contains(emotionId) ?? false;
+                        <div class="Category-item">
+                            <input type="checkbox" checkbox-Category-id="checkbox-emotion-@emotionId"
+                                   name="EmotionIds" value="@emotionId" checked="@isChecked" />
+                            @item.Text
+                        </div>
+
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+    <div class="btn-AddNewModel">
+        <button form="create-song-form">Add new song</button>
     </div>
-    
-    <div class="form-group">
-        <label asp-for="Artist"></label>
-        <div><span asp-validation-for="Artist" class="text-danger"></span></div>
-        <input asp-for="Artist" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="GenreIds">Genre</label>
-        <div><span asp-validation-for="GenreIds" class="text-danger"></span></div>
-        <select asp-items="@ViewBag.Genres" asp-for="GenreIds" multiple>
-            <option value="">-Select genres-</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="EmotionIds">Emotion</label>
-        <div><span asp-validation-for="EmotionIds" class="text-danger"></span></div>
-        <select asp-items="@ViewBag.Emotions" asp-for="EmotionIds" multiple>
-            <option value="">-Select emotions-</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="Audio"></label>
-        <div><span asp-validation-for="Audio" class="text-danger"></span></div>
-        <input asp-for="Audio" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Add</button>
-</form>
+</div>

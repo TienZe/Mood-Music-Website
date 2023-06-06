@@ -1,15 +1,33 @@
 ﻿@model Emotion
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Edit emotion";
+}
 
-<h3>Edit Emotion</h3>
+<div class="Admin-AddNewModel">
+    <a asp-controller="Emotion" asp-action="Index">
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back
+    </a>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <h1>Emotion editting</h1>
 
-<form asp-action="Edit" method="post">
-    <input type="hidden" asp-for="EmotionId" />
-    <div class="form-group">
-        <label asp-for="Name"></label>
-        <div><span asp-validation-for="Name"></span></div>
-        <input asp-for="Name" class="form-control" />
+    <form id="edit-emotion-form" asp-controller="Emotion" asp-action="Edit" method="post">
+        <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="EmotionId">ID</label>
+            <input asp-for="EmotionId" readonly />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Name">Name</label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="Name" />
+        </div>
+    </form>
+
+    <div class="btn-AddNewModel">
+        <button form="edit-emotion-form" type="submit">Save</button>
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-</form>
+</div>

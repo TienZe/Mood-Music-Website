@@ -3,7 +3,7 @@
     public interface IRepository<T> where T : class
     {
         IQueryable<T> AsQueryable();
-        IEnumerable<T> GetAll();
+        IQueryable<T> GetAll();
         T? GetById(int id);
         void Add(T obj);
         void Update(T obj);

@@ -1409,4 +1409,114 @@ button.accept-policy {
     width: 20%;
     height: auto;
     object-fit: cover;
+
+}
+
+
+
+.MemberDetail_Searchbox_Zone{
+    margin: 2% 2%;
+    background-color: white;
+    width: 94%;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.MemberDetail_Searchbox {
+    padding: 20px 20px;
+    width: 55%;
+    position: relative;
+    display: flex;
+}
+
+.MemberDetail_searchTerm {
+    font-size: 16px;
+    width: 100%;
+    border: 1px solid #000000;
+    border-right: none;
+    padding: 5px;
+    height: 36px;
+    outline: none;
+    color: #9DBFAF;
+}
+
+.MemberDetail_searchTerm:focus{
+    color: #000000;
+}
+
+.MemberDetail_searchButton {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #000000;
+    border-left: none;
+    background: #ffffff;
+    text-align: center;
+    color: #000000;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.MemberList_Zone
+{
+    margin: 2% 2%;
+    background-color: white;
+    width: 94%;
+    height: 700px;
+    border-radius: 10px;
+}
+
+.MemberList_Header{
+    padding: 20px 20px;
+    font-weight: 700;
+    font-size: 45px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.MemberList_TableZone{
+    margin: 2% 2%;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.MemberList_Table{
+    margin: 25px 0;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-width: 400px;
+    
+}
+
+.MemberList_Table thead tr{
+    background-color: #d2e2df;
+    color: #000000;
+    text-align: left;
+}
+
+.MemberList_Table thead tr th{
+    font-weight: 800;
+}
+
+.MemberList_Table th,
+.MemberList_Table td{
+    padding:10px 52px;
+}
+
+
+.MemberList_Table tbody tr:nth-of-type(even){
+    background-color: #e6e2e2;
+    
+}
+
+.MemberList_Table th:first-child{
+    border-radius: 10px 0 0 10px;
+}
+
+.MemberList_Table th:last-child{
+    border-radius: 0 10px 10px 0;
+}
+.invisible_input {
+    visibility: hidden;
+    position: absolute;
+    left: -9999px;
 }

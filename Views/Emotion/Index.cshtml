@@ -1,37 +1,94 @@
-﻿@model IEnumerable<Emotion>
-
+﻿@model PaginatedList<Emotion>
 @{
-    ViewData["Title"] = "List of emotions";
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "List of genres";
 }
 
-@if (Model.Count() > 0)
-{
+<div class="Model-Container">
+    <div class="Model-Search-Box">
+        <form id="emotion-search-form" class="Model-Search" method="get"
+              asp-controller="Emotion" asp-action="Index">
+            <input type="text" placeholder="Find emotion here - Eg: Nostalgia ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="emotion-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
 
-    <table class="table table-bordered table-striped">
-        <tr>
-            <th>Name</th>
-            <th></th>
-        </tr>
-        @foreach (Emotion emotion in Model)
-        {
-            <tr>
-                <td>@emotion.Name</td>
-                <td>
-                    <form asp-action="Delete" method="post">
-                        <a asp-action="Edit" asp-route-id="@emotion.EmotionId" class="btn btn-secondary">Edit</a>
-                        <input type="hidden" name="id" value="@emotion.EmotionId" />
-                        <button type="submit" class="btn btn-sm btn-danger">
-                            Delete
-                        </button>
-                    </form>
-                </td>
-            </tr>
-        }
-    </table>
-}
-else
-{
-    <div class="text-center">No Emotions</div>
-}
+        <div class="Model-btn-AddNewModel">
+            <a asp-controller="Emotion" asp-action="Create">Add new emotion</a>
+        </div>
+    </div>
 
-<a asp-action="Create" class="btn btn-primary">Add new emotion</a>
+    <div class="Model-Show">
+        <h1>List emotions</h1>
+
+        <table class="Model-table">
+            <thead>
+                <tr>
+                    <td class="table-STT">STT</td>
+                    <td>Name</td>
+                    <td>ID</td>
+                    <td class="table-Delete-Edit"></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    Emotion emotion = Model[i];
+                    <tr class="Model-table-data">
+                        <td>@(Model.FirstItemIndex + i)</td>
+                        <td>@emotion.Name</td>
+                        <td>@emotion.EmotionId</td>
+
+                        <td class="Model-table-data-del-edit">
+                            <form asp-controller="Emotion" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@emotion.EmotionId">
+                                <i class="fa-regular fa-rectangle-xmark"></i>
+                            </form>
+                            <a asp-controller="Emotion" asp-action="Edit" asp-route-id="@emotion.EmotionId">
+                                <img src="~/img/🦆 icon _pencil outline_.png" />
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <form asp-controller="Emotion" asp-action="Index" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
+                           max="@Model.TotalPages" />
+                </form>
+            </div>
+
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Emotion" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('emotion-search-button').addEventListener('click', function () {
+                document.getElementById('emotion-search-form').submit();
+            });
+
+            var deleteButtons = document.querySelectorAll('.fa-regular.fa-rectangle-xmark');
+
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa không?");
+                    if (confirmation) {
+                        var form = this.closest('form');
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PBL3.Models.Domain;
+using PBL3.Models.DTO;
 using PBL3.Repositories.Abstract;
+using PBL3.Repositories.Implementation;
 
 namespace PBL3.Controllers
 {
@@ -9,13 +11,32 @@ namespace PBL3.Controllers
     public class GenreController : Controller
     {
         private readonly IRepository<Genre> repository;
+        private const int PageSize = 4;
         public GenreController(IRepository<Genre> repoService)
         {
             repository = repoService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? pageIndex, string searchString)
         {
-            return View(repository.GetAll());
+            // Server validation
+            pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
+
+            var listGenres = repository.GetAll();
+
+            // Tiếp tục mở rộng truy vấn
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                // Thực hiện Search
+                listGenres = listGenres.Where(g => g.Name.Contains(searchString));
+            }
+            // Truyền filter hiện tại sang cho View
+            ViewBag.SearchString = searchString ?? string.Empty;
+
+            // Sắp xếp
+            listGenres = listGenres.OrderBy(g => g.GenreId);
+
+            // Phân trang kết quả
+            return View(PaginatedList<Genre>.CreateAsync(listGenres, pageIndex.Value, PageSize));
         }
         [HttpGet]
         public IActionResult Create()
@@ -27,7 +48,8 @@ namespace PBL3.Controllers
         {
             if (ModelState.IsValid) 
             {
-                repository.Add(model);
+                Genre newGenre = new Genre { Name = model.Name };
+                repository.Add(newGenre);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);
@@ -43,7 +65,7 @@ namespace PBL3.Controllers
         {
             if (ModelState.IsValid)
             {
-                Genre? genre = repository.AsQueryable().FirstOrDefault(g => g.GenreId == model.GenreId);
+                Genre? genre = repository.GetById(model.GenreId);
                 if (genre != null)
                 {
                     // Cập nhật lại genre, hiện tại chỉ cập nhật Name của Genre
