@@ -15,7 +15,7 @@ namespace PBL3.Controllers
         {
             repository = repoService;
         }
-        public async Task<IActionResult> Index(int? pageIndex, string searchString)
+        public IActionResult Index(int? pageIndex, string searchString)
         {
             // Server validation
             pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
@@ -35,7 +35,7 @@ namespace PBL3.Controllers
             listEmotions = listEmotions.OrderBy(e => e.EmotionId);
 
             // Phân trang kết quả
-            return View(await PaginatedList<Emotion>.CreateAsync(listEmotions, pageIndex.Value, PageSize));
+            return View(PaginatedList<Emotion>.CreateAsync(listEmotions, pageIndex.Value, PageSize));
         }
         [HttpGet]
         public IActionResult Create()
