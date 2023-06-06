@@ -1109,7 +1109,7 @@ button.accept-policy {
 
 .Admin-AddNewModel-Category {
     display: flex;
-    margin: 50px 0;
+    margin-bottom: 50px;
 }
 
 .Admin-AddNewModel-Category label{
@@ -1154,10 +1154,34 @@ button.accept-policy {
 }
 
 .Category-List {
-    width: 20%;
+    width: 17%;
     border: 1px solid #000;
     border-radius: 5px;
-    padding: 0 10px;
+    padding: 2px 10px;
+}
+
+.Category-List i{
+    display: flex;
+    justify-content: end;
+}
+
+.Category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.Category-item input {
+    cursor: pointer;
+}
+
+.Category-item:hover {
+    background: rgba(218, 216, 216, 0.52);
+}
+.text-danger[data-valmsg-for="GenreIds"] {
+    
 }
 
 .btn-AddNewModel {
@@ -1246,6 +1270,10 @@ button.accept-policy {
     padding: 20px 25px;
 }
 
+.Model-Show-Table {
+    height: 580px;
+}
+
 .Model-Show h1 {
     font-size: 40px;
 }
@@ -1285,6 +1313,12 @@ button.accept-policy {
     justify-content: end;
     align-items: center;
     height: 51.6px;
+}
+
+.Model-table-data-del-edit form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .Model-table-data-del-edit i {

@@ -29,7 +29,7 @@
             <input asp-for="Name" />
         </div>
 
-        <div class="Admin-AddNewModel_text_field">
+        <div class="Admin-AddNewModel_text_field" style="margin-bottom: 50px">
             <label asp-for="Artist">Artist</label>
             <span asp-validation-for="Artist" class="text-danger"></span>
             <input asp-for="Artist" />
@@ -64,7 +64,7 @@
                     {
                         int genreId = Convert.ToInt32(item.Value);
                         bool? isChecked = Model?.GenreIds?.Contains(genreId);
-                        <div class="Category-item">
+                        <div class="Category-item" checkbox-Category-id="checkbox-genre-@genreId">
                             <input type="checkbox" checkbox-Category-id="checkbox-genre-@genreId"
                                    name="GenreIds" value="@genreId" checked="@isChecked" />
                             @item.Text

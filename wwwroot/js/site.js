@@ -244,6 +244,7 @@ fileInput.addEventListener('change', (event) => {
 // Add new song - check box
 
 var checkboxes = document.querySelectorAll("input[type='checkbox']");
+var CategoryItem = document.querySelectorAll(".Category-item");
 
 function addCategory(checkboxCategory) {
     var newCategory = document.querySelector("#" + checkboxCategory);
