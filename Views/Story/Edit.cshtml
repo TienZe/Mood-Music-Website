@@ -3,15 +3,27 @@
 }
 
 <div class="Admin-AddNewModel">
-    <a asp-controller="Admin" asp-action="ListStory">
+    <a asp-controller="Story" asp-action="Index">
         <i class="fa-solid fa-arrow-left-long"></i>
         Back
     </a>
 
-    <h1>New story</h1>
+    <h1>Story editting</h1>
 
     <form>
         <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Directory path</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Image path</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
 
         <div class="Admin-AddNewModel_text_field">
             <label>Name</label>
@@ -39,18 +51,18 @@
 
         <div class="Admin-AddNewModel_text_field">
             <label>Decription</label>
-            <textarea style="height: 80px"></textarea>
+            <textarea></textarea>
             <span class="text-danger"></span>
         </div>
 
-        <div class="Admin-AddNewModel_text_field" style="margin-top: 50px">
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
             <input type="text" id="Audio-Source-file" placeholder="Click to choose audio source file" readonly />
             <input type="file" id="file-Audio" class="hide" />
             <span class="text-danger"></span>
             <i class="fa-regular fa-folder-closed" id="folder-Audio"></i>
         </div>
 
-        <div class="Admin-AddNewModel_text_field" style="margin-top: 50px">
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
             <input type="text" id="Image" placeholder="Click to choose image" readonly />
             <input type="file" id="file-Image" class="hide" />
             <span class="text-danger"></span>
