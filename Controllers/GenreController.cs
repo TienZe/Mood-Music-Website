@@ -48,7 +48,8 @@ namespace PBL3.Controllers
         {
             if (ModelState.IsValid) 
             {
-                repository.Add(model);
+                Genre newGenre = new Genre { Name = model.Name };
+                repository.Add(newGenre);
                 return RedirectToAction(nameof(Index));
             }
             return View(model);

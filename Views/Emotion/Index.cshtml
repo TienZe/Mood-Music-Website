@@ -1,23 +1,25 @@
-﻿@model PaginatedList<Genre>
+﻿@model PaginatedList<Emotion>
 @{
     Layout = "_LayoutAdmin";
-    ViewData["Title"] = "List of emotions";
+    ViewData["Title"] = "List of genres";
 }
 
 <div class="Model-Container">
     <div class="Model-Search-Box">
-        <div class="Model-Search">
-            <input type="text" placeholder="Find genre here - Eg: Classical ..." />
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        <form id="emotion-search-form" class="Model-Search" method="get"
+              asp-controller="Emotion" asp-action="Index">
+            <input type="text" placeholder="Find emotion here - Eg: Nostalgia ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="emotion-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
 
         <div class="Model-btn-AddNewModel">
-            <a asp-controller="Genre" asp-action="Create">Add new genre</a>
+            <a asp-controller="Emotion" asp-action="Create">Add new emotion</a>
         </div>
     </div>
 
     <div class="Model-Show">
-        <h1>List genres of song</h1>
+        <h1>List emotions</h1>
 
         <table class="Model-table">
             <thead>
@@ -32,18 +34,18 @@
             <tbody>
                 @for (int i = 0; i < Model.Count; ++i)
                 {
-                    Genre genre = Model[i];
+                    Emotion emotion = Model[i];
                     <tr class="Model-table-data">
                         <td>@(Model.FirstItemIndex + i)</td>
-                        <td>@genre.Name</td>
-                        <td>@genre.GenreId</td>
+                        <td>@emotion.Name</td>
+                        <td>@emotion.EmotionId</td>
 
                         <td class="Model-table-data-del-edit">
-                            <form asp-controller="Genre" asp-action="Delete" method="post">
-                                <input type="hidden" name="id" value="@genre.GenreId">
+                            <form asp-controller="Emotion" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@emotion.EmotionId">
                                 <i class="fa-regular fa-rectangle-xmark"></i>
                             </form>
-                            <a asp-controller="Genre" asp-action="Edit" asp-route-id="@genre.GenreId">
+                            <a asp-controller="Emotion" asp-action="Edit" asp-route-id="@emotion.EmotionId">
                                 <img src="~/img/🦆 icon _pencil outline_.png" />
                             </a>
                         </td>
@@ -54,7 +56,7 @@
 
         <div class="Model-Page">
             <div class="Model-GoToPage">
-                <form asp-controller="Genre" asp-action="Index" method="get">
+                <form asp-controller="Emotion" asp-action="Index" method="get">
                     <button type="submit" style="background: none; border: none;">Go to page: </button>
                     <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
                     <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
@@ -63,8 +65,30 @@
             </div>
 
             <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
-                 page-controller="Genre" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+                 page-controller="Emotion" page-action="Index" page-data-searchString="@ViewBag.SearchString">
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('emotion-search-button').addEventListener('click', function () {
+                document.getElementById('emotion-search-form').submit();
+            });
+
+            var deleteButtons = document.querySelectorAll('.fa-regular.fa-rectangle-xmark');
+
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa không?");
+                    if (confirmation) {
+                        var form = this.closest('form');
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}
