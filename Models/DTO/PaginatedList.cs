@@ -20,13 +20,11 @@ namespace PBL3.Models.DTO
 
         // Tạo PaginatedList - danh sách các đối tượng đã được phân trang
         // Truyền source IQueryable để có thể thực hiện query tối ưu ngay trên CSDL
-        public static async Task<PaginatedList<T>> CreateAsync(IQueryable<T> source
+        public static PaginatedList<T> CreateAsync(IEnumerable<T> source
             , int pageIndex, int pageSize)
         {
-            var count = await source.CountAsync();
-            var items = await source.Skip(
-                (pageIndex - 1) * pageSize)
-                .Take(pageSize).ToListAsync();
+            int count = source.Count();
+            List<T> items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return new PaginatedList<T>(items, count, pageIndex, pageSize);
         }
     }

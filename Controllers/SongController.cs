@@ -13,7 +13,7 @@ using System.Xml.Linq;
 
 namespace PBL3.Controllers
 {
-    //[Authorize(Roles = Role.Admin)]
+    [Authorize(Roles = Role.Admin)]
     public class SongController : Controller
     {
         private readonly ISongRepository songRepository;
@@ -29,7 +29,7 @@ namespace PBL3.Controllers
             this.emotionRepository = emotionService;
             this.fileService = fileService;
         }
-        public async Task<IActionResult> Index(int? pageIndex, string searchString)
+        public IActionResult Index(int? pageIndex, string searchString)
         {
             // Server validation
             pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
@@ -49,7 +49,7 @@ namespace PBL3.Controllers
             listSongs = listSongs.OrderBy(s => s.SongId);
 
             // Phân trang kết quả
-            return View(await PaginatedList<Song>.CreateAsync(listSongs, pageIndex.Value, PageSize));
+            return View(PaginatedList<Song>.CreateAsync(listSongs, pageIndex.Value, PageSize));
         }
         private void AddSelectListToView()
         {

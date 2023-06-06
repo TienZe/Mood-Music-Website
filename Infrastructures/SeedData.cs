@@ -1,11 +1,84 @@
 ﻿using PBL3.Models.Domain;
+using PBL3.Models.DTO;
+using PBL3.Repositories.Abstract;
 
 namespace PBL3.Infrastructures
 {
-    public static class SeedData
+    public class SeedData
     {
-        public static void SeedExampleData(AppDbContext context)
+        private readonly AppDbContext context;
+        private readonly IUserService userService;
+        public SeedData(AppDbContext context, IUserService userService) 
         {
+            this.context = context;
+            this.userService = userService;
+        }
+        public async Task SeedExampleData()
+        {
+            // Seed member
+            if ((await userService.GetUsersInRoleAsync(Role.Member)).Count() == 0)
+            {
+                AppUser newUser1 = new AppUser()
+                {
+                    UserName = "nguyendinhanhtien@gmail.com",
+                    Email = "nguyendinhanhtien@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser1, "111111");
+                AppUser newUser2 = new AppUser()
+                {
+                    UserName = "luongcongthinh@gmail.com",
+                    Email = "luongcongthinh@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser2, "111111");
+                AppUser newUser3 = new AppUser()
+                {
+                    UserName = "nguyenducnhatlong@gmail.com",
+                    Email = "nguyenducnhatlong@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser3, "111111");
+                AppUser newUser4 = new AppUser()
+                {
+                    UserName = "ngoduytan@gmail.com",
+                    Email = "ngoduytan@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser4, "111111");
+                AppUser newUser5 = new AppUser()
+                {
+                    UserName = "nguyennhotuan@gmail.com",
+                    Email = "nguyennhotuan@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser5, "111111");
+                AppUser newUser6 = new AppUser()
+                {
+                    UserName = "phanvantai@gmail.com",
+                    Email = "phanvantai@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser6, "111111");
+                AppUser newUser7 = new AppUser()
+                {
+                    UserName = "buitruonglinh@gmail.com",
+                    Email = "buitruonglinh@gmail.com",
+                    Birthday = DateTime.Now,
+                    Gender = Gender.Male
+                };
+                await userService.Register(newUser7, "111111");
+            }
+            
+
+
+            // Seed emotions, genres and songs
             if (context.Emotions.Count() == 0 && context.Genres.Count() == 0 && context.Songs.Count() == 0)
             {
                 var listEmotions = new List<Emotion>()
