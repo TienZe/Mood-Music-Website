@@ -66,10 +66,10 @@
                     <i class="fa-solid fa-xmark" icon-Category-id="checkbox-Country"></i>
                     Country
                 </div>
-            </div>
+            </div>*
 
             @*Hiển thị các checkbox Genre để chọn*@
-            @*<div class="Category-List">
+            <div class="Category-List">
                 <i class="fa-solid fa-caret-down" id="List-Genre"></i>
                 <div class="hide" id="Genre-Item">
                     <div class="Category-item" >
@@ -97,14 +97,14 @@
                         Country
                     </div>
                 </div>
-            </div>*@
-            <select class="Category-List" multiple multiselect-search="true" multiselect-silent-initial-value-set="true">
+            </div>
+            @*<select class="Category-List" multiple>
                 <option>Pop</option>
                 <option>Rap</option>
                 <option>Classical</option>
                 <option>Folksong</option>
                 <option>Country</option>
-            </select>
+            </select>*@
         </div>
         
         
@@ -140,47 +140,41 @@
                 </div>
             </div>
 
-            @*Hiển thị các checkbox Emotion để chọn*@
-            @*<div class="Category-List">
-                <i class="fa-solid fa-caret-down" id="List-Emotion"></i>
-                <div class="hide" id="Emotion-Item">
-                    <div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Active" />
-                        Active
+           @* hiển thị các checkbox emotion để chọn*@
+            <div class="category-list">
+                <i class="fa-solid fa-caret-down" id="list-emotion"></i>
+                <div class="hide" id="emotion-item">
+                    <div class="category-item">
+                        <input type="checkbox" checkbox-category-id="checkbox-active" />
+                        active
                     </div>
 
-                    <div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Fun" />
-                        Fun
+                    <div class="category-item">
+                        <input type="checkbox" checkbox-category-id="checkbox-fun" />
+                        fun
                     </div>
 
-                    <div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Happy" />
-                        Happy
+                    <div class="category-item">
+                        <input type="checkbox" checkbox-category-id="checkbox-happy" />
+                        happy
                     </div>
 
-                    <div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Optimistic" />
-                        Optimistic
+                    <div class="category-item">
+                        <input type="checkbox" checkbox-category-id="checkbox-optimistic" />
+                        optimistic
                     </div>
 
-                    <div class="Category-item">
-                        <input type="checkbox" checkbox-Category-id="checkbox-Torment" />
-                        Torment
+                    <div class="category-item">
+                        <input type="checkbox" checkbox-category-id="checkbox-torment" />
+                        torment
                     </div>
                 </div>
-            </div>*@
-            <select class="Category-List" multiple>
-                <option>Active</option>
-                <option>Fun</option>
-                <option>Happy</option>
-                <option>Optimistic</option>
-                <option>Torment</option>
-            </select>
+            </div>
+            
         </div>
     </form>
 
-    <div class="btn-AddNewModel">
-        <button>Add new song</button>
+    <div class="btn-addnewmodel">
+        <button>add new song</button>
     </div>
 </div>
