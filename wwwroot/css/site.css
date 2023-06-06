@@ -1014,10 +1014,23 @@ button.accept-policy {
     font-weight: bold;
 }
 
+#Resources-list img {
+    width: 30px;
+    height: auto;
+    margin-right: 16px;
+    padding-bottom: 5px;
+}
+
 .Admin_sidebar_navigation-Resources-item {
-    padding: 15px 55px;
+    padding: 15px 75px;
     border-radius: 10px;
     cursor: pointer;
+}
+
+.Admin_sidebar_navigation-Resources-item img {
+    width: 20px;
+    height: auto;
+    margin-bottom: 6px;
 }
 
 .Admin_sidebar_navigation-Resources-item:hover {
@@ -1094,9 +1107,10 @@ button.accept-policy {
     outline: none;
 }
 
-#Directory-path {
+#Directory-path, #Audio-Source-file, #Image {
     width: 97%;
 }
+
 
 .Admin-AddNewModel_text_field i {
     display: inline-block;
@@ -1105,6 +1119,14 @@ button.accept-policy {
     cursor: pointer;
     margin-left: 5px;
     transform: translateY(2px);
+}
+.Admin-AddNewModel_text_field textarea {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    background: rgba(243, 243, 243, 0.68);
+    border: none;
+    outline: none;
 }
 
 .Admin-AddNewModel-Category {
@@ -1313,6 +1335,12 @@ button.accept-policy {
     justify-content: end;
     align-items: center;
     height: 51.6px;
+}
+
+.Model-GoToDetails {
+    font-size: 18px;
+    color: #000;
+    padding-right: 15px;
 }
 
 .Model-table-data-del-edit form {

@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="Admin-AddNewModel">
+    <a asp-controller="Admin" asp-action="ListStory">
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back
+    </a>
+
+    <h1>New story</h1>
+
+    <form>
+        <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Name</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Author</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Life time using price</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>One-time using price</label>
+            <input type="text" />
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label>Decription</label>
+            <textarea></textarea>
+            <span class="text-danger"></span>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
+            <input type="text" id="Audio-Source-file" placeholder="Click to choose audio source file" readonly />
+            <input type="file" id="file-Audio" class="hide" />
+            <span class="text-danger"></span>
+            <i class="fa-regular fa-folder-closed" id="folder-Audio"></i>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
+            <input type="text" id="Image" placeholder="Click to choose image" readonly />
+            <input type="file" id="file-Image" class="hide" />
+            <span class="text-danger"></span>
+            <i class="fa-regular fa-folder-closed" id="folder-Image"></i>
+        </div>
+    </form>
+
+    <div class="btn-AddNewModel">
+        <button>Save</button>
+    </div>
+</div>
+
+<script>
+    // Add new story - click icon folfer
+
+    var fileInputAudio = document.querySelector("#file-Audio");
+    var fileSelectAudio = document.querySelector('#folder-Audio');
+    var filePathAudio = document.querySelector("#Audio-Source-file");
+
+    fileSelectAudio.addEventListener("click", (event) => {
+        event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
+        fileInputAudio.click(); // tự động gọi sự kiện của phần tử input file
+    });
+
+    fileInputAudio.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        filePathAudio.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
+    });
+
+
+
+    var fileInputImage = document.querySelector("#file-Image");
+    var fileSelectImage = document.querySelector('#folder-Image');
+    var filePathImage = document.querySelector("#Image");
+
+    fileSelectImage.addEventListener("click", (event) => {
+        event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
+        fileInputImage.click(); // tự động gọi sự kiện của phần tử input file
+    });
+
+    fileInputImage.addEventListener('change', (event) => {
+        const selectedFile = event.target.files[0];
+        filePathImage.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
+    });
+</script>

@@ -51,5 +51,8 @@ namespace PBL3.Controllers
         public IActionResult EmotionEditting() => View();
         public IActionResult Order() => View();
         public IActionResult OrderDetails() => View();
+        public IActionResult ListStory() => View();
+        public IActionResult AddNewStory() => View();
+        public IActionResult StoryEditting() => View();
     }
 }

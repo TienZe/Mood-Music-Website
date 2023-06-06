@@ -1,0 +1,97 @@
+﻿
+@{
+    Layout = "_LayoutAdmin";
+    //ViewData["Title"] = "List of genres";
+}
+
+<div class="Model-Container">
+    <div class="Model-Search-Box">
+        <form id="genre-search-form" class="Model-Search" method="get"
+              asp-controller="Story" asp-action="Index">
+            <input type="text" placeholder="Find genre here - Eg: Classical ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="genre-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
+
+        <div class="Model-btn-AddNewModel">
+            <a asp-controller="Story" asp-action="Create">Add new story</a>
+        </div>
+    </div>
+
+    <div class="Model-Show">
+        <h1>Story list</h1>
+
+        <div class="Model-Show-Table">
+            <table class="Model-table">
+                <thead>
+                    <tr>
+                        <td class="table-STT">STT</td>
+                        <td>Story</td>
+                        <td>Author</td>
+                        <td class="table-Delete-Edit"></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.Count; ++i)
+                    {
+                        Genre genre = Model[i];
+                        <tr class="Model-table-data">
+                            <td>@(Model.FirstItemIndex + i)</td>
+                            <td>@genre.Name</td>
+                            <td>@genre.GenreId</td>
+
+                            <td class="Model-table-data-del-edit">
+                                
+                                <form asp-controller="Genre" asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@genre.GenreId">
+                                    <i class="fa-regular fa-rectangle-xmark"></i>
+                                </form>
+                                <a asp-controller="Genre" asp-action="Edit" asp-route-id="@genre.GenreId">
+                                    <img src="~/img/🦆 icon _pencil outline_.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <form asp-controller="Genre" asp-action="Index" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
+                           max="@Model.TotalPages" />
+                </form>
+            </div>
+
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Genre" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('genre-search-button').addEventListener('click', function () {
+                document.getElementById('genre-search-form').submit();
+            });
+
+            var deleteButtons = document.querySelectorAll('.fa-regular.fa-rectangle-xmark');
+
+            deleteButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var confirmation = confirm("Bạn có chắc chắn muốn xóa không?");
+                    if (confirmation) {
+                        var form = this.closest('form');
+                        form.submit();
+                    }
+                });
+            });
+        });
+
+    </script>
+}

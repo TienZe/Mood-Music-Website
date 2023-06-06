@@ -155,6 +155,7 @@ var icon = document.querySelector(".iconChangePassword");
 
 var ResourcesList = document.querySelector("#Resources-list")
 var ResourcesSong = document.querySelector("#Resources-Song")
+var ResourcesStory = document.querySelector("#Resources-Story")
 var ResourcesGenre = document.querySelector("#Resources-Genre")
 var ResourcesEmotion = document.querySelector("#Resources-Emotion")
 
@@ -203,80 +204,12 @@ if (icon) {
 
 ResourcesList.addEventListener("click", function () {
     ResourcesSong.classList.toggle("hide");
+    ResourcesStory.classList.toggle("hide");
     ResourcesGenre.classList.toggle("hide");
     ResourcesEmotion.classList.toggle("hide");
 })
 
-// Add new song - list genre and emotion
 
-var ListGenre = document.querySelector("#List-Genre");
-var ListEmotion = document.querySelector("#List-Emotion");
-var GenreItem = document.querySelector("#Genre-Item");
-var EmotionItem = document.querySelector("#Emotion-Item");
-
-
-ListGenre.addEventListener("click", function () {
-    GenreItem.classList.toggle("hide");
-    EmotionItem.classList.add("hide");
-})
-
-ListEmotion.addEventListener("click", function () {
-    EmotionItem.classList.toggle("hide");
-    GenreItem.classList.add("hide");
-})
-
-// Add new song - click icon folfer
-
-var fileInput = document.querySelector("input[type='file']");
-var fileSelect = document.querySelector('#folder');
-var filePath = document.querySelector("#Directory-path");
-
-fileSelect.addEventListener("click", (event) => {
-    event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
-    fileInput.click(); // tự động gọi sự kiện của phần tử input file
-});
-
-fileInput.addEventListener('change', (event) => {
-    const selectedFile = event.target.files[0];
-    filePath.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
-});
-
-// Add new song - check box
-
-var checkboxes = document.querySelectorAll("input[type='checkbox']");
-var CategoryItem = document.querySelectorAll(".Category-item");
-
-function addCategory(checkboxCategory) {
-    var newCategory = document.querySelector("#" + checkboxCategory);
-    newCategory.classList.toggle("hide");
-}
-
-checkboxes.forEach(function (checkbox) {
-    checkbox.addEventListener("change", function () {
-        var checkboxCategory = this.getAttribute("checkbox-Category-id");
-        addCategory(checkboxCategory);
-    });
-});
-
-// Add new song - click icon x
-
-var iconX = document.querySelectorAll(".Category-Show-item i");
-
-function RemoveCategory(iconCategory) {
-    var removeCategory = document.querySelector("#" + iconCategory);
-    removeCategory.classList.add("hide");
-
-    // bỏ tick của checkbox tương ứng
-    var checkbox = document.querySelector("input[checkbox-Category-id='" + iconCategory + "']");
-    checkbox.checked = false;
-}
-
-iconX.forEach(function (icon) {
-    icon.addEventListener("click", function () {
-        var iconCategory = icon.getAttribute("icon-Category-id");
-        RemoveCategory(iconCategory);
-    })
-})
 
 
 
