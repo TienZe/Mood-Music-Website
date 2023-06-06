@@ -39,6 +39,7 @@ builder.Services.AddScoped<FileService>();
 builder.Services.AddScoped<IRepository<Genre>, Repository<Genre>>();
 builder.Services.AddScoped<IEmotionRepository, EmotionRepository>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
+builder.Services.AddScoped<IRepository<Story>, Repository<Story>>();
 
 // Seed data
 builder.Services.AddScoped<SeedData>();

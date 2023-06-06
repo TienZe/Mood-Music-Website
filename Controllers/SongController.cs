@@ -66,12 +66,6 @@ namespace PBL3.Controllers
 			return View(model);
         }
         [HttpGet]
-        public IActionResult Create1()
-        {
-            AddSelectListToView();
-            return View();
-        }
-        [HttpGet]
         public IActionResult Create()
         {
             return ViewWithSelectList();
