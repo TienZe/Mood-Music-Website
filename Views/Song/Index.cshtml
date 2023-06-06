@@ -22,41 +22,43 @@
     <div class="Model-Show">
         <h1>List song using</h1>
 
-        <table class="Model-table">
-            <thead>
-                <tr>
-                    <td class="table-STT">STT</td>
-                    <td>Name</td>
-                    <td>Artist</td>
-                    <td>Genre</td>
-                    <td>Emotion</td>
-                    <td class="table-Delete-Edit"></td>
-                </tr>
-            </thead>
-
-            <tbody>
-                @for (int i = 0; i < Model.Count; ++i)
-                {
-                    Song song = Model[i];
-                    <tr class="Model-table-data">
-                        <td>@(Model.FirstItemIndex + i)</td>
-                        <td>@song.Name</td>
-                        <td>@song.Artist</td>
-                        <td>@String.Join(", ", song.Genres.Select(g => g.Name))</td>
-                        <td>@String.Join(", ", song.Emotions.Select(e => e.Name))</td>
-                        <td class="Model-table-data-del-edit">
-                            <form asp-controller="Song" asp-action="Delete" method="post">
-                                <input type="hidden" name="id" value="@song.SongId">
-                                <i class="fa-regular fa-rectangle-xmark"></i>
-                            </form>
-                            <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.SongId">
-                                <img src="~/img/🦆 icon _pencil outline_.png" />
-                            </a>
-                        </td>
+        <div class="Model-Show-Table">
+            <table class="Model-table">
+                <thead>
+                    <tr>
+                        <td class="table-STT">STT</td>
+                        <td>Name</td>
+                        <td>Artist</td>
+                        <td>Genre</td>
+                        <td>Emotion</td>
+                        <td class="table-Delete-Edit"></td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.Count; ++i)
+                    {
+                        Song song = Model[i];
+                        <tr class="Model-table-data">
+                            <td>@(Model.FirstItemIndex + i)</td>
+                            <td>@song.Name</td>
+                            <td>@song.Artist</td>
+                            <td>@String.Join(", ", song.Genres.Select(g => g.Name))</td>
+                            <td>@String.Join(", ", song.Emotions.Select(e => e.Name))</td>
+                            <td class="Model-table-data-del-edit">
+                                <form asp-controller="Song" asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@song.SongId">
+                                    <i class="fa-regular fa-rectangle-xmark"></i>
+                                </form>
+                                <a asp-controller="Song" asp-action="Edit" asp-route-id="@song.SongId">
+                                    <img src="~/img/🦆 icon _pencil outline_.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
         <div class="Model-Page">
             <div class="Model-GoToPage">

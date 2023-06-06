@@ -21,38 +21,40 @@
     <div class="Model-Show">
         <h1>List emotions</h1>
 
-        <table class="Model-table">
-            <thead>
-                <tr>
-                    <td class="table-STT">STT</td>
-                    <td>Name</td>
-                    <td>ID</td>
-                    <td class="table-Delete-Edit"></td>
-                </tr>
-            </thead>
-
-            <tbody>
-                @for (int i = 0; i < Model.Count; ++i)
-                {
-                    Emotion emotion = Model[i];
-                    <tr class="Model-table-data">
-                        <td>@(Model.FirstItemIndex + i)</td>
-                        <td>@emotion.Name</td>
-                        <td>@emotion.EmotionId</td>
-
-                        <td class="Model-table-data-del-edit">
-                            <form asp-controller="Emotion" asp-action="Delete" method="post">
-                                <input type="hidden" name="id" value="@emotion.EmotionId">
-                                <i class="fa-regular fa-rectangle-xmark"></i>
-                            </form>
-                            <a asp-controller="Emotion" asp-action="Edit" asp-route-id="@emotion.EmotionId">
-                                <img src="~/img/🦆 icon _pencil outline_.png" />
-                            </a>
-                        </td>
+        <div class="Model-Show-Table">
+            <table class="Model-table">
+                <thead>
+                    <tr>
+                        <td class="table-STT">STT</td>
+                        <td>Name</td>
+                        <td>ID</td>
+                        <td class="table-Delete-Edit"></td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.Count; ++i)
+                    {
+                        Emotion emotion = Model[i];
+                        <tr class="Model-table-data">
+                            <td>@(Model.FirstItemIndex + i)</td>
+                            <td>@emotion.Name</td>
+                            <td>@emotion.EmotionId</td>
+
+                            <td class="Model-table-data-del-edit">
+                                <form asp-controller="Emotion" asp-action="Delete" method="post">
+                                    <input type="hidden" name="id" value="@emotion.EmotionId">
+                                    <i class="fa-regular fa-rectangle-xmark"></i>
+                                </form>
+                                <a asp-controller="Emotion" asp-action="Edit" asp-route-id="@emotion.EmotionId">
+                                    <img src="~/img/🦆 icon _pencil outline_.png" />
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
         <div class="Model-Page">
             <div class="Model-GoToPage">
