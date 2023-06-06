@@ -8,7 +8,7 @@ using PBL3.Repositories.Abstract;
 
 namespace PBL3.Controllers
 {
-    [Authorize(Roles = Models.Domain.Role.Admin)]
+    [Authorize(Roles = Role.Admin)]
     public class AdminController : Controller
     {
         private readonly IUserService userService;
@@ -40,15 +40,7 @@ namespace PBL3.Controllers
             // Phân trang kết quả
             return View(PaginatedList<AppUser>.CreateAsync(listMembers, pageIndex.Value, PageSize));
         }
-        public IActionResult ListSongUsing() => View();
-        public IActionResult AddNewSong() => View();
-        public IActionResult SongEditting() => View();
-        public IActionResult ListGenresOfSong() => View();
-        public IActionResult AddNewGenre() => View();
-        public IActionResult GenreEditting() => View();
-        public IActionResult ListEmotions() => View();
-        public IActionResult AddNewEmotion() => View();
-        public IActionResult EmotionEditting() => View();
+        
         public IActionResult Order() => View();
         public IActionResult OrderDetails() => View();
     }

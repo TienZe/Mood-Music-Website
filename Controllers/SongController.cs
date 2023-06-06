@@ -85,7 +85,7 @@ namespace PBL3.Controllers
                 try
 				{
                     // Upload audio và set file name vào song.Source
-					song.Source = fileService.UploadAudio(model.Audio!, "audio");
+					song.Source = fileService.UploadAudio(model.Audio!, "audio/song");
 				}
                 catch (Exception ex) 
                 {
@@ -139,7 +139,7 @@ namespace PBL3.Controllers
 					try
 					{
                         // Upload new audio và set file name cho Source
-						song.Source = fileService.UploadAudio(model.NewAudio, "audio");
+						song.Source = fileService.UploadAudio(model.NewAudio, "audio/song");
 					}
 					catch (Exception ex)
 					{
@@ -147,9 +147,9 @@ namespace PBL3.Controllers
 						return ViewWithSelectList();
 					}
                     // Delete current audio
-                    if (oldAudio != "")
+                    if (!String.IsNullOrEmpty(oldAudio))
                     {
-						fileService.DeleteFile("audio/" + oldAudio);
+						fileService.DeleteFile("audio/song/" + oldAudio);
 					}
 				}
                 // set relationship
@@ -167,9 +167,9 @@ namespace PBL3.Controllers
         {
             // Xóa audio tương ứng
             Song? song = songRepository.GetById(id);
-            if (song != null && song.Source != "")
+            if (song != null && !String.IsNullOrEmpty(song.Source))
             {
-                fileService.DeleteFile("audio/" + song.Source);
+                fileService.DeleteFile("audio/song/" + song.Source);
             }
             songRepository.Delete(id);
 

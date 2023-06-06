@@ -33,6 +33,9 @@
 						User name
 					</td>
 				</tr>
+				<tr class="Show-Error @isHide("Name")">
+					<td><span asp-validation-for="Name" class="text-danger"></span></td>
+				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
 						@*Thêm id "MyInput " để viết sự kiện bỏ thuộc tính readonly*@
@@ -40,9 +43,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput1"></i>
 					</td>
 				</tr>
-				<tr class="Show-Error @isHide("Name")">
-					<td><span asp-validation-for="Name" class="text-danger"></span></td>
-				</tr>
+				
 				@*Account*@
 				<tr>
 					<td>
@@ -74,33 +75,38 @@
 						New Password
 					</td>
 				</tr>
+				<tr class="@isHide("NewPassword")">
+					<td><span asp-validation-for="NewPassword" class="text-danger"></span></td>
+				</tr>
 				<tr class="Manage-Profile_Show_NewPassword hide">
 					<td>
 						<input id="New_Password" asp-for="NewPassword" />
 					</td>
 				</tr>
-				<tr class="@isHide("NewPassword")">
-					<td><span asp-validation-for="NewPassword" class="text-danger"></span></td>
-				</tr>
+				
 				@*Confirm password*@
 				<tr class="hide" id="ChangePassword2">
 					<td>
 						Confirm Password
 					</td>
 				</tr>
+				<tr class="@isHide("ConfirmPassword")">
+					<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
+				</tr>
 				<tr class="Manage-Profile_Show_NewPassword hide">
 					<td>
 						<input id="Confirm_Password" asp-for="ConfirmPassword" />
 					</td>
 				</tr>
-				<tr class="@isHide("ConfirmPassword")">
-					<td><span asp-validation-for="ConfirmPassword" class="text-danger"></span></td>
-				</tr>
+				
 				@*Phone number*@
 				<tr>
 					<td>
 						Phone number
 					</td>
+				</tr>
+				<tr class="@isHide("PhoneNumber")">
+					<td><span asp-validation-for="PhoneNumber" class="text-danger"></span></td>
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
@@ -108,9 +114,7 @@
 						<i class="fa-solid fa-pen" data-input-id="MyInput3"></i>
 					</td>
 				</tr>
-				<tr class="@isHide("PhoneNumber")">
-					<td><span asp-validation-for="PhoneNumber" class="text-danger"></span></td>
-				</tr>
+				
 				
 				@*Age*@
 				<tr>
@@ -130,21 +134,24 @@
 						Birthday
 					</td>
 				</tr>
+				<tr class="@isHide("Birthday")">
+					<td><span asp-validation-for="Birthday" class="text-danger"></span></td>
+				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
 						<input id="MyInput4" asp-for="Birthday" readonly />
 						<i class="fa-solid fa-pen" data-input-id="MyInput4"></i>
 					</td>
 				</tr>
-				<tr class="@isHide("Birthday")">
-					<td><span asp-validation-for="Birthday" class="text-danger"></span></td>
-				</tr>
-
+				
 				@*Gender*@
 				<tr>
 					<td>
 						Gender
 					</td>
+				</tr>
+				<tr class="@isHide("Gender")">
+					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
 				</tr>
 				<tr class="Manage-Profile_Show">
 					<td>
@@ -155,9 +162,7 @@
 						</select>
 					</td>
 				</tr>
-				<tr class="@isHide("Gender")">
-					<td><span asp-validation-for="Gender" class="text-danger"></span></td>
-				</tr>
+				
 			</table>
 		</form>
 		<div class="Manage-Profile_btnSave">
@@ -169,11 +174,22 @@
 @section Scripts {
 	<script type="text/javascript">
 		$(document).ready(function () {
+			// Khi submit form, jquery validation thuc hien validate
+			// Cần kiểm tra input nào có lỗi để hiển thị
+			$('#form-profile').on('submit', function () {
+				$('input[data-val="true"]').each(function () {
+					validateInput($(this));
+				});
+			});
+
 			// Lắng nghe sự kiện khi người dùng thay đổi giá trị trong trường input
 			$('input[data-val="true"]').on('input', function () {
 				validateInput($(this));
 			});
 
+			// Hàm thực hiện kích hoạt validate của các input
+			// Nếu có lỗi, hiển thị dòng <tr> thông báo đang bị ẩn
+			// Nếu không lỗi, ẩn dòng <tr> thông báo
 			function validateInput(input) {
 				var validationMessage = $('span[data-valmsg-for="' + input.attr('name') + '"]');
 				var parentRow = validationMessage.closest('tr');

@@ -21,7 +21,8 @@
 					Directory.CreateDirectory(folderPath);
 				}
 
-				string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+				string uniqueFileName = Path.GetFileNameWithoutExtension(file.FileName)
+					+ "_" + Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
 				string absoluteFilePath = Path.Combine(folderPath, uniqueFileName);
 				using (var fileStream = new FileStream(absoluteFilePath, FileMode.Create))
 				{

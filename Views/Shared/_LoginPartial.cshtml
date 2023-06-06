@@ -1,10 +1,19 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
+@{
+    // Tìm kiếm người dùng đang sử dụng thông qua cookie đăng nhập đc lưu ở trình duyệt
+    // Nhờ vào cookie này mà người dùng được coi là đã xác thực và có thể đăng nhập vào ứng dụng
+    AppUser? user = await UserManager.GetUserAsync(User);
+    // Nếu user khác null -> người dùng tồn tại trong CSDL => Tự động đăng nhập
+    // Nếu user == null -> cookie đã cũ (có thể vì tk đã bị xóa trong CSDL)
+    // Trong Th này ta có thể thực hiện xóa cookie đăng nhập cũ (cho user về lại trang thái unvalidated) 
+    // thông qua sử dụng SignInManager.SignOutAsync()
+    if (user == null) await SignInManager.SignOutAsync();
 
-@if (SignInManager.IsSignedIn(User))
+}
+@if ((User.Identity?.IsAuthenticated ?? false) && user != null)
 {
-    var user = await UserManager.GetUserAsync(User);
     bool isAdmin = await UserManager.IsInRoleAsync(user, Role.Admin);
 
     <li class="Header_navbar-item">
@@ -25,23 +34,23 @@
             <li>
                 <a asp-controller="Account" asp-action="ManageProfile">
                     Profile
-@*                    <i class="fa-regular fa-user"></i>*@
+                    @*                    <i class="fa-regular fa-user"></i>*@
                 </a>
-                
+
             </li>
             <li>
                 <a asp-controller="" asp-action="">
                     Order
-@*                    <i class="fa-regular fa-phone"></i>*@
+                    @*                    <i class="fa-regular fa-phone"></i>*@
                 </a>
-                
+
             </li>
             <li>
                 <a asp-controller="Account" asp-action="Logout">
                     Log out
-@*                    <i class="fa-regular fa-arrow-right-from-bracket"></i>*@
+                    @*                    <i class="fa-regular fa-arrow-right-from-bracket"></i>*@
                 </a>
-                
+
             </li>
         </ul>
     </li>

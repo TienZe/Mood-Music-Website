@@ -1,0 +1,115 @@
+﻿@model EditStoryModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Edit story";
+}
+
+<div class="Admin-AddNewModel">
+    <a asp-controller="Story" asp-action="Index">
+        <i class="fa-solid fa-arrow-left-long"></i>
+        Back
+    </a>
+
+    <h1>Story editting</h1>
+
+    <form id="edit-story-form" asp-controller="Story" asp-action="Edit"
+          method="post" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="login-validation-summary-errors"></div>
+
+        <input asp-for="StoryId" type="hidden"/>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="AudioFileName">Audio file name</label>
+            <input asp-for="AudioFileName" readonly />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for ="ImageFileName">Image file name</label>
+            <input asp-for="ImageFileName" readonly />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Name">Name</label>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <input asp-for="Name" />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Author">Author</label>
+            <span asp-validation-for="Author" class="text-danger"></span>
+            <input asp-for="Author" />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="LifeTimePrice">Lifetime using price</label>
+            <span asp-validation-for="LifeTimePrice" class="text-danger"></span>
+            <input asp-for="LifeTimePrice" />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="OneTimePrice">One-time using price</label>
+            <span asp-validation-for="OneTimePrice" class="text-danger"></span>
+            <input asp-for="OneTimePrice" />
+        </div>
+
+        <div class="Admin-AddNewModel_text_field">
+            <label asp-for="Description">Description</label>
+            <span asp-validation-for="Description" class="text-danger"></span>
+            <textarea asp-for="Description" style="height: 60px"></textarea>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
+            <span asp-validation-for="NewAudio" class="text-danger"></span>
+            <input type="text" id="Audio-Source-file" placeholder="Click to choose another audio source file" readonly />
+            <input id="file-Audio" asp-for="NewAudio" class="invisible_input" />
+            <i class="fa-regular fa-folder-closed" id="folder-Audio"></i>
+        </div>
+
+        <div class="Admin-AddNewModel_text_field" style="margin-top: 25px">
+            <span asp-validation-for="NewImage" class="text-danger"></span>
+            <input type="text" id="Image" placeholder="Click to choose another image" readonly />
+            <input id="file-Image" asp-for="NewImage" class="invisible_input" />
+            <i class="fa-regular fa-folder-closed" id="folder-Image"></i>
+        </div>
+    </form>
+
+    <div class="btn-AddNewModel" style="margin-top: 20px">
+        <button form="edit-story-form" type="submit">Save</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Add new story - click icon folfer
+
+        var fileInputAudio = document.querySelector("#file-Audio");
+        var fileSelectAudio = document.querySelector('#folder-Audio');
+        var filePathAudio = document.querySelector("#Audio-Source-file");
+
+        fileSelectAudio.addEventListener("click", (event) => {
+            event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
+            fileInputAudio.click(); // tự động gọi sự kiện của phần tử input file
+        });
+
+        fileInputAudio.addEventListener('change', (event) => {
+            const selectedFile = event.target.files[0];
+            filePathAudio.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
+        });
+
+
+
+        var fileInputImage = document.querySelector("#file-Image");
+        var fileSelectImage = document.querySelector('#folder-Image');
+        var filePathImage = document.querySelector("#Image");
+
+        fileSelectImage.addEventListener("click", (event) => {
+            event.preventDefault(); // ngăn chặn sự kiện mặc định của phần tử i
+            fileInputImage.click(); // tự động gọi sự kiện của phần tử input file
+        });
+
+        fileInputImage.addEventListener('change', (event) => {
+            const selectedFile = event.target.files[0];
+            filePathImage.value = selectedFile.name; // hiển thị đường dẫn của tệp tin đã chọn lên phần tử input text
+        });
+    </script>
+}

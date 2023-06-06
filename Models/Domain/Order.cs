@@ -6,10 +6,12 @@ namespace PBL3.Models.Domain
     {
         public int OrderId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
         [Column(TypeName = "decimal(18, 3)")]
-        public decimal Value { get; set; }
-        public string Payment { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime Day { get; set; }
+        public string Description { get; set; } = string.Empty;
+
         // User thực hiện Order
         public AppUser User { get; set; } // required
         public OrderType OrderType { get; set; } // required
