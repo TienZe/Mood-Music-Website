@@ -1,13 +1,16 @@
-﻿@{
+﻿@model PaginatedList<Order>
+@{
     Layout = "_LayoutAdmin";
 }
 
 <div class="Model-Container">
     <div class="Model-Search-Box">
-        <div class="Model-Search">
-            <input type="text" placeholder="Find order here - Eg: Nguyễn Đình Anh Tiến ..." />
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        <form id="order-search-form" class="Model-Search" method="get"
+              asp-controller="Admin" asp-action="ListOrders">
+            <input type="text" placeholder="Find order here - Eg: Sau cơn mưa ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="order-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
     </div>
 
     <div class="Model-Show">
@@ -24,121 +27,70 @@
                     <td>Order name</td>
                     <td>User</td>
                     <td>Type</td>
-                    <td>Status</td>
+                    @*<td>Status</td>*@
                     <td class="table-Delete-Edit"></td>
                 </tr>
             </thead>
 
             <tbody>
+                @for (int i = 0; i < Model.Count; ++i)
+                {
+                    Order order = Model[i];
+                    <tr class="Model-table-data">
+                        <td>@(Model.FirstItemIndex + i)</td>
+                        <td>@(order.Name + "-" + order.OrderType.Type)</td>
+                        <td>@(order.User.Name)</td>
+                        <td>@(order.OrderType.Type)</td>
+                        @*<td>Pending confirmation</td>*@
+                        <td class="Model-table-Order-details">
+                            <a asp-controller="Admin" asp-action="OrderDetails" asp-route-orderId="@order.OrderId">
+                                Order details
+                            </a>
+                        </td>
+                    </tr>
+                }
                 <tr class="Model-table-data">
                     <td>1</td>
                     <td>Where the crawdads sing</td>
                     <td>Nguyễn Đình Anh Tiến</td>
                     <td>Listen</td>
-                    <td>Pending confirmation</td>
+                    @*<td>Pending confirmation</td>*@
                     <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails" >Order details</a>
+                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
                     </td>
                 </tr>
-
                 <tr class="Model-table-data">
                     <td>1</td>
                     <td>Where the crawdads sing</td>
                     <td>Nguyễn Đình Anh Tiến</td>
                     <td>Listen</td>
-                    <td>Pending confirmation</td>
+                    @*<td>Pending confirmation</td>*@
+                    <td class="Model-table-Order-details">
+                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
+                    </td>
+                </tr>
+                <tr class="Model-table-data">
+                    <td>1</td>
+                    <td>Where the crawdads sing</td>
+                    <td>Nguyễn Đình Anh Tiến</td>
+                    <td>Listen</td>
+                    @*<td>Pending confirmation</td>*@
+                    <td class="Model-table-Order-details">
+                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
+                    </td>
+                </tr>
+                <tr class="Model-table-data">
+                    <td>1</td>
+                    <td>Where the crawdads sing</td>
+                    <td>Nguyễn Đình Anh Tiến</td>
+                    <td>Listen</td>
+                    @*<td>Pending confirmation</td>*@
                     <td class="Model-table-Order-details">
                         <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
                     </td>
                 </tr>
 
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    <td>Pending confirmation</td>
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
 

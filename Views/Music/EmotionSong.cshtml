@@ -41,13 +41,14 @@
 
     @*Trình phát nhạc*@
     <div class="EmotionSong-ListenMusic">
-        <audio id="audio-player" hidden autoplay>
+        <audio id="audio-player" hidden>
             <source src="@(isEmpty ? "not_find_source_audio" : "audio/song/" + Model[0].Source)"
                     type="audio/mpeg">
         </audio>
         <img src="~/img/Template Storii_StoriiTheme.jpg" />
 
-        <img src="~/img/Frame 12.png" />
+        <img id="image-rectangles" src="~/img/frame 12.png"/>
+        <div id="rectangles-container" style="display : none;"></div>
 
         <h3 id="songname-artist" class="EmotionSong-SongName">
             @(isEmpty ? "Song name - Artist" : Model[0].Name + " - " + Model[0].Artist)
@@ -56,13 +57,16 @@
         <div class="EmotionSong-Icons">
             <i id="previous-btn" class="fa-solid fa-circle-arrow-left"></i>
 
-            <i id="play-btn" class="fa-regular @(isEmpty ? "fa-circle-play" : "fa-circle-pause")"></i>
+            <i id="play-btn" class="fa-regular fa-circle-play"></i>
 
             <i id="next-btn" class="fa-solid fa-circle-arrow-right"></i>
         </div>
 
     </div>
 </div>
+@section Links {
+    <link rel="stylesheet" href="~/css/audio-animation.css" asp-append-version="true" />
+}
 @section Scripts {
     @*Validate select emotion*@
     <script>
@@ -92,6 +96,7 @@
     @*Nếu có nhạc thì cần thêm sự kiện cho trình phát nhạc*@
     @if (!isEmpty)
     {
+        <script src="~/js/audio-animation.js"></script>
         @*Phát nhạc*@
         <script>
             var songs = @Html.Raw(jsonModel);
@@ -106,6 +111,18 @@
             var nextButton = document.getElementById("next-btn");
             var playButton = document.getElementById("play-btn");
 
+            var rectanglesContainer = document.getElementById('rectangles-container');
+            var imageRectangles = document.getElementById('image-rectangles');
+
+            audioPlayer.addEventListener('ended', function () {
+                console.log("ended");
+                playButton.classList.remove("fa-circle-pause");
+                playButton.classList.add("fa-circle-play");
+            });
+            audioPlayer.addEventListener('play', function() {
+                imageRectangles.style.display = "none";
+                rectanglesContainer.style.display = "flex";
+            });
             playButton.addEventListener("click", function () {
                 if (audioPlayer.paused) {
                     audioPlayer.play();
@@ -117,7 +134,7 @@
                     playButton.classList.add("fa-circle-play");
                 }
             });
-
+            
             previousButton.addEventListener("click", function () {
                 if (songs.$values.length == 0) return;
                 currentSongIndex--;
@@ -147,5 +164,6 @@
                 document.getElementById("songname-artist").textContent = song.Name + " - " + song.Artist;
             }
         </script>
+        
     }
 }

@@ -13,10 +13,12 @@ namespace PBL3.Controllers
     public class AdminController : Controller
     {
         private readonly IUserService userService;
+        private readonly IOrderRepository orderRepository;
         private const int PageSize = 4;
-        public AdminController(IUserService userService) 
+        public AdminController(IUserService userService, IOrderRepository orderService) 
         {
             this.userService = userService;
+            this.orderRepository = orderService;
         }
         
         public async Task<IActionResult> ListMembers(int? pageIndex, string searchString)
@@ -57,8 +59,37 @@ namespace PBL3.Controllers
                 Gender = user.Gender.ToString()
             });
         }
+        public IActionResult ListOrders(int? pageIndex, string searchString)
+        {
+            // Server validation
+            pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
+
+            var listOrders = orderRepository.GetAllWithRelatedEntity();
+            // Tiếp tục mở rộng truy vấn
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                // Thực hiện filter theo emotion name
+                listOrders = listOrders.Where(o => o.Name.Contains(searchString));
+            }
+            // Truyền filter hiện tại sang cho View
+            ViewBag.SearchString = searchString ?? string.Empty;
+
+            // Sắp xếp
+            listOrders = listOrders.OrderBy(o => o.OrderId);
+
+            // Phân trang kết quả
+            return View(PaginatedList<Order>.CreateAsync(listOrders, pageIndex.Value, PageSize));
+        }
+        [HttpGet]
+        public IActionResult OrderDetails(int orderId)
+        {
+            Order? order = orderRepository.GetById(orderId);
+            if (order == null) return NotFound();
+
+            return View(order);
+        }
         public IActionResult Order() => View();
-        public IActionResult OrderDetails() => View();
+        
         public IActionResult MemberDetail() => View();
     }
 }

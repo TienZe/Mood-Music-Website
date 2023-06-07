@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
+    @await RenderSectionAsync("Links", required: false)
 </head>
 <body>
     <header class="Header">
@@ -25,7 +26,7 @@
                         <a asp-controller="Music" asp-action="Index" class="Header_navbar-link">Emotion Song</a>
                     </li>
                     <li class="Header_navbar-item">
-                        <a asp-controller="Home" asp-action="Storii" class="Header_navbar-link">Storii</a>
+                        <a asp-controller="Storii" asp-action="Index" class="Header_navbar-link">Storii</a>
                     </li>
                     @*Các nút Login/Signup hoặc Logout*@
                     <partial name="_LoginPartial" />
