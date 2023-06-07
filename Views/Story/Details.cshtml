@@ -1,0 +1,64 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="Details-Container">
+    <h1>Story details</h1>
+
+    <div class="Details-body">
+        <div class="Details-img">
+            <img src="~/img/Template Details.png" />
+        </div>
+
+        <div class="Details-Show">
+            <div class="Details-Information">
+                <label>Story name</label>
+                <input type="text" id="StoryName" value="Và một ngày dài hơn thế kỷ" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label>Author</label>
+                <input type="text" id="Author" value="Chyngyz Torekulovich Aitmatov" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label>Lifetime using price</label>
+                <input type="text" id="Lifetime" value="100 points" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label>One-time using price</label>
+                <input type="text" id="Onetime" value="10 points" readonly />
+            </div>
+
+            <div class="Details-Information_Description">
+                <label>Description</label>
+                <textarea id="Description" readonly>Túng quẫn, khốn khổ, hoảng loạn trong ám ảnh chết người. Trí óc bức bối nhức nhối đến vỡ tan nhưng cũng sáng suốt và tường tận đến cùng cực. Cái ảm ảnh nào gieo rắc lên kẻ giết người? Lời quán quyết của luật pháp hay niềm tin công lý của cá nhân, cái nào sẽ thắng?</textarea>
+            </div>
+
+            <div class="Details-footer">
+                <a asp-controller="Story" asp-action="Index">Back to Story page</a>
+                <button id="btn-Story">Edit information</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var btnStory = document.querySelector("#btn-Story");
+    var StoryName = document.querySelector("#StoryName");
+    var Author = document.querySelector("#Author");
+    var Lifetime = document.querySelector("#Lifetime");
+    var Onetime = document.querySelector("#Onetime");
+    var Description = document.querySelector("#Description");
+
+    btnStory.addEventListener("click", function(){
+        StoryName.readOnly = false;
+        Author.readOnly = false;
+        Lifetime.readOnly = false;
+        Onetime.readOnly = false;
+        Description.readOnly = false;
+    })
+
+</script>

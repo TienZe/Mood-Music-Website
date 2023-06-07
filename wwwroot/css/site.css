@@ -1582,3 +1582,107 @@ button.accept-policy {
     position: absolute;
     left: -9999px;
 }
+
+
+/* Details */
+
+.Details-Container {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.Details-Container h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.Details-body {
+    width: 100%;
+    height: 91%;
+    display: flex;
+    margin-top: 30px;
+}
+
+.Details-img {
+    width: 20%;
+}
+
+.Details-img img {
+    width: 100%;
+    height: auto;
+}
+
+.Details-Show {
+    width: 80%;
+    padding: 8px 40px;
+}
+
+.Details-Information {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.Details-Information label {
+    width: 30%;
+}
+
+.Details-Information input {
+    width: 69%;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+.Details-Information_Description {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.Details-Information_Description label {
+    width: 30%;
+    transform: translateY(-132px);
+}
+
+.Details-Information_Description textarea {
+    width: 69%;
+    height: 155px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.Details-footer {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Details-footer a {
+    font-size: 15px;
+    color: #000;
+}
+
+.Details-footer button {
+    width: 20%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: bold;
+}
