@@ -2,37 +2,70 @@
     Layout = "_LayoutAdmin";
 }
 
-<div class="OrderDetails-Container">
-    <i class="fa-solid fa-arrow-left-long"></i>
-    <a asp-controller="Admin" asp-action="Order">Back</a>
+<div class="Details-Container">
+    <h1>Order details</h1>
 
-    <div class="OrderDetails-Title">
-        Order details
-    </div>
+    <div class="Details-body">
+        <div class="Details-img">
+            <img src="~/img/Template Details.png" />
+        </div>
 
-    <div class="OrderDetails-Show">
-        <img src="~/img/Template Storii_StoriiTheme.jpg"/>
-
-        <div class="OrderDetails-Information">
-            <div class="OrderDetails-Value">
+        <div class="Details-Show">
+            <div class="Details-Information">
                 <label>Order name</label>
-                Where the crawdads sing
+                <input type="text" id="OrderName" value="Where the crawdads sing" readonly />
             </div>
 
-            <div class="OrderDetails-Value">
-                <label>Order name</label>
-                Where the crawdads sing
+            <div class="Details-Information">
+                <label>User</label>
+                <input type="text" id="User" value="Nguyễn Đình Anh Tiến" readonly />
             </div>
 
-            <div class="OrderDetails-Value">
-                <label>Order name</label>
-                Where the crawdads sing
+            <div class="Details-Information">
+                <label>User's account</label>
+                <input type="email" id="UserAccount" value="Nguyendinhanhtien1609@gmail.com" readonly />
             </div>
 
-            <div class="OrderDetails-Value">
-                <label>Order name</label>
-                Where the crawdads sing
+            <div class="Details-Information">
+                <label>Day</label>
+                <input type="date" id="Day" value="2023-09-16" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label>Order type</label>
+                <input type="text" id="OrderType" value="Listen" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label>Price</label>
+                <input type="text" id="Price" value="10$" readonly />
+            </div>
+
+            <div class="Details-footer">
+                <a asp-controller="Admin" asp-action="Order">Back to Order page</a>
+                <button id="btn-Order">Edit information</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+
+    var btnOrder = document.querySelector("#btn-Order");
+    var OrderName = document.querySelector("#OrderName");
+    var User = document.querySelector("#User");
+    var UserAccount = document.querySelector("#UserAccount");
+    var Day = document.querySelector("#Day");
+    var OrderType = document.querySelector("#OrderType");
+    var Price = document.querySelector("#Price");
+
+    btnOrder.addEventListener("click", function () {
+        OrderName.readOnly = false;
+        User.readOnly = false;
+        UserAccount.readOnly = false;
+        Day.readOnly = false;
+        OrderType.readOnly = false;
+        Price.readOnly = false;
+    })
+
+</script>

@@ -1642,6 +1642,11 @@ button.accept-policy {
     font-weight: bold;
 }
 
+.Details-Information input[type="date"]{
+    background: #fff;
+    color: #000;
+}
+
 .Details-Information_Description {
     width: 100%;
     font-size: 20px;
