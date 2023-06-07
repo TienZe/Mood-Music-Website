@@ -41,6 +41,8 @@
                             <td>@story.Name</td>
                             <td>@story.Author</td>
                             <td class="Model-table-data-del-edit">
+                                <a asp-controller="Story" asp-action="Details" asp-route-id="@story.StoryId" 
+                                    class="Model-GoToDetails">Go to details</a>
                                 <form asp-controller="Story" asp-action="Delete" method="post">
                                     <input type="hidden" name="id" value="@story.StoryId">
                                     <i class="fa-regular fa-rectangle-xmark"></i>
@@ -51,6 +53,18 @@
                             </td>
                         </tr>
                     }
+                    @*<tr class="Model-table-data">
+                        <td>1</td>
+                        <td>Alternative rock</td>
+                        <td>G001</td>
+                        <td class="Model-table-data-del-edit">
+                            <a asp-controller="Story" asp-action="Details" class="Model-GoToDetails">Go to details</a>
+                            <i class="fa-regular fa-rectangle-xmark"></i>
+                            <a asp-controller="Admin" asp-action="StoryEditting">
+                                <img src="~/img/🦆 icon _pencil outline_.png" />
+                            </a>
+                        </td>
+                    </tr>*@
                 </tbody>
             </table>
         </div>

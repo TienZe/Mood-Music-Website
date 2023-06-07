@@ -20,57 +20,71 @@ namespace PBL3.Infrastructures
             {
                 AppUser newUser1 = new AppUser()
                 {
+                    Name = "Nguyễn Đình Anh Tiến",
+                    PhoneNumber = "0905123456",
                     UserName = "nguyendinhanhtien@gmail.com",
                     Email = "nguyendinhanhtien@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser1, "111111");
                 AppUser newUser2 = new AppUser()
                 {
+                    Name = "Lương Công Thịnh",
+                    PhoneNumber = "0905123456",
                     UserName = "luongcongthinh@gmail.com",
                     Email = "luongcongthinh@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser2, "111111");
                 AppUser newUser3 = new AppUser()
                 {
+                    Name = "Nguyễn Đức Nhật Long",
+                    PhoneNumber = "0905123456",
                     UserName = "nguyenducnhatlong@gmail.com",
                     Email = "nguyenducnhatlong@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser3, "111111");
                 AppUser newUser4 = new AppUser()
                 {
+                    Name = "Ngô Duy Tân",
+                    PhoneNumber = "0905123456",
                     UserName = "ngoduytan@gmail.com",
                     Email = "ngoduytan@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser4, "111111");
                 AppUser newUser5 = new AppUser()
                 {
+                    Name = "Nguyễn Nho Tuấn",
+                    PhoneNumber = "0905123456",
                     UserName = "nguyennhotuan@gmail.com",
                     Email = "nguyennhotuan@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser5, "111111");
                 AppUser newUser6 = new AppUser()
                 {
+                    Name = "Phan Văn Tài",
+                    PhoneNumber = "0905123456",
                     UserName = "phanvantai@gmail.com",
                     Email = "phanvantai@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser6, "111111");
                 AppUser newUser7 = new AppUser()
                 {
+                    Name = "Bùi Trường Linh",
+                    PhoneNumber = "0905123456",
                     UserName = "buitruonglinh@gmail.com",
                     Email = "buitruonglinh@gmail.com",
-                    Birthday = DateTime.Now,
+                    Birthday = new DateTime(2003, 09, 16),
                     Gender = Gender.Male
                 };
                 await userService.Register(newUser7, "111111");

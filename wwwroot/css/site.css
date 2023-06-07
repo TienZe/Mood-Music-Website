@@ -1473,112 +1473,117 @@ button.accept-policy {
     object-fit: cover;
 
 }
-
-
-
-.MemberDetail_Searchbox_Zone{
-    margin: 2% 2%;
-    background-color: white;
-    width: 94%;
-    height: 80px;
-    border-radius: 10px;
-}
-
-.MemberDetail_Searchbox {
-    padding: 20px 20px;
-    width: 55%;
-    position: relative;
-    display: flex;
-}
-
-.MemberDetail_searchTerm {
-    font-size: 16px;
-    width: 100%;
-    border: 1px solid #000000;
-    border-right: none;
-    padding: 5px;
-    height: 36px;
-    outline: none;
-    color: #9DBFAF;
-}
-
-.MemberDetail_searchTerm:focus{
-    color: #000000;
-}
-
-.MemberDetail_searchButton {
-    width: 40px;
-    height: 36px;
-    border: 1px solid #000000;
-    border-left: none;
-    background: #ffffff;
-    text-align: center;
-    color: #000000;
-    cursor: pointer;
-    font-size: 20px;
-}
-
-.MemberList_Zone
-{
-    margin: 2% 2%;
-    background-color: white;
-    width: 94%;
-    height: 700px;
-    border-radius: 10px;
-}
-
-.MemberList_Header{
-    padding: 20px 20px;
-    font-weight: 700;
-    font-size: 45px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.MemberList_TableZone{
-    margin: 2% 2%;
-    height: 500px;
-    overflow-y: scroll;
-}
-
-.MemberList_Table{
-    margin: 25px 0;
-    font-size: 20px;
-    font-weight: 500;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-width: 400px;
-    
-}
-
-.MemberList_Table thead tr{
-    background-color: #d2e2df;
-    color: #000000;
-    text-align: left;
-}
-
-.MemberList_Table thead tr th{
-    font-weight: 800;
-}
-
-.MemberList_Table th,
-.MemberList_Table td{
-    padding:10px 52px;
-}
-
-
-.MemberList_Table tbody tr:nth-of-type(even){
-    background-color: #e6e2e2;
-    
-}
-
-.MemberList_Table th:first-child{
-    border-radius: 10px 0 0 10px;
-}
-
-.MemberList_Table th:last-child{
-    border-radius: 0 10px 10px 0;
-}
 .invisible_input {
     visibility: hidden;
     position: absolute;
     left: -9999px;
+}
+
+
+/* Details */
+
+.Details-Container {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.Details-Container h1 {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.Details-body {
+    width: 100%;
+    height: 91%;
+    display: flex;
+    margin-top: 30px;
+}
+
+.Details-img {
+    width: 20%;
+}
+
+.Details-img img {
+    width: 100%;
+    height: auto;
+}
+
+.Details-Show {
+    width: 80%;
+    padding: 8px 40px;
+}
+
+.Details-Information {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.Details-Information label {
+    width: 30%;
+}
+
+.Details-Information input {
+    width: 69%;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+.Details-Information input[type="date"]{
+    background: #fff;
+    color: #000;
+}
+
+.Details-Information_Description {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.Details-Information_Description label {
+    width: 30%;
+    transform: translateY(-132px);
+}
+
+.Details-Information_Description textarea {
+    width: 69%;
+    height: 155px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.Details-footer {
+    height: 35px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Details-footer a {
+    font-size: 15px;
+    color: #000;
+}
+
+.Details-footer button {
+    width: 20%;
+    height: 100%;
+    background-color: #000;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: bold;
 }

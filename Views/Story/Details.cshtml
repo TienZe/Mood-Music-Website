@@ -1,0 +1,69 @@
+﻿@model Story
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<div class="Details-Container">
+    <h1>Story details</h1>
+
+    <div class="Details-body">
+        <div class="Details-img">
+            <img src="@("/img/story/" + Model.AvatarImage)" asp-append-version="true" />
+        </div>
+
+        <div class="Details-Show">
+            <div class="Details-Information">
+                <label asp-for="Name">Story name</label>
+                <input id="StoryName" asp-for="Name" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label asp-for="Author">Author</label>
+                <input id="Author" asp-for="Author" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label asp-for="LifeTimePrice">Lifetime using price</label>
+                <input id="Lifetime" asp-for="LifeTimePrice" readonly />
+            </div>
+
+            <div class="Details-Information">
+                <label asp-for="OneTimePrice">One-time using price</label>
+                <input id="Onetime" asp-for="OneTimePrice" readonly />
+            </div>
+
+            <div class="Details-Information_Description">
+                <label asp-for="Description">Description</label>
+                <textarea id="Description" asp-for="Description" readonly></textarea>
+
+            <div class="Details-footer">
+                <a asp-controller="Story" asp-action="Index">Back to Story page</a>
+                <button id="btn-Story">Edit information</button>
+                <a id="link-edit" asp-controller="Story" asp-action="Edit" asp-route-id="@Model.StoryId" class="invisible_input"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@SectionWriters Scripts {
+    <script>
+
+        var btnStory = document.querySelector("#btn-Story");
+        //var StoryName = document.querySelector("#StoryName");
+        //var Author = document.querySelector("#Author");
+        //var Lifetime = document.querySelector("#Lifetime");
+        //var Onetime = document.querySelector("#Onetime");
+        //var Description = document.querySelector("#Description");
+        var linkEdit = document.getElementById('link-edit');
+
+        btnStory.addEventListener("click", function () {
+            //StoryName.readOnly = false;
+            //Author.readOnly = false;
+            //Lifetime.readOnly = false;
+            //Onetime.readOnly = false;
+            //Description.readOnly = false;
+            linkEdit.click();
+        })
+
+    </script>
+}

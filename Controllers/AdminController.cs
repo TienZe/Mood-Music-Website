@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using PBL3.Models.Domain;
 using PBL3.Models.DTO;
 using PBL3.Repositories.Abstract;
+using PBL3.Repositories.Implementation;
 
 namespace PBL3.Controllers
 {
@@ -40,8 +41,24 @@ namespace PBL3.Controllers
             // Phân trang kết quả
             return View(PaginatedList<AppUser>.CreateAsync(listMembers, pageIndex.Value, PageSize));
         }
-        
+        [HttpGet]
+        public async Task<IActionResult> GetUserById(string id)
+        {
+            AppUser user = await userService.FindByIdAsync(id);
+            if (user == null) return NotFound();
+
+            return Json(new
+            {
+                Name = user.Name,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                Birthday = user.Birthday?.Date.ToString("dd/MM/yyyy"),
+                Age = user.Birthday?.Year - DateTime.Now.Year,
+                Gender = user.Gender.ToString()
+            });
+        }
         public IActionResult Order() => View();
         public IActionResult OrderDetails() => View();
+        public IActionResult MemberDetail() => View();
     }
 }

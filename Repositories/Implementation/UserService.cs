@@ -23,6 +23,10 @@ namespace PBL3.Repositories.Implementation
         {
            return await userManager.GetUserAsync(user);
         }
+        public async Task<AppUser> FindByIdAsync(string id)
+        {
+            return await userManager.FindByIdAsync(id);
+        }
         public async Task<IdentityResult> ChangePasswordAsync(ClaimsPrincipal user, string currentPassword, string newPassword)
         {
             AppUser appUser = await userManager.GetUserAsync(user);

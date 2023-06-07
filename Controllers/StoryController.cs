@@ -187,5 +187,12 @@ namespace PBL3.Controllers
             repository.Delete(id);
             return RedirectToAction(nameof(Index));
         }
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            Story? story = repository.GetById(id);
+            if (story == null) return NotFound();
+            return View(story);
+        }
     }
 }

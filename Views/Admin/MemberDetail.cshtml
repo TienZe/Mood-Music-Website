@@ -1,0 +1,447 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+}
+
+<style>
+    
+    .MemberDetail_Searchbox_Zone{
+        margin: 2% 2%;
+        background-color: white;
+        width: 94%;
+        height: 80px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .MemberDetail_Searchbox {
+        padding: 20px 20px;
+        width: 55%;
+        position: relative;
+        display: flex;
+    }
+
+    .MemberDetail_searchTerm {
+        font-size: 16px;
+        width: 100%;
+        border: 1px solid #000000;
+        border-right: none;
+        padding: 5px;
+        height: 36px;
+        outline: none;
+        color: #9DBFAF;
+    }
+
+    .MemberDetail_searchTerm:focus{
+        color: #000000;
+    }
+
+    .MemberDetail_searchButton {
+        width: 40px;
+        height: 36px;
+        border: 1px solid #000000;
+        border-left: none;
+        background: #ffffff;
+        text-align: center;
+        color: #000000;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .MemberList_Zone
+    {
+        margin: 2% 2%;
+        background-color: white;
+        width: 94%;
+        height: 700px;
+        border-radius: 10px;
+        z-index: 1;
+    }
+
+    .MemberList_Header{
+        padding: 20px 20px;
+        font-weight: 700;
+        font-size: 45px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .MemberList_TableZone{
+        margin: 2% 2%;
+        height: 500px;
+        overflow-y: scroll;
+    }
+
+    .MemberList_Table{
+        margin: 25px 0;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-width: 400px;
+        
+    }
+
+    .MemberList_Table thead tr{
+        background-color: #d2e2df;
+        color: #000000;
+        text-align: left;
+    }
+
+    .MemberList_Table thead tr th{
+        font-weight: 800;
+    }
+
+    .MemberList_Table td button{
+        border: none;
+        background: white;
+    }
+
+    .MemberList_Table tbody tr:nth-of-type(even) td button{
+        background-color: #e6e2e2;
+        
+    }
+
+    .MemberList_Table th,
+    .MemberList_Table td{
+        padding:10px 52px;
+    }
+
+
+    .MemberList_Table tbody tr:nth-of-type(even){
+        background-color: #e6e2e2;
+        
+    }
+
+    .MemberList_Table th:first-child{
+        border-radius: 10px 0 0 10px;
+    }
+
+    .MemberList_Table th:last-child{
+        border-radius: 0 10px 10px 0;
+    }
+
+    .MemberDetail_Modal_Zone{
+        height: 28cm;
+        width: 100vw;
+        background: rgb(0,0,0,0.7);
+        z-index: 2;
+        position: relative;
+        bottom: 1090px;
+        right:25%;
+        @* background: linear-gradient(rgb(105, 21, 173),rgb(9, 235, 47),rgb(31, 216, 201)); *@
+        color:white;
+        font-weight: bold;
+    }
+
+    .MemberDetail_Page{
+        width: 1200px;
+        height: 450px;
+        position: relative;
+        top:40%;
+        margin:auto;
+        background: white;
+        font-weight: bold;
+        font-size: 15px;
+        border-radius: 20px;
+        animation: modalshow 0.3s linear;
+    }
+
+    .MemberDetail_Page_Header{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        align-items: center;
+        padding-top:15px;
+        padding-left: 30px;
+        background: white;
+        color:rgb(15, 0, 0);
+        border-radius: 20px;
+        font-size: 20px;
+    }
+
+    .MemberDetail_Page_Header a{
+        cursor: pointer;
+    }
+
+    .MemberDetail_Page_Contents i{
+        font-size: 110px;
+        padding-top: 30px;
+        padding-left: 30px;
+    }
+
+    .MemberDetail_Page_Contents_Detail{
+        position: relative;
+        bottom: 100px;
+        left: 150px;
+        width: 1000px;
+        height: 350px;
+        background: rgb(255, 255, 255);
+    }
+
+    .MemberDetail_Page_Contents_LeftWing{
+        margin-left:20px;
+        width: 570px;
+        height: 100%;
+         @* background: #45d8bd;  *@
+    }
+
+    .MemberDetail_Page_Contents_RightWing{
+        width: 400px;
+        height: 100%;
+         @* background: #4745d8;  *@
+        position:relative;
+        left: 620px;
+        bottom: 350px;
+    }
+
+    .MemberDetail_Page_Contents_LeftWing_Details{
+        margin-top: 10px;
+    }
+
+    .MemberDetail_Page_Contents_LeftWing_Details span{
+        color: rgb(26, 26, 26);
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .MemberDetail_Page_Contents_LeftWing_Details_Value{
+        width: 100%;
+        height: 40px;
+        background:rgb(0,0,0,0.2);
+        margin-top:12px;
+        @* align-items: center;
+        justify-content: center; *@
+        padding-left: 10px;
+        padding-top:5px;
+    }
+
+    .MemberDetail_Page_Contents_LeftWing_Details_Value p{
+        font-weight: 700;
+        font-size: 19px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    
+
+    .MemberDetail_Page_Contents_RightWing_Details{
+        margin-top: 10px;
+    }
+    
+    .MemberDetail_Page_Contents_RightWing_Details span,
+    .MemberDetail_Page_Contents_RightWing_Details_First span{
+        color: rgb(26, 26, 26);
+        font-size: 16px;
+        font-weight: 400;
+    }
+
+    .MemberDetail_Page_Contents_RightWing_Details_Value{
+        width: 100%;
+        height: 40px;
+        background:rgb(0,0,0,0.2);
+        margin-top:12px;
+        @* align-items: center;
+        justify-content: center; *@
+        padding-left: 10px;
+        padding-top:5px;
+    }
+
+    .MemberDetail_Page_Contents_RightWing_Details_Value p{
+        font-weight: 700;
+        font-size: 19px;
+        color: black;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .hide{
+        display:none;
+    }
+
+    .MemberList_Table a{
+        cursor: pointer;
+    }
+
+    @@keyframes modalshow{
+        from{
+            top:-200px;
+            opacity: 0;
+        }
+        to{
+            top:40%;
+            opacity: 1;
+            background:  linear-gradient(rgb(105, 21, 173),rgb(9, 235, 47),rgb(31, 216, 201));
+        }
+    }
+
+    
+
+    
+</style>
+
+
+<div class="MemberDetail_Searchbox_Zone">
+        <div class="MemberDetail_Searchbox">
+            <input type="text" class="MemberDetail_searchTerm" placeholder="Find member here - E.g: Nguyễn Đình Anh Tiến...">
+            <button type="submit" class="MemberDetail_searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+</div>
+
+<div class="MemberList_Zone">
+    <h1 class="MemberList_Header">Member list</h1>
+    <div class="MemberList_TableZone">
+        <table class="MemberList_Table">
+            <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>User name</th>
+                    <th>Account</th>
+                    <th>Cart</th>
+                    <th>Register day</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for(int i = 0 ; i <= 101 ; i++){
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>Nguyễn Đình Anh Tiến</td>
+                        <td>Anhtien1609@gmail.com</td>
+                        <td>12 Orders</td>
+                        <td>21/12/2023</td>
+                         <td><a style="color: inherit; text-decoration: inherit;">Go to profile details</a></td>   
+                        @* <td><button class="MemberDetail_Open">Go to profile details</button></td>  *@
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+    </div>
+
+
+    
+    
+
+
+    <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <a href="">Go to page: </a>
+                <input type="text" value="1"/>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Previous</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">2</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">3</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">4</a>
+            </div>
+
+            <div class="Model-3dots">...</div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Next</a>
+            </div>
+
+            <div class="Model-prev-pagenumber-next-last">
+                <a href="#">Last</a>
+            </div>
+
+        </div>
+
+
+</div>
+
+<div class="MemberDetail_Modal_Zone hide">
+    <div class="MemberDetail_Page">
+        <div class="MemberDetail_Page_Header">
+            <a><i class="fa-solid fa-angles-left"></i> Back</a>
+        </div>
+
+        <div class="MemberDetail_Page_Contents">
+           <i class="fa-solid fa-circle-user" style="color: #ace198;"></i>
+           
+           <div class="MemberDetail_Page_Contents_Detail">
+                <div class="MemberDetail_Page_Contents_LeftWing">
+                    @* <span>User name</span>
+                    <div class="MemberDetail_Page_Contents_Detail_Value_LeftWing">
+                        <span>Nguyễn Đình Anh Tiến</span>
+                    </div> *@
+                    <div class="MemberDetail_Page_Contents_LeftWing_Details">
+                        <span>User name</span>
+                        <div class="MemberDetail_Page_Contents_LeftWing_Details_Value"><p>Nguyễn Đình Anh Tiến</p></div>
+                    </div>
+
+                    <div class="MemberDetail_Page_Contents_LeftWing_Details">
+                        <span>Account</span>
+                        <div class="MemberDetail_Page_Contents_LeftWing_Details_Value"><p>Anhtien1609@gmail.com</p></div>
+                    </div>
+
+
+                    <div class="MemberDetail_Page_Contents_LeftWing_Details">
+                        <span>Register Day</span>
+                        <div class="MemberDetail_Page_Contents_LeftWing_Details_Value"><p>21/12/2023</p></div>
+                    </div>
+
+                    <div class="MemberDetail_Page_Contents_LeftWing_Details">
+                        <span>Phone Number</span>
+                        <div class="MemberDetail_Page_Contents_LeftWing_Details_Value"><p>0123xxxxxx</p></div>
+                    </div>
+
+                </div>  
+
+                <div class="MemberDetail_Page_Contents_RightWing">
+                    <div class="MemberDetail_Page_Contents_RightWing_Details_First">
+                        <span>Birthday</span>
+                        <div class="MemberDetail_Page_Contents_RightWing_Details_Value"><p>16/09/2003</p></div>
+                    </div>
+
+                    <div class="MemberDetail_Page_Contents_RightWing_Details">
+                        <span>Gender</span>
+                        <div class="MemberDetail_Page_Contents_RightWing_Details_Value"><p>Male</p></div>
+                    </div>
+                </div>
+           </div>
+        
+        </div>
+    </div> 
+</div>
+
+@* 
+@section scripts{
+    <script>
+        $("#showtable").on("click", "#viewbtn", function () {
+            $.ajax({
+                url: "@Url.Action("MemberDetail_PartialView", "Admin")",
+                data: { id: 1 },
+                success: function (data) {
+                    $("#showmodal .modal-dialog").html(data);
+                    $("#showmodal").modal("show");
+                }
+            });
+        });
+    </script>
+} *@
+
+<script type="text/javascript">
+    var open_Modal = document.querySelectorAll('.MemberList_Table tr td a');
+    var modal_close = document.querySelector('.MemberDetail_Page_Header a');
+    var modal = document.querySelector('.MemberDetail_Modal_Zone');
+    function toggle_modal(){
+        modal.classList.toggle('hide');
+    }
+    open_Modal.forEach(v => v.addEventListener("click", toggle_modal));
+    modal.addEventListener("click", function(e){
+        if (e.target == e.currentTarget) toggle_modal();
+    });
+    modal_close.addEventListener("click", toggle_modal);
+</script>

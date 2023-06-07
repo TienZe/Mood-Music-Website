@@ -8,6 +8,7 @@ namespace PBL3.Repositories.Abstract
     public interface IUserService
     {
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
+        Task<AppUser> FindByIdAsync(string id);
         Task<IEnumerable<AppUser>> GetUsersInRoleAsync(string roleName);
         Task<IdentityResult> LoginAsync(string email, string password);
         Task LogoutAsync();
