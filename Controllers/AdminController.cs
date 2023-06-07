@@ -40,6 +40,8 @@ namespace PBL3.Controllers
             // Phân trang kết quả
             return View(PaginatedList<AppUser>.CreateAsync(listMembers, pageIndex.Value, PageSize));
         }
+
+        public IActionResult MemberDetail() => View();
         public IActionResult ListSongUsing() => View();
         public IActionResult AddNewSong() => View();
         public IActionResult SongEditting() => View();
