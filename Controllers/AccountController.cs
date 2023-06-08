@@ -131,5 +131,7 @@ namespace PBL3.Controllers
 			}
             return View(model);
         }
+
+        public IActionResult ManageStory() => View();
     }
 }
