@@ -1,0 +1,246 @@
+﻿@model ListenStoryModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Listen story";
+    MakingOrderPopupModel popupModel = new MakingOrderPopupModel()
+            {
+                ItemClassName = "OtherStories-item",
+                SelectListOrderType = ViewBag.SelectListOrderType
+            };
+}
+
+@*Trình phát audio*@
+<div class="ListenStorii-Listen">
+    <div class="ListenStorii-item">
+        <img src="~/img/Radio.png" />
+
+        <div class="ListenStorii-Content">
+            <a href="#">
+                @Model.Story.Author
+                <i class="fa-regular fa-circle-play"></i>
+            </a>
+
+            <h2>@Model.Story.Name</h2>
+            <p>
+                @Model.Story.Description
+            </p>
+        </div>
+
+        <i id="play-btn" class="fa-regular fa-circle-play"></i>
+        <audio id="audio-player" hidden>
+            <source src="@("/audio/story/" + Model.Story.Source)"
+                    type="audio/mpeg">
+        </audio>
+    </div>
+</div>
+
+@*Other stories*@
+<div class="OtherStories-container">
+    <div class="OtherStories-Show">
+        <h1>Others stories</h1>
+
+        <div class="OtherStories-information">
+            @foreach (StoryItem storyItem in Model.StoryItems ?? Enumerable.Empty<StoryItem>())
+            {
+				Story story = storyItem.Story;
+				// Hiển thị các item story, mỗi item để sử dụng partial view cần cung cấp
+				// + class name : để Js select các item này
+				// + story-id tương ứng : Khi 1 item được chọn, nó cần biết story gắn với nó
+				// + already-bought : dựa vào giá trị này để quyết định sự kiện click của phần div này
+				//           - true : người dùng đã mua, ta cần chuyển sang trang nghe
+				//           - false : hiển thị popup order
+				<div class="OtherStories-item" story-id="@story.StoryId" already-bought="@storyItem.AlreadyBought">
+                    <img src="@("/img/story/" + story.AvatarImage)" />
+
+                    <div class="OtherStories-contents">
+                        <a href="#">
+                            @story.Author
+                            <i class="fa-regular fa-circle-play"></i>
+                        </a>
+
+                        <h2>@story.Name</h2>
+                        <p>
+                            @story.Description
+                        </p>
+                    </div>
+                </div>
+				// Tạo link nhảy sang nghe story nếu đã mua
+				if (storyItem.AlreadyBought)
+				{
+					<a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory"
+						asp-route-storyId="@story.StoryId" class="hide"></a>
+				}
+            }
+        </div>
+    </div>
+	@*Image của story hiện tại*@
+    <img src="@("/img/story/" + Model.Story.AvatarImage)" style="width : 425px; height : 528px"/>
+	@*<img src="~/img/Template Details.png" />*@
+</div>
+
+@*Making order popup*@
+<partial name="_MakingOrderPopupPartial" model="popupModel" />
+
+@section Scripts {
+	<script>
+		var audioPlayer = document.getElementById("audio-player");
+		var playButton = document.getElementById("play-btn");
+
+		// Phát hết bài thì đối button từ play sang pause
+		audioPlayer.addEventListener('ended', function () {
+			console.log("ended");
+			playButton.classList.remove("fa-circle-pause");
+			playButton.classList.add("fa-circle-play");
+		});
+		// Phát - Pause
+		playButton.addEventListener("click", function () {
+			if (audioPlayer.paused) {
+				audioPlayer.play();
+				playButton.classList.remove("fa-circle-play");
+				playButton.classList.add("fa-circle-pause");
+			} else {
+				audioPlayer.pause();
+				playButton.classList.remove("fa-circle-pause");
+				playButton.classList.add("fa-circle-play");
+			}
+		});
+	</script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<div class="OrderMaking-Container hide">
+	<div class="OrderMaking-inner">
+		<div class="OrderMaking-header">
+			<p>Order making</p>
+			<i class="fa-regular fa-circle-xmark"></i>
+		</div>
+
+		<div class="OrderMaking-body">
+			<div class="OrderMaking-img">
+				<img src="~/img/Template Details.png" />
+			</div>
+
+			<div class="OrderMaking-Show">
+				<div class="OrderMaking-Information">
+					<label>Order name</label>
+					<input type="text" id="OrderName" value="Where the crawdads sing" readonly />
+				</div>
+
+				<div class="OrderMaking-Information">
+					<label>User</label>
+					<input type="text" id="User" value="Nguyễn Đình Anh Tiến" readonly />
+				</div>
+
+				<div class="OrderMaking-Information">
+					<label>User's account</label>
+					<input type="email" id="UserAccount" value="Nguyendinhanhtien1609@gmail.com" readonly />
+				</div>
+
+				<div class="OrderMaking-Information">
+					<label>Day</label>
+					<input type="date" id="Day" value="2023-09-16" readonly />
+				</div>
+
+				<div class="OrderMaking-Information OrderType">
+					<label>Order type</label>
+					<p>Choose your order type</p>
+					<div class="Category-List">
+						<i class="fa-solid fa-caret-down" id="List-OrderType"></i>
+						<div class="hide" id="OrderType-Item">
+							<div class="Category-item">
+								<input type="checkbox" id="checkbox-Listen" />
+								Listen
+							</div>
+
+							<div class="Category-item">
+								<input type="checkbox" id="checkbox-Purchase" />
+								Purchase
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="OrderMaking-Information">
+					<label>Price</label>
+					<input type="text" id="Price" readonly />
+				</div>
+			</div>
+		</div>
+
+		<div class="OrderMaking-footer">
+			<p>Your points: 100</p>
+			<button id="btn-Order">Pay now!</button>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	var icon = document.querySelector("#List-OrderType");
+	var OrderTypeItem = document.querySelector("#OrderType-Item");
+
+	icon.addEventListener("click", function () {
+		OrderTypeItem.classList.toggle("hide");
+	})
+
+	var checkboxListen = document.querySelector("#checkbox-Listen");
+	var checkboxPurchase = document.querySelector("#checkbox-Purchase");
+
+	checkboxListen.addEventListener("change", function () {
+		var Price = document.querySelector("#Price");
+		Price.value = "15 points";
+		checkboxPurchase.checked = false;
+	})
+
+	checkboxPurchase.addEventListener("change", function () {
+		var Price = document.querySelector("#Price");
+		Price.value = "100 points";
+		checkboxListen.checked = false;
+	})
+
+	var close = document.querySelector(".fa-circle-xmark");
+
+	close.addEventListener("click", function () {
+		document.querySelector(".OrderMaking-Container").classList.add("hide")
+	})
+
+	var OtherStoriesitem = document.querySelectorAll(".OtherStories-item");
+
+	OtherStoriesitem.forEach(function (item) {
+		item.addEventListener("click", function () {
+			document.querySelector(".OrderMaking-Container").classList.remove("hide")
+		})
+	})
+
+</script>*@

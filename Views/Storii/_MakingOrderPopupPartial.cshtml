@@ -1,0 +1,189 @@
+﻿@model MakingOrderPopupModel
+
+<div class="OrderMaking-Container hide">
+    <div class="OrderMaking-inner">
+        <div class="OrderMaking-header">
+            <p>Order making</p>
+            <i class="fa-regular fa-circle-xmark"></i>
+        </div>
+
+        <div class="OrderMaking-body">
+            <div class="OrderMaking-img">
+                <img id="popup-image" src="~/img/Template Details.png" />
+            </div>
+
+            <div class="OrderMaking-Show">
+                <div class="OrderMaking-Information">
+                    <label>Order name</label>
+                    <input type="text" id="popup-order-name" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>User</label>
+                    <input type="text" id="popup-user" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>User's account</label>
+                    <input type="email" id="popup-user-account" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>Day</label>
+                    <input type="date" id="popup-day" readonly />
+                </div>
+
+                <div class="OrderMaking-Information OrderType">
+                    <label>Order type</label>
+                    <p>Choose your order type</p>
+                    <select class="Category-List" asp-items="@Model.SelectListOrderType">
+                        <option value="" disabled selected>Choose order type</option>
+                    </select>
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>Price</label>
+                    <input type="text" id="popup-price" readonly
+                           placeholder="Price depend on order type" />
+                </div>
+            </div>
+        </div>
+
+        <div class="OrderMaking-footer">
+            <p>Your points: 100</p>
+            <form id="order-form" asp-asp-controller="Storii" asp-action="MakingOrder" method="post">
+                <input type="hidden" name="storyId" />
+                <input type="hidden" name="orderTypeId" />
+                <button id="btn-Order" type="submit">Pay now!</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var image = document.getElementById('popup-image');
+    var orderName = document.getElementById('popup-order-name');
+    var user = document.getElementById('popup-user');
+    var userAccount = document.getElementById('popup-user-account');
+    var day = document.getElementById('popup-day');
+    var image = document.getElementById('popup-image');
+    var price = document.getElementById('popup-price');
+
+    var oneTimePrice, lifeTimePrice;
+
+    // Lựa chọn form dựa trên ID
+    var orderForm = document.getElementById('order-form');
+
+    // Lựa chọn các phần tử input trong form
+    var storyIdInput = orderForm.querySelector('input[name="storyId"]');
+    var orderTypeIdInput = orderForm.querySelector('input[name="orderTypeId"]');
+
+    function orderStory(storyId) {
+        $.ajax({
+            url: '/Storii/OrderStory',
+            type: 'GET',
+            data: { storyId: storyId },
+            success: function (response) {
+                // Xử lý kết quả trả về
+                console.log(response);
+
+                // set giá trị lên popup window
+                image.src = "/img/story/" + response.story.avatarImage;
+                orderName.value = response.story.name;
+                user.value = response.user;
+                userAccount.value = response.userAccount;
+                day.value = response.day;
+
+                oneTimePrice = response.story.oneTimePrice;
+                lifeTimePrice = response.story.lifeTimePrice;
+
+                // Set form input storyId
+                storyIdInput.value = response.story.storyId;
+            },
+            error: function (xhr, status, error) {
+                // Xử lý lỗi nếu có
+                console.log(error);
+            }
+        });
+    }
+    function resetPopupWindow() {
+        orderTypeSelect.value = "";
+        price.value = "";
+    }
+
+    // Select các item story
+    var Storiesitem = document.querySelectorAll("@('.' + Model.ItemClassName)");
+    
+    // Thêm sự kiện 'click' cho chúng -> hiển thị popup OrderMaking hoặc nhảy sang trang nghe story
+    // nếu đã mua
+    var popupWindow = document.querySelector(".OrderMaking-Container");
+    Storiesitem.forEach(function (item) {
+        item.addEventListener("click", function () {
+            // Get storyId tương ứng với mục được chọn
+            var storyId = this.getAttribute('story-id');
+            var alreadyBought = this.getAttribute('already-bought');
+            if (alreadyBought) {
+                var aElement = document.getElementById('link-' + storyId);
+                aElement.click();
+            } else {
+                // set popup window
+                resetPopupWindow();
+                // request orderStory lấy dữ liệu đổ lên popup
+                orderStory(storyId);
+                // hiển thị popup
+                popupWindow.classList.remove("hide")
+            }
+        })
+    });
+
+    // Xử lý sự kiên trên popup window
+    var orderTypeSelect = document.querySelector('.Category-List');
+    // Hiển thị price và set value input form tương ứng vs order type được chọn
+    orderTypeSelect.addEventListener('input', function () {
+        // Có một vấn đề ở đây là orderId này có thể thay đổi khi seed
+        // Vì ta đang cố gắng biến OrderType thành 1 bảng. Tuy nhiên ta
+        // chỉ sử dụng hai giá trị của nó là Onetime và Lifetime
+        // Vì vậy, nếu giữa id và name thì name sẽ cố định hơn, name ràng buộc
+        // bởi enum OrderType.Type -> nên ta sẽ dựa vào giá trị của Name, tức
+        // là text được chọn để đưa ra Price tương ứng
+
+        // Lấy index của option được chọn
+        var selectedIndex = orderTypeSelect.selectedIndex;
+        // Lấy giá trị text của option được chọn
+        var selectedText = orderTypeSelect.options[selectedIndex].text;
+        switch (selectedText) {
+            case '@(OrderType.Type.Onetime + " purchase")': {
+                price.value = oneTimePrice;
+                break;
+            }
+            case '@(OrderType.Type.Lifetime + " purchase")': {
+                price.value = lifeTimePrice;
+                break;
+            }
+        }
+        // set value vào form input thật sự
+        orderTypeIdInput.value = orderTypeSelect.value;
+    });
+
+    var close = document.querySelector(".fa-circle-xmark");
+
+    close.addEventListener("click", function () {
+        popupWindow.classList.add("hide")
+    })
+
+    // Validate input form
+    orderForm.addEventListener('submit', function (event) {
+        // Ngăn chặn hành vi mặc định của form
+        event.preventDefault();
+
+        // Kiểm tra xem hai trường input có dữ liệu hay không
+        if (storyIdInput.value && orderTypeIdInput.value) {
+            // Có dữ liệu, tiến hành submit form
+            orderForm.submit();
+        } else {
+            // Không có dữ liệu, hiển thị thông báo hoặc thực hiện các hành động khác
+            alert('Vui lòng chọn loại order');
+        }
+    });
+</script>

@@ -12,7 +12,7 @@ namespace PBL3.Repositories.Implementation
 		{
 			Song? song = GetById(id);
 			if (song == null) return null;
-
+			
 			// 1 instance của AppDbContext được tạo ra mỗi request nên song đã được tracking
 			// Lấy EntityEntry của song và thực hiện Explicit Loading
 			context.Entry(song).Collection(s => s.Emotions).Load();

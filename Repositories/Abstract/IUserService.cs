@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using PBL3.Models.Domain;
-using PBL3.Models.DTO;
 using System.Security.Claims;
 
 namespace PBL3.Repositories.Abstract
 {
-    public interface IUserService
+	public interface IUserService
     {
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
         Task<AppUser> FindByIdAsync(string id);

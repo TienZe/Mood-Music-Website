@@ -98,8 +98,5 @@ namespace PBL3.Controllers
                 StoryImage = order.Story.AvatarImage
             });
         }
-        public IActionResult Order() => View();
-        
-        public IActionResult MemberDetail() => View();
     }
 }

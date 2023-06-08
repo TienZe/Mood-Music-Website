@@ -10,5 +10,6 @@ namespace PBL3.Controllers
         public IActionResult Index() => View();
         public IActionResult InitEmotion() => View();
         public IActionResult EmotionSong() => View();
+        public IActionResult ListenStorii() => View();
     }
 }

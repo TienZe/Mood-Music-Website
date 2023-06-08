@@ -1,15 +1,14 @@
-﻿@model IEnumerable<Story>
+﻿@model IEnumerable<StoryItem>
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Storii";
+    MakingOrderPopupModel popupModel = new MakingOrderPopupModel()
+    {
+                ItemClassName = "Storii-Contents",
+                SelectListOrderType = ViewBag.SelectListOrderType
+    };
 }
 
-<style>
-
-    
-    
-
-</style>
 <div class="grid">
     <div style="max-width:max-content; height:450px">
         <div class="ST-ROW-1">
@@ -40,9 +39,16 @@
 
 
         <div class="ST-R2-COL1">
-            @foreach (Story story in Model ?? Enumerable.Empty<Story>())
+            @foreach (StoryItem storyItem in Model ?? Enumerable.Empty<StoryItem>())
             {
-                <div class="Storii-Contents">
+                Story story = storyItem.Story;
+                // Hiển thị các item story, mỗi item để sử dụng partial view cần cung cấp
+                // + class name : để Js select các item này
+                // + story-id tương ứng : Khi 1 item được chọn, nó cần biết story gắn với nó
+                // + already-bought : dựa vào giá trị này để quyết định sự kiện click của phần div này
+                //           - true : người dùng đã mua, ta cần chuyển sang trang nghe
+                //           - false : hiển thị popup order
+                <div class="Storii-Contents" story-id="@story.StoryId" already-bought="@storyItem.AlreadyBought">
                     <img src="@("/img/story/" + story.AvatarImage)" style="width:180px; height:150px"
                             asp-append-version="true" />
 
@@ -57,6 +63,12 @@
                         </p>
                     </div>
                 </div>
+                // Tạo link nhảy sang nghe story nếu đã mua
+                if (storyItem.AlreadyBought)
+                {
+                    <a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory" 
+                            asp-route-storyId="@story.StoryId" class="hide" ></a>
+                }
             }
         </div>
 
@@ -68,11 +80,11 @@
             <br />
             Or
             <br /> Just be the storii!
-            <a href="#" class="btn btn-secondary" style="border-radius:15px; background-color:black ; font-size:15px">Be the STORIER</a>
+            <a asp-controller="Storii" asp-action="ListenStory" asp-route-storyId="1" class="btn btn-secondary" style="border-radius:15px; background-color:black ; font-size:15px">Be the STORIER</a>
         </div>
 
     </div>
 </div>
 
-
-
+@*Making order popup*@
+<partial name="_MakingOrderPopupPartial" model="popupModel" />
