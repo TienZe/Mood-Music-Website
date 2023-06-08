@@ -1,4 +1,5 @@
-﻿@{
+﻿@model OrderViewModel
+@{
     Layout = "_LayoutAdmin";
 }
 
@@ -7,49 +8,49 @@
 
     <div class="Details-body">
         <div class="Details-img">
-            <img src="~/img/Template Details.png" />
+            <img src="@("/img/story/" + Model.StoryImage)" asp-append-version="true" />
         </div>
 
         <div class="Details-Show">
             <div class="Details-Information">
                 <label>Order name</label>
-                <input type="text" id="OrderName" value="Where the crawdads sing" readonly />
+                <input id="OrderName" asp-for="OrderName" readonly />
             </div>
 
             <div class="Details-Information">
                 <label>User</label>
-                <input type="text" id="User" value="Nguyễn Đình Anh Tiến" readonly />
+                <input id="User" asp-for="User" readonly />
             </div>
 
             <div class="Details-Information">
                 <label>User's account</label>
-                <input type="email" id="UserAccount" value="Nguyendinhanhtien1609@gmail.com" readonly />
+                <input id="UserAccount" asp-for="UserAccount" readonly />
             </div>
 
             <div class="Details-Information">
                 <label>Day</label>
-                <input type="date" id="Day" value="2023-09-16" readonly />
+                <input id="Day" asp-for="Day" readonly />
             </div>
 
             <div class="Details-Information">
                 <label>Order type</label>
-                <input type="text" id="OrderType" value="Listen" readonly />
+                <input id="OrderType" asp-for="OrderType" readonly />
             </div>
 
             <div class="Details-Information">
                 <label>Price</label>
-                <input type="text" id="Price" value="10$" readonly />
+                <input id="Price" asp-for="Price" readonly />
             </div>
 
             <div class="Details-footer">
-                <a asp-controller="Admin" asp-action="Order">Back to Order page</a>
-                <button id="btn-Order">Edit information</button>
+                <a asp-controller="Admin" asp-action="ListOrders">Back to Order page</a>
+                @*<button id="btn-Order">Edit information</button>*@
             </div>
         </div>
     </div>
 </div>
 
-<script>
+@*<script>
 
     var btnOrder = document.querySelector("#btn-Order");
     var OrderName = document.querySelector("#OrderName");
@@ -68,4 +69,4 @@
         Price.readOnly = false;
     })
 
-</script>
+</script>*@

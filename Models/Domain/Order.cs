@@ -15,7 +15,7 @@ namespace PBL3.Models.Domain
         // User thực hiện Order
         public AppUser User { get; set; } // required
         public OrderType OrderType { get; set; } // required
-        public OrderStatus OrderStatus { get; set; } // required
+        public OrderStatus? OrderStatus { get; set; } // optional relationship
         public Story Story { get; set; } // required
     }   
 }

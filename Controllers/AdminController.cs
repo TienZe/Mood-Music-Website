@@ -54,9 +54,9 @@ namespace PBL3.Controllers
                 Name = user.Name,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                Birthday = user.Birthday?.Date.ToString("dd/MM/yyyy"),
-                Age = user.Birthday?.Year - DateTime.Now.Year,
-                Gender = user.Gender.ToString()
+                Age = DateTime.Now.Year - user.Birthday?.Year,
+                Gender = user.Gender.ToString(), 
+                RegisterDay = user.RegisterDay
             });
         }
         public IActionResult ListOrders(int? pageIndex, string searchString)
@@ -83,10 +83,20 @@ namespace PBL3.Controllers
         [HttpGet]
         public IActionResult OrderDetails(int orderId)
         {
-            Order? order = orderRepository.GetById(orderId);
+            Order? order = orderRepository.GetByIdWithRelatedEntity(orderId);
             if (order == null) return NotFound();
 
-            return View(order);
+            return View(new OrderViewModel()
+            {
+                OrderName = order.Name,
+                Day = order.Day.ToString("dd/MM/yyyy"),
+                Price = order.Price,
+
+                User = order.User.Name,
+                UserAccount = order.User.Email,
+                OrderType = order.OrderType.Name.ToString(),
+                StoryImage = order.Story.AvatarImage
+            });
         }
         public IActionResult Order() => View();
         

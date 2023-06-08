@@ -27,7 +27,7 @@ namespace PBL3.Controllers
             return View(storyRepository.GetAll());
         }
         [HttpGet]
-        public async Task<IActionResult> MakingOrder(int storyId) 
+        public async Task<IActionResult> MakingOrders(int storyId) 
         {
             Story? story = storyRepository.GetById(storyId);
             if (story == null) return NotFound();
@@ -50,7 +50,7 @@ namespace PBL3.Controllers
                 Email = user.Email
             });
         }
-        [HttpPost]
+        
         public async Task<IActionResult> MakingOrder(int storyId, int orderTypeId) 
         {
             // Get story được order
@@ -64,7 +64,7 @@ namespace PBL3.Controllers
 
             Order newOrder = new Order()
             {
-                Name = story.Name + "-" + orderType.Name.ToString(),
+                Name = story.Name + " - " + orderType.Name.ToString(),
                 Price = (orderType.Name == OrderType.Type.Onetime ? story.OneTimePrice : story.LifeTimePrice),
                 Day = DateTime.Now,
                 User = user,

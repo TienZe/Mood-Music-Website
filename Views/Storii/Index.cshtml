@@ -5,25 +5,10 @@
 }
 
 <style>
-    /* width */
-    ::-webkit-scrollbar {
-        width: 10px;
-    }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
+    
+    
 
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-        background: #888;
-    }
-
-        /* Handle on hover */
-        ::-webkit-scrollbar-thumb:hover {
-            background: #555;
-        }
 </style>
 <div class="grid">
     <div style="max-width:max-content; height:450px">
@@ -55,158 +40,25 @@
 
 
         <div class="ST-R2-COL1">
-            <div class="ST-ContentsZ">
-                <div class="ST-Contents-img">
-                    <img src="~/img/Template Storii_StoriiTheme.jpg" style="width:180px; height:145px" />
-                </div>
-
-
-                <div class="ST-Contents-text">
-                    <a href="#" class="link-primary" style="color:black">Delta Crowns</a>
-                    <i class="fa-regular fa-circle-play"></i>
-                    <br />
-                    <p style="margin-top:10px">
-                        <b style="font-size:25px">Far from here where the crawdads sing</b>
-                        <br />
-
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-
-                    </p>
-                </div>
-            </div>
             @foreach (Story story in Model ?? Enumerable.Empty<Story>())
             {
-                <div class="ST-ContentsZ" style="">
-                    <div class="ST-Contents-img2">
-                        <img src="@("img/story/" + story.AvatarImage)" asp-append-version="true"
-                             style="width:180px; height:145px" />
-                    </div>
-                    <div class="ST-Contents-text2">
+                <div class="Storii-Contents">
+                    <img src="@("/img/story/" + story.AvatarImage)" style="width:180px; height:150px"
+                            asp-append-version="true" />
+
+                    <div class="Storii-Contents-Text">
                         <a href="#" class="link-primary" style="color:black">@story.Author</a>
                         <i class="fa-regular fa-circle-play"></i>
-                        <br />
                         <p style="margin-top:10px">
                             <b style="font-size:25px">@story.Name</b>
                             <br />
+
                             @story.Description
                         </p>
                     </div>
                 </div>
             }
-
-            @*<div class="ST-ContentsZ" style="">
-                <div class="ST-Contents-img2">
-                    <img src="~/img/Template Storii_StoriiTheme.jpg" style="width:180px; height:145px" />
-                </div>
-
-
-                <div class="ST-Contents-text2">
-                    <a href="#" class="link-primary" style="color:black">Delta Crowns</a>
-                    <i class="fa-regular fa-circle-play"></i>
-                    <br />
-                    <p style="margin-top:10px">
-                        <b style="font-size:25px">Far from here where the crawdads sing</b>
-                        <br />
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                        abcxyzabcxyz
-                    </p>
-                </div>
-            </div>*@
-
-
-
-            @*<div class="ST-ContentsZ" style="">
-            <div class="ST-Contents-img2">
-            <img src="~/img/Template Storii_StoriiTheme.jpg" style="width:180px; height:145px" />
-            </div>
-
-
-            <div class="ST-Contents-text2">
-            <a href="#" class="link-primary" style="color:black">Delta Crowns</a>
-            <i class="fa-regular fa-circle-play"></i>
-            <br />
-            <p style="margin-top:10px">
-            <b style="font-size:25px">Far from here where the crawdads sing</b>
-            <br />
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            </p>
-            </div>
-
-
-            </div>
-
-
-            <div class="ST-ContentsZ" style="">
-            <div class="ST-Contents-img2">
-            <img src="~/img/Template Storii_StoriiTheme.jpg" style="width:180px; height:145px" />
-            </div>
-
-
-            <div class="ST-Contents-text2">
-            <a href="#" class="link-primary" style="color:black">Delta Crowns</a>
-            <i class="fa-regular fa-circle-play"></i>
-            <br />
-            <p style="margin-top:10px">
-            <b style="font-size:25px">Far from here where the crawdads sing</b>
-            <br />
-
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            abcxyzabcxyz
-            </p>
-            </div>
-
-
-            </div>*@
-
         </div>
-
-
 
         <div class="ST-R2-COL2">
             Having something to tell the world but didn't find anyone to hearing you? Just give it to us, we're here to listen to you!
@@ -218,12 +70,9 @@
             <br /> Just be the storii!
             <a href="#" class="btn btn-secondary" style="border-radius:15px; background-color:black ; font-size:15px">Be the STORIER</a>
         </div>
+
     </div>
 </div>
-
-<br />
-<br />
-
 
 
 

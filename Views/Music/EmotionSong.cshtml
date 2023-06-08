@@ -42,7 +42,7 @@
     @*Trình phát nhạc*@
     <div class="EmotionSong-ListenMusic">
         <audio id="audio-player" hidden>
-            <source src="@(isEmpty ? "not_find_source_audio" : "audio/song/" + Model[0].Source)"
+            <source src="@(isEmpty ? "not_find_source_audio" : "/audio/song/" + Model[0].Source)"
                     type="audio/mpeg">
         </audio>
         <img src="~/img/Template Storii_StoriiTheme.jpg" />
@@ -159,7 +159,7 @@
                 console.log("Current song : ");
                 console.log(song);
 
-                audioPlayer.src = 'audio/song/' + song.Source;
+                audioPlayer.src = '/audio/song/' + song.Source;
                 audioPlayer.play();
                 document.getElementById("songname-artist").textContent = song.Name + " - " + song.Artist;
             }
