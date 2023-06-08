@@ -109,3 +109,21 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script>
+
+    // Resource list
+
+    var ResourcesList = document.querySelector("#Resources-list")
+    var ResourcesSong = document.querySelector("#Resources-Song")
+    var ResourcesStory = document.querySelector("#Resources-Story")
+    var ResourcesGenre = document.querySelector("#Resources-Genre")
+    var ResourcesEmotion = document.querySelector("#Resources-Emotion")
+
+    ResourcesList.addEventListener("click", function () {
+        ResourcesSong.classList.toggle("hide");
+        ResourcesStory.classList.toggle("hide");
+        ResourcesGenre.classList.toggle("hide");
+        ResourcesEmotion.classList.toggle("hide");
+    })
+</script>

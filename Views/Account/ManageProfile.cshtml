@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
 @model ManageProfileModel
 @{
-	Layout = "_Layout";
+	Layout = "_LayoutUser";
 
 	Func<string, string> isHide = property =>
 	{
@@ -14,9 +14,7 @@
 	};
 }
 <div class="Manage-Profile">
-	<div class="Manage-Profile_Avatar">
-		<img src="/img/Daijin.png" />
-	</div>
+	
 
 	<div class="Manage-Profile_Information">
 		@if (TempData["Message"] != null)
@@ -209,3 +207,44 @@
 		});
 	</script>
 }
+
+
+<script>
+	var InputChange = document.querySelectorAll(".fa-pen");
+	var changePassword = document.getElementById("ChangePassword");
+	var newPasswordRow = document.querySelector(".Manage-Profile_Show_NewPassword");
+	var newPassword = document.getElementById("New_Password");
+	var changePassword2 = document.getElementById("ChangePassword2");
+	var confirmPasswordRow = document.querySelectorAll(".Manage-Profile_Show_NewPassword")[1];
+	var confirmPassword = document.getElementById("Confirm_Password");
+	var icon = document.querySelector(".iconChangePassword");
+
+	function EnableInput(inputId) {
+		document.getElementById(inputId).readOnly = false;
+	}
+
+	// Define the ToggleInput function to toggle the visibility of password input fields
+
+
+	// Loop through the InputChange array and assign an event handler function to each element in the array
+	InputChange.forEach(function (input) {
+		input.addEventListener("click", function () {
+			// Get the value of the data-input-id attribute of the icon
+			var inputId = input.getAttribute("data-input-id");
+			// Call the EnableInput function with inputId as the argument if the inputId is one of the specified values
+			EnableInput(inputId);
+			// Otherwise, call the ToggleInput function to toggle the visibility of the password input fields
+		});
+	});
+
+	function toggleNewPassword() {
+		changePassword.classList.toggle("hide");
+		newPasswordRow.classList.toggle("hide");
+		changePassword2.classList.toggle("hide");
+		confirmPasswordRow.classList.toggle("hide");
+	}
+
+	if (icon) {
+		icon.addEventListener("click", toggleNewPassword);
+	}
+</script>
