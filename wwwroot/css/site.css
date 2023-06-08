@@ -716,11 +716,16 @@ button.accept-policy {
 .Storii-Contents {
     width: 100%;
     height: 180px;
+    cursor: pointer;
+}
+
+.Storii-Contents:hover {
+    background: rgba(218, 216, 216, 0.52);
 }
 
 .Storii-Contents img {
     width: 30%;
- }
+}
 
 .Storii-Contents-Text {
     float: right;
@@ -1591,3 +1596,247 @@ textarea::-webkit-scrollbar {
     font-size: 15px;
     font-weight: bold;
 }
+
+/* ListenStorii */
+
+.ListenStorii-Listen {
+    width: 92%;
+    margin: 50px auto;
+    background: #fff;
+    border-radius: 40px;
+}
+
+.ListenStorii-item {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 70px;
+}
+
+    .ListenStorii-item img {
+        width: 30%;
+        height: auto;
+    }
+
+    .ListenStorii-item i {
+        font-size: 60px;
+        cursor: pointer;
+    }
+
+.ListenStorii-Content {
+    width: 50%;
+    height: 130px;
+}
+
+    .ListenStorii-Content a {
+        font-size: 15px;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .ListenStorii-Content i {
+        font-size: 10px;
+    }
+
+    .ListenStorii-Content h2 {
+        margin: 0;
+        margin-top: 15px;
+        font-weight: bold
+    }
+
+    .ListenStorii-Content p {
+        font-size: 14px;
+        margin: 0;
+    }
+
+
+/* OtherStories */
+
+.OtherStories-container {
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 50px;
+}
+
+.OtherStories-Show {
+    width: 55%;
+}
+
+    .OtherStories-Show h1 {
+        font-size: 50px;
+        font-weight: 400;
+        margin-bottom: 25px;
+    }
+
+.OtherStories-information {
+    height: 436.6px;
+    overflow-y: scroll;
+}
+
+.OtherStories-item {
+    display: flex;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+    .OtherStories-item:hover {
+        background: rgba(218, 216, 216, 0.52);
+    }
+
+    .OtherStories-item img {
+        width: 130px;
+        height: auto;
+        margin-right: 20px;
+    }
+
+.OtherStories-contents {
+    width: 90%;
+}
+
+    .OtherStories-contents a {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .OtherStories-contents h2 {
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .OtherStories-contents p {
+        font-size: 15px;
+        width: 100%;
+        margin-bottom: 0;
+    }
+
+
+/*Order making*/
+
+.OrderMaking-Container {
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.OrderMaking-inner {
+    width: 60%;
+    height: 500px;
+    background: #fff;
+    margin: 50px auto;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.OrderMaking-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px 10px 40%;
+}
+
+    .OrderMaking-header p {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .OrderMaking-header i {
+        font-size: 20px;
+        font-weight: 300;
+        cursor: pointer;
+    }
+
+.OrderMaking-body {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    position: relative;
+}
+
+.OrderMaking-img {
+    width: 25%;
+    height: 100%;
+}
+
+    .OrderMaking-img img {
+        width: 100%;
+        height: auto;
+    }
+
+.OrderMaking-Show {
+    width: 100%;
+    height: 100%;
+    padding-left: 50px
+}
+
+.OrderMaking-Information {
+    margin-bottom: 20px;
+}
+
+    .OrderMaking-Information label {
+        width: 30%;
+        font-size: 18px;
+    }
+
+    .OrderMaking-Information input {
+        width: 69%;
+        font-size: 20px;
+        font-weight: bold;
+        border: none;
+        outline: none;
+    }
+
+        .OrderMaking-Information input[type="date"] {
+            background: #fff;
+            color: #000;
+            font-weight: bold;
+        }
+
+.OrderMaking-Information, .OrderType {
+    display: flex;
+}
+
+    .OrderMaking-Information p {
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 50px;
+        padding-bottom: 0;
+    }
+
+    .OrderMaking-Information .Category-List {
+        width: 25%;
+        font-size: 15px;
+        margin: 7px 0;
+    }
+
+        .OrderMaking-Information .Category-List i {
+            cursor: pointer;
+        }
+
+        .OrderMaking-Information .Category-List input {
+            width: 10%;
+        }
+
+.OrderMaking-footer {
+    text-align: end;
+}
+
+    .OrderMaking-footer p {
+        font-size: 15px;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+
+    .OrderMaking-footer button {
+        width: 15%;
+        height: 35px;
+        background: #000;
+        border-radius: 30px;
+        color: #fff;
+        font-size: 18px;
+    }

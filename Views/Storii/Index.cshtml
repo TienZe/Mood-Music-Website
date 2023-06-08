@@ -102,7 +102,7 @@
             <br />
             Or
             <br /> Just be the storii!
-            <a href="#" class="btn btn-secondary" style="border-radius:15px; background-color:black ; font-size:15px">Be the STORIER</a>
+            <a asp-controller="Storii" asp-action="ListenStorii" class="btn btn-secondary" style="border-radius:15px; background-color:black ; font-size:15px">Be the STORIER</a>
         </div>
     </div>
 </div>
@@ -111,5 +111,109 @@
 <br />
 
 
+<div class="OrderMaking-Container hide">
+    <div class="OrderMaking-inner">
+        <div class="OrderMaking-header">
+            <p>Order making</p>
+            <i class="fa-regular fa-circle-xmark"></i>
+        </div>
 
+        <div class="OrderMaking-body">
+            <div class="OrderMaking-img">
+                <img src="~/img/Template Details.png" />
+            </div>
+
+            <div class="OrderMaking-Show">
+                <div class="OrderMaking-Information">
+                    <label>Order name</label>
+                    <input type="text" id="OrderName" value="Where the crawdads sing" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>User</label>
+                    <input type="text" id="User" value="Nguyễn Đình Anh Tiến" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>User's account</label>
+                    <input type="email" id="UserAccount" value="Nguyendinhanhtien1609@gmail.com" readonly />
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>Day</label>
+                    <input type="date" id="Day" value="2023-09-16" readonly />
+                </div>
+
+                <div class="OrderMaking-Information OrderType">
+                    <label>Order type</label>
+                    <p>Choose your order type</p>
+                    <div class="Category-List">
+                        <i class="fa-solid fa-caret-down" id="List-OrderType"></i>
+                        <div class="hide" id="OrderType-Item">
+                            <div class="Category-item">
+                                <input type="checkbox" id="checkbox-Listen" />
+                                Listen
+                            </div>
+
+                            <div class="Category-item">
+                                <input type="checkbox" id="checkbox-Purchase" />
+                                Purchase
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="OrderMaking-Information">
+                    <label>Price</label>
+                    <input type="text" id="Price" readonly />
+                </div>
+            </div>
+        </div>
+
+        <div class="OrderMaking-footer">
+            <p>Your points: 100</p>
+            <button id="btn-Order">Pay now!</button>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var icon = document.querySelector("#List-OrderType");
+    var OrderTypeItem = document.querySelector("#OrderType-Item");
+
+    icon.addEventListener("click", function () {
+        OrderTypeItem.classList.toggle("hide");
+    })
+
+    var checkboxListen = document.querySelector("#checkbox-Listen");
+    var checkboxPurchase = document.querySelector("#checkbox-Purchase");
+
+    checkboxListen.addEventListener("change", function () {
+        var Price = document.querySelector("#Price");
+        Price.value = "15 points";
+        checkboxPurchase.checked = false;
+    })
+
+    checkboxPurchase.addEventListener("change", function () {
+        var Price = document.querySelector("#Price");
+        Price.value = "100 points";
+        checkboxListen.checked = false;
+    })
+
+    var close = document.querySelector(".fa-circle-xmark");
+
+    close.addEventListener("click", function () {
+        document.querySelector(".OrderMaking-Container").classList.add("hide")
+    })
+
+    var OtherStoriesitem = document.querySelectorAll(".Storii-Contents");
+
+    OtherStoriesitem.forEach(function (item) {
+        item.addEventListener("click", function () {
+            document.querySelector(".OrderMaking-Container").classList.remove("hide")
+        })
+    })
+
+</script>
 

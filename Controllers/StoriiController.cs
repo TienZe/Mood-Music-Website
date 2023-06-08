@@ -15,5 +15,6 @@ namespace PBL3.Controllers
         {
             return View(storyRepository.GetAll());
         }
+        public IActionResult ListenStorii() => View();
     }
 }
