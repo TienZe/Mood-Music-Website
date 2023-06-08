@@ -62,7 +62,8 @@ namespace PBL3.Models.Domain
                 AppUser admin = new AppUser()
                 {
                     Email = email,
-                    UserName = email
+                    UserName = email,
+                    Point = 1000000000
                 };
                 await userMgr.CreateAsync(admin, configuration["Data:Admin:Password"]);
                 await userMgr.AddToRoleAsync(admin, Role.Admin);

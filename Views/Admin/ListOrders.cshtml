@@ -38,9 +38,9 @@
                     Order order = Model[i];
                     <tr class="Model-table-data">
                         <td>@(Model.FirstItemIndex + i)</td>
-                        <td>@(order.Name + "-" + order.OrderType.Type)</td>
+                        <td>@(order.Name)</td>
                         <td>@(order.User.Name)</td>
-                        <td>@(order.OrderType.Type)</td>
+                        <td>@(order.OrderType.Name.ToString())</td>
                         @*<td>Pending confirmation</td>*@
                         <td class="Model-table-Order-details">
                             <a asp-controller="Admin" asp-action="OrderDetails" asp-route-orderId="@order.OrderId">

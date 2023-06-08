@@ -11,11 +11,19 @@ namespace PBL3.Models.Domain
     {
         [StringLength(200)]
         public string? Name { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? Birthday { get; set; }
 
         [Range(1, 3, ErrorMessage = "Please enter your gender")]
         public Gender? Gender { get; set; }
+
+        [Column(TypeName = "decimal(18, 3)")]
+        public decimal Point { get; set; }
+
+        [Column(TypeName = "date")]
+        public DateTime RegisterDay { get; set; }
+
         // Các Order được thực hiện bởi User
         public List<Order> Orders { get; } = new();
         // Danh sách story mà ng dùng đã mua

@@ -41,6 +41,7 @@ builder.Services.AddScoped<IEmotionRepository, EmotionRepository>();
 builder.Services.AddScoped<ISongRepository, SongRepository>();
 builder.Services.AddScoped<IRepository<Story>, Repository<Story>>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IRepository<OrderType>, Repository<OrderType>>();
 
 // Seed data
 builder.Services.AddScoped<SeedData>();

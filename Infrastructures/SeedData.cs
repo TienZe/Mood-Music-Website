@@ -25,7 +25,9 @@ namespace PBL3.Infrastructures
                     UserName = "nguyendinhanhtien@gmail.com",
                     Email = "nguyendinhanhtien@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser1, "111111");
                 AppUser newUser2 = new AppUser()
@@ -35,7 +37,9 @@ namespace PBL3.Infrastructures
                     UserName = "luongcongthinh@gmail.com",
                     Email = "luongcongthinh@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser2, "111111");
                 AppUser newUser3 = new AppUser()
@@ -45,7 +49,9 @@ namespace PBL3.Infrastructures
                     UserName = "nguyenducnhatlong@gmail.com",
                     Email = "nguyenducnhatlong@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser3, "111111");
                 AppUser newUser4 = new AppUser()
@@ -55,7 +61,9 @@ namespace PBL3.Infrastructures
                     UserName = "ngoduytan@gmail.com",
                     Email = "ngoduytan@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser4, "111111");
                 AppUser newUser5 = new AppUser()
@@ -65,7 +73,9 @@ namespace PBL3.Infrastructures
                     UserName = "nguyennhotuan@gmail.com",
                     Email = "nguyennhotuan@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser5, "111111");
                 AppUser newUser6 = new AppUser()
@@ -75,7 +85,9 @@ namespace PBL3.Infrastructures
                     UserName = "phanvantai@gmail.com",
                     Email = "phanvantai@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser6, "111111");
                 AppUser newUser7 = new AppUser()
@@ -85,7 +97,9 @@ namespace PBL3.Infrastructures
                     UserName = "buitruonglinh@gmail.com",
                     Email = "buitruonglinh@gmail.com",
                     Birthday = new DateTime(2003, 09, 16),
-                    Gender = Gender.Male
+                    Gender = Gender.Male,
+                    Point = 1000,
+                    RegisterDay = DateTime.Now,
                 };
                 await userService.Register(newUser7, "111111");
             }
@@ -218,6 +232,21 @@ namespace PBL3.Infrastructures
                 song3.Genres.Add(listGenres[0]);
 
                 context.Songs.AddRange(song1, song2, song3);
+                context.SaveChanges();
+            }
+            
+            // Seed OrderTypes
+            if (context.OrderTypes.Count() == 0)
+            {
+                OrderType ot1 = new OrderType()
+                {
+                    Name = OrderType.Type.Onetime
+                };
+                OrderType ot2 = new OrderType()
+                {
+                    Name = OrderType.Type.Lifetime
+                };
+                context.OrderTypes.AddRange(ot1, ot2);
                 context.SaveChanges();
             }
         }
