@@ -13,10 +13,10 @@ namespace PBL3.Repositories.Implementation
 		
 		public void SetRelatedStory(AppUser user, IEnumerable<int> storyIds)
 		{
-			// Cần load các related stories lên
-			context.Entry(user).Collection(user => user.Stories).Load();
+            // Cần load các related stories lên
+            LoadRelatedStories(user);
 
-			if (user.Stories.Count() == 0)
+            if (user.Stories.Count() == 0)
 			{
 				user.Stories.AddRange(context.Stories.Where(story => storyIds.Contains(story.StoryId)));
 				return;

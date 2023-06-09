@@ -43,14 +43,14 @@
 
                 <div class="OrderMaking-Information">
                     <label>Price</label>
-                    <input type="text" id="popup-price" readonly
+                    <input type="number" id="popup-price" readonly
                            placeholder="Price depend on order type" />
                 </div>
             </div>
         </div>
 
         <div class="OrderMaking-footer">
-            <p>Your points: 100</p>
+            <p>Your points: <span id="user-point">@Model.UserPoint</span></p>
             <form id="order-form" asp-asp-controller="Storii" asp-action="MakingOrder" method="post">
                 <input type="hidden" name="storyId" />
                 <input type="hidden" name="orderTypeId" />
@@ -72,6 +72,8 @@
 
     var oneTimePrice, lifeTimePrice;
 
+    var userPoint = +document.getElementById('user-point').innerText;
+   
     // Lựa chọn form dựa trên ID
     var orderForm = document.getElementById('order-form');
 
@@ -80,12 +82,14 @@
     var orderTypeIdInput = orderForm.querySelector('input[name="orderTypeId"]');
 
     function orderStory(storyId) {
+        console.log('GET APT : /Storii/OrderStory');
         $.ajax({
             url: '/Storii/OrderStory',
             type: 'GET',
             data: { storyId: storyId },
             success: function (response) {
                 // Xử lý kết quả trả về
+                console.log('GET Successfully, resonse :');
                 console.log(response);
 
                 // set giá trị lên popup window
@@ -97,13 +101,18 @@
 
                 oneTimePrice = response.story.oneTimePrice;
                 lifeTimePrice = response.story.lifeTimePrice;
+                // hiển thị popup
+                popupWindow.classList.remove("hide")
 
                 // Set form input storyId
                 storyIdInput.value = response.story.storyId;
             },
             error: function (xhr, status, error) {
                 // Xử lý lỗi nếu có
+                console.log('User cần đăng nhập để có thể thực hiện order');
                 console.log(error);
+                // ẩn popup
+                popupWindow.classList.add("hide");
             }
         });
     }
@@ -131,8 +140,7 @@
                 resetPopupWindow();
                 // request orderStory lấy dữ liệu đổ lên popup
                 orderStory(storyId);
-                // hiển thị popup
-                popupWindow.classList.remove("hide")
+                
             }
         })
     });
@@ -179,11 +187,15 @@
 
         // Kiểm tra xem hai trường input có dữ liệu hay không
         if (storyIdInput.value && orderTypeIdInput.value) {
-            // Có dữ liệu, tiến hành submit form
-            orderForm.submit();
+            // Có dữ liệu, kiểm tra price
+            if (userPoint < price.value) {
+                alert('Bạn không đủ điểm để thực hiện order này!');
+            } else {
+                orderForm.submit();
+            }
         } else {
             // Không có dữ liệu, hiển thị thông báo hoặc thực hiện các hành động khác
-            alert('Vui lòng chọn loại order');
+            alert('Vui lòng chọn loại order!');
         }
     });
 </script>

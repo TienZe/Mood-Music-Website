@@ -1,11 +1,12 @@
-﻿@model IEnumerable<StoryItem>
+﻿@model StoriiViewModel
 @{
     Layout = "_Layout";
     ViewData["Title"] = "Storii";
     MakingOrderPopupModel popupModel = new MakingOrderPopupModel()
             {
                 ItemClassName = "Storii-Contents",
-                SelectListOrderType = ViewBag.SelectListOrderType
+                SelectListOrderType = ViewBag.SelectListOrderType,
+                UserPoint =  Model.UserPoint
             };
 }
 
@@ -39,7 +40,7 @@
 
 
         <div class="ST-R2-COL1">
-            @foreach (StoryItem storyItem in Model ?? Enumerable.Empty<StoryItem>())
+            @foreach (StoryItem storyItem in Model.StoryItems ?? Enumerable.Empty<StoryItem>())
             {
                 Story story = storyItem.Story;
                 // Hiển thị các item story, mỗi item để sử dụng partial view cần cung cấp

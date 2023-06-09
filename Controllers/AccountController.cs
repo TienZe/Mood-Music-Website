@@ -14,9 +14,11 @@ namespace PBL3.Controllers
     public class AccountController : Controller
     {
         private readonly IUserService userService;
-        public AccountController(IUserService userService) 
+        private readonly IUserRepository userRepository;
+        public AccountController(IUserService userService, IUserRepository userRepoService) 
         {
             this.userService = userService;
+            this.userRepository = userRepoService;
         }
         [AllowAnonymous]
         [HttpGet]
@@ -80,7 +82,9 @@ namespace PBL3.Controllers
         public async Task<IActionResult> ManageProfile()
         {
             AppUser user = await userService.GetUserAsync(User);
-            return View(new ManageProfileModel()
+
+			ViewBag.Point = user.Point;
+			return View(new ManageProfileModel()
             {
                 Account = user.Email,
                 Name = user.Name,
@@ -94,7 +98,9 @@ namespace PBL3.Controllers
         [HttpPost]
         public async Task<IActionResult> ManageProfile(ManageProfileModel model)
         {
-            if (ModelState.IsValid) 
+			// Get user
+			AppUser user = await userService.GetUserAsync(User);
+			if (ModelState.IsValid) 
             {
 				// Thay đổi mật khẩu, gần hơn là Reset mật khẩu vì không yêu cầu ng dùng
 				// nhập lại mật khẩu
@@ -110,8 +116,6 @@ namespace PBL3.Controllers
 					}
 				}
 
-                // Cập nhật thông tin người dùng
-				AppUser user = await userService.GetUserAsync(User);
 				// Set
 				user.Name = model.Name;
 				user.Birthday = model.Birthday;
@@ -129,7 +133,17 @@ namespace PBL3.Controllers
 				TempData["Message"] = "Your changes have been updated";
 				return RedirectToAction(nameof(ManageProfile));
 			}
-            return View(model);
+
+			ViewBag.Point = user.Point;
+			return View(model);
+        }
+
+        public async Task<IActionResult> ManageStories()
+        {
+            AppUser user = await userService.GetUserAsync(User);
+            userRepository.LoadRelatedStories(user);
+            ViewBag.Point = user.Point;
+            return View(user.Stories);
         }
     }
 }

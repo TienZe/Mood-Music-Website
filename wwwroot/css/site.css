@@ -296,7 +296,6 @@ form .Login-form_text_field {
 .Login-form_text_field input:focus ~ span::before,
 .Login-form_text_field input:valid ~ span::before {
     width: 100%;
-    
 }
 
 input[type="submit"] {
@@ -357,7 +356,7 @@ input[type="submit"] {
     margin-left: 20%;
 }
 
-.SignUp-form_Vinyl{
+.SignUp-form_Vinyl {
     width: 100%;
     height: 100%;
     margin: 122px 0;
@@ -489,7 +488,6 @@ input[type=date] {
 }
 
 ::-webkit-calendar-picker-indicator {
-
     border: 2px solid #000;
 }
 
@@ -719,13 +717,13 @@ button.accept-policy {
     cursor: pointer;
 }
 
-.Storii-Contents:hover {
-    background: rgba(218, 216, 216, 0.52);
-}
+    .Storii-Contents:hover {
+        background: rgba(218, 216, 216, 0.52);
+    }
 
-.Storii-Contents img {
-    width: 30%;
-}
+    .Storii-Contents img {
+        width: 30%;
+    }
 
 .Storii-Contents-Text {
     float: right;
@@ -737,9 +735,15 @@ button.accept-policy {
 
 .Manage-Profile {
     display: flex;
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 95%;
     background: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    padding: 0 30px;
 }
 
 .Manage-Profile_Avatar img {
@@ -748,55 +752,56 @@ button.accept-policy {
     object-fit: cover;
     object-position: center;
 }
+
 .Manage-Profile_Avatar {
     width: 250px;
     height: 250px;
     border-radius: 50%;
     overflow: hidden;
-    margin: 50px;
+    margin: 0px 18px 20px 18px;
 }
 
 .Manage-Profile_Information {
     margin: 50px 0;
-    width: 68%;
-}
-
-.Manage-Profile_Information table {
     width: 100%;
 }
 
+    .Manage-Profile_Information table {
+        width: 100%;
+    }
 
-.Manage-Profile_Information td {
-    height: 30px;
-    font-size: 20px;
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 10px;
-}
+
+    .Manage-Profile_Information td {
+        height: 30px;
+        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+        margin: 5px 10px;
+    }
 
 .Manage-Profile_Show {
-    font-weight: 700;
     font-family: "poppin";
     background: rgba(218, 216, 216, 0.52);
 }
 
-.Manage-Profile_Show input {
-    border: none;
-    outline: none;
-    width: 100%;
-    background: border-box;
-}
+    .Manage-Profile_Show input {
+        font-weight: 700;
+        border: none;
+        outline: none;
+        width: 100%;
+        background: border-box;
+    }
 
-.Manage-Profile_Show input[type=date] {
-    color: #000;
-    width: 20%;
-}
+        .Manage-Profile_Show input[type=date] {
+            color: #000;
+            width: 20%;
+        }
 
-.Manage-Profile_Show i {
-    cursor: pointer;
-    font-size: 15px;
-    padding-top: 8px;
-}
+    .Manage-Profile_Show i {
+        cursor: pointer;
+        font-size: 15px;
+        padding-top: 8px;
+    }
 
 .OptionGender {
     border: none;
@@ -804,26 +809,24 @@ button.accept-policy {
 }
 
 .Manage-Profile_btnSave {
-    width: 150px;
-    height: 40px;
-    background: #ccc;
-    border-radius: 40px;
     display: flex;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
     cursor: pointer;
-    transform: translateX(590%);
     margin: 20px 0;
 }
 
 
-.Manage-Profile_btnSave button {
-    border: none;
-    outline: none;
-    font-size: 20px;
-    color: #000;
-    background: border-box;
-}
+    .Manage-Profile_btnSave button {
+        width: 150px;
+        height: 40px;
+        border-radius: 40px;
+        background: #ccc;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        color: #000;
+    }
 
 /*Home*/
 .Discover {
@@ -856,13 +859,13 @@ button.accept-policy {
     transform: translateY(-63px) translateX(200px);
 }
 
-.bars-down a {
-    text-decoration: none;
-}
+    .bars-down a {
+        text-decoration: none;
+    }
 
-.bars-down i {
-    font-size: 20px;
-}
+    .bars-down i {
+        font-size: 20px;
+    }
 
 .Header_navbar-item .fa-bars {
     font-size: 20px;
@@ -876,12 +879,12 @@ button.accept-policy {
     background: rgba(218, 216, 216, 0.52);
 }
 
-.Manage-Profile_Show_NewPassword input {
-    border: none;
-    outline: none;
-    width: 100%;
-    background: border-box;
-}
+    .Manage-Profile_Show_NewPassword input {
+        border: none;
+        outline: none;
+        width: 100%;
+        background: border-box;
+    }
 
 .hide {
     display: none;
@@ -894,7 +897,7 @@ button.accept-policy {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     text-align: center;
 }
 
@@ -908,7 +911,7 @@ button.accept-policy {
 }
 
 .EmotionSong-Disc {
-    width : 100%;
+    width: 100%;
 }
 
 .EmotionSong-OptionEmote {
@@ -941,11 +944,11 @@ button.accept-policy {
     margin: 20px 0;
 }
 
-.EmotionSong-btnPlayMusic img {
-    width: 10%;
-    height: 10%;
-    margin-bottom: 5px;
-}
+    .EmotionSong-btnPlayMusic img {
+        width: 10%;
+        height: 10%;
+        margin-bottom: 5px;
+    }
 
 
 .EmotionSong-ListenMusic {
@@ -957,11 +960,11 @@ button.accept-policy {
     margin: 50px 50px;
 }
 
-.EmotionSong-ListenMusic img {
-    width: 80%;
-    height: 80%;
-    margin-top: 25px;
-}
+    .EmotionSong-ListenMusic img {
+        width: 80%;
+        height: 80%;
+        margin-top: 25px;
+    }
 
 .EmotionSong-SongName {
     margin: 30px 0;
@@ -995,40 +998,53 @@ button.accept-policy {
     padding: 40px 8px;
 }
 
+    .Admin_sidebar_navigations p {
+        font-size: 20px;
+        text-decoration: underline;
+        text-align: center;
+        font-weight: bold;
+    }
+
 .Admin_sidebar_navigation-item {
     padding: 5px 15px;
     border-radius: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.Admin_sidebar_navigation-item:hover {
-    background: #67AB8E;
-}
+    .Admin_sidebar_navigation-item:hover {
+        background: #67AB8E;
+    }
 
-.Admin_sidebar_navigation-item i {
-    font-size: 35px;
-    padding-right: 15px;
-}
+    .Admin_sidebar_navigation-item i {
+        font-size: 35px;
+        padding-right: 15px;
+    }
 
-.Admin_sidebar_navigation-item a {
-    text-decoration: none;
-    font-size: 30px;
-    color: #000;
-    font-weight: bold;
-    padding-left: 5px;
-}
+    .Admin_sidebar_navigation-item a {
+        text-decoration: none;
+        font-size: 30px;
+        color: #000;
+        font-weight: bold;
+        padding-left: 5px;
+    }
+
+    .Admin_sidebar_navigation-item img {
+        width: 30px;
+        height: auto;
+        margin-right: 16px;
+    }
 
 #Resources-list {
     font-size: 30px;
     font-weight: bold;
 }
 
-#Resources-list img {
-    width: 30px;
-    height: auto;
-    margin-right: 16px;
-    padding-bottom: 5px;
-}
+    #Resources-list img {
+        width: 30px;
+        height: auto;
+        margin-right: 16px;
+        padding-bottom: 5px;
+    }
 
 .Admin_sidebar_navigation-Resources-item {
     padding: 15px 75px;
@@ -1036,26 +1052,26 @@ button.accept-policy {
     cursor: pointer;
 }
 
-.Admin_sidebar_navigation-Resources-item img {
-    width: 20px;
-    height: auto;
-    margin-bottom: 6px;
-}
+    .Admin_sidebar_navigation-Resources-item img {
+        width: 20px;
+        height: auto;
+        margin-bottom: 6px;
+    }
 
-.Admin_sidebar_navigation-Resources-item:hover {
-    background: #67AB8E;
-}
+    .Admin_sidebar_navigation-Resources-item:hover {
+        background: #67AB8E;
+    }
 
-.Admin_sidebar_navigation-Resources-item i {
-    font-size: 20px;
-}
+    .Admin_sidebar_navigation-Resources-item i {
+        font-size: 20px;
+    }
 
-.Admin_sidebar_navigation-Resources-item a {
-    text-decoration: none;
-    font-size: 20px;
-    color: #000;
-    padding-left: 15px;
-}
+    .Admin_sidebar_navigation-Resources-item a {
+        text-decoration: none;
+        font-size: 20px;
+        color: #000;
+        padding-left: 15px;
+    }
 
 .Admin-container {
     width: 80%;
@@ -1079,26 +1095,25 @@ button.accept-policy {
     padding: 25px;
 }
 
-.Admin-AddNewModel i {
-    font-size: 20px;
-    cursor: pointer;
-}
+    .Admin-AddNewModel i {
+        font-size: 20px;
+        cursor: pointer;
+    }
 
 
-.Admin-AddNewModel a {
-    font-size: 18px;
-    padding-left: 10px;
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
+    .Admin-AddNewModel a {
+        font-size: 18px;
+        padding-left: 10px;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
 
-}
-
-.Admin-AddNewModel h1 {
-    font-size: 40px;
-    font-weight: bold;
-    margin: 10px 0;
-}
+    .Admin-AddNewModel h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
 
 .Admin-AddNewModel_text_field label {
     display: block;
@@ -1129,6 +1144,7 @@ button.accept-policy {
     margin-left: 5px;
     transform: translateY(2px);
 }
+
 .Admin-AddNewModel_text_field textarea {
     width: 100%;
     height: 50px;
@@ -1143,14 +1159,14 @@ button.accept-policy {
     margin-bottom: 50px;
 }
 
-.Admin-AddNewModel-Category label{
-    font-size: 15px;
-    font-weight: bold;
-    width: 7%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-}
+    .Admin-AddNewModel-Category label {
+        font-size: 15px;
+        font-weight: bold;
+        width: 7%;
+        height: 30px;
+        display: flex;
+        align-items: center;
+    }
 
 /*.Admin-AddNewModel-Category input[type=text] {
     width: 80%;
@@ -1179,10 +1195,9 @@ button.accept-policy {
     font-weight: bold;
 }
 
-.Category-Show-item i {
-    font-size: 10px;
-    
-}
+    .Category-Show-item i {
+        font-size: 10px;
+    }
 
 .Category-List {
     width: 17%;
@@ -1191,10 +1206,10 @@ button.accept-policy {
     padding: 2px 10px;
 }
 
-.Category-List i{
-    display: flex;
-    justify-content: end;
-}
+    .Category-List i {
+        display: flex;
+        justify-content: end;
+    }
 
 .Category-item {
     display: flex;
@@ -1204,15 +1219,15 @@ button.accept-policy {
     cursor: pointer;
 }
 
-.Category-item input {
-    cursor: pointer;
-}
+    .Category-item input {
+        cursor: pointer;
+    }
 
-.Category-item:hover {
-    background: rgba(218, 216, 216, 0.52);
-}
+    .Category-item:hover {
+        background: rgba(218, 216, 216, 0.52);
+    }
+
 .text-danger[data-valmsg-for="GenreIds"] {
-    
 }
 
 .btn-AddNewModel {
@@ -1221,15 +1236,15 @@ button.accept-policy {
     margin-top: 30px;
 }
 
-.btn-AddNewModel button {
-    width: 13%;
-    height: 35px;
-    font-size: 16px;
-    background: #000;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 50px;
-}
+    .btn-AddNewModel button {
+        width: 13%;
+        height: 35px;
+        font-size: 16px;
+        background: #000;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 50px;
+    }
 
 /* List song using */
 
@@ -1262,18 +1277,18 @@ button.accept-policy {
     border-radius: 5px;
 }
 
-.Model-Search input {
-    width: 100%;
-    height: 30px;
-    font-size: 20px;
-    border: none;
-    outline: none;
-    padding-left: 10px;
-}
+    .Model-Search input {
+        width: 100%;
+        height: 30px;
+        font-size: 20px;
+        border: none;
+        outline: none;
+        padding-left: 10px;
+    }
 
-.Model-Search i {
-    font-size: 20px;
-}
+    .Model-Search i {
+        font-size: 20px;
+    }
 
 .Model-btn-AddNewModel {
     width: 15%;
@@ -1285,12 +1300,12 @@ button.accept-policy {
     background: #000;
 }
 
-.Model-btn-AddNewModel a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #fff;
-    font-weight: 500;
-}
+    .Model-btn-AddNewModel a {
+        text-decoration: none;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 500;
+    }
 
 .Model-Show {
     width: 95%;
@@ -1317,9 +1332,9 @@ button.accept-policy {
     margin-top: 15px;
 }
 
-.Model-table thead {
-    background: #D9D9D9;
-}
+    .Model-table thead {
+        background: #D9D9D9;
+    }
 
 .table-STT {
     border-top-left-radius: 10px;
@@ -1386,28 +1401,28 @@ button.accept-policy {
     padding: 0 10px;
 }
 
-.Model-GoToPage a {
-    text-decoration: none;
-    color: #000;
-}
+    .Model-GoToPage a {
+        text-decoration: none;
+        color: #000;
+    }
 
-.Model-GoToPage input {
-    width: 30px;
-    height: 18px;
-    border: 1px solid #000;
-    outline: none;
-    text-align: center;
-}
+    .Model-GoToPage input {
+        width: 30px;
+        height: 18px;
+        border: 1px solid #000;
+        outline: none;
+        text-align: center;
+    }
 
 .Model-prev-pagenumber-next-last {
     border: 1px solid #000;
     padding: 0 10px;
 }
 
-.Model-prev-pagenumber-next-last a {
-    text-decoration: none;
-    color: #000;
-}
+    .Model-prev-pagenumber-next-last a {
+        text-decoration: none;
+        color: #000;
+    }
 
 /* Order */
 
@@ -1418,10 +1433,10 @@ button.accept-policy {
     align-items: center;
 }
 
-.Order-Header img {
-    width: 40px;
-    height: 40px;
-}
+    .Order-Header img {
+        width: 40px;
+        height: 40px;
+    }
 
 .Order-Wall {
     border: 1px solid #000;
@@ -1429,7 +1444,7 @@ button.accept-policy {
     height: 40px;
 }
 
-.Model-table-Order-details a{
+.Model-table-Order-details a {
     color: #000;
 }
 
@@ -1445,18 +1460,18 @@ button.accept-policy {
     padding: 25px;
 }
 
-.OrderDetails-Container i {
-    font-size: 20px;
-    cursor: pointer;
-}
+    .OrderDetails-Container i {
+        font-size: 20px;
+        cursor: pointer;
+    }
 
-.OrderDetails-Container a {
-    font-size: 18px;
-    padding-left: 10px;
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
+    .OrderDetails-Container a {
+        font-size: 18px;
+        padding-left: 10px;
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+    }
 
 .OrderDetails-Title {
     height: 55px;
@@ -1468,7 +1483,6 @@ button.accept-policy {
     padding-left: 10px;
     font-size: 40px;
     font-weight: bold;
-    
 }
 
 .OrderDetails-Show {
@@ -1476,12 +1490,12 @@ button.accept-policy {
     height: 85%;
 }
 
-.OrderDetails-Show img {
-    width: 20%;
-    height: auto;
-    object-fit: cover;
+    .OrderDetails-Show img {
+        width: 20%;
+        height: auto;
+        object-fit: cover;
+    }
 
-}
 .invisible_input {
     visibility: hidden;
     position: absolute;
@@ -1503,11 +1517,11 @@ button.accept-policy {
     padding: 25px;
 }
 
-.Details-Container h1 {
-    font-size: 40px;
-    font-weight: bold;
-    margin: 10px 0;
-}
+    .Details-Container h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin: 10px 0;
+    }
 
 .Details-body {
     width: 100%;
@@ -1520,10 +1534,10 @@ button.accept-policy {
     width: 20%;
 }
 
-.Details-img img {
-    width: 100%;
-    height: auto;
-}
+    .Details-img img {
+        width: 100%;
+        height: auto;
+    }
 
 .Details-Show {
     width: 80%;
@@ -1536,21 +1550,21 @@ button.accept-policy {
     margin-bottom: 40px;
 }
 
-.Details-Information label {
-    width: 30%;
-}
+    .Details-Information label {
+        width: 30%;
+    }
 
-.Details-Information input {
-    width: 69%;
-    border: none;
-    outline: none;
-    font-weight: bold;
-}
+    .Details-Information input {
+        width: 69%;
+        border: none;
+        outline: none;
+        font-weight: bold;
+    }
 
-.Details-Information input[type="date"]{
-    background: #fff;
-    color: #000;
-}
+        .Details-Information input[type="date"] {
+            background: #fff;
+            color: #000;
+        }
 
 .Details-Information_Description {
     width: 100%;
@@ -1558,18 +1572,18 @@ button.accept-policy {
     margin-bottom: 30px;
 }
 
-.Details-Information_Description label {
-    width: 30%;
-    transform: translateY(-132px);
-}
+    .Details-Information_Description label {
+        width: 30%;
+        transform: translateY(-132px);
+    }
 
-.Details-Information_Description textarea {
-    width: 69%;
-    height: 155px;
-    border: none;
-    outline: none;
-    font-weight: bold;
-}
+    .Details-Information_Description textarea {
+        width: 69%;
+        height: 155px;
+        border: none;
+        outline: none;
+        font-weight: bold;
+    }
 
 textarea::-webkit-scrollbar {
     width: 10px;
@@ -1582,20 +1596,20 @@ textarea::-webkit-scrollbar {
     align-items: center;
 }
 
-.Details-footer a {
-    font-size: 15px;
-    color: #000;
-}
+    .Details-footer a {
+        font-size: 15px;
+        color: #000;
+    }
 
-.Details-footer button {
-    width: 20%;
-    height: 100%;
-    background-color: #000;
-    color: #fff;
-    border-radius: 50px;
-    font-size: 15px;
-    font-weight: bold;
-}
+    .Details-footer button {
+        width: 20%;
+        height: 100%;
+        background-color: #000;
+        color: #fff;
+        border-radius: 50px;
+        font-size: 15px;
+        font-weight: bold;
+    }
 
 /* ListenStorii */
 
@@ -1840,3 +1854,96 @@ textarea::-webkit-scrollbar {
         color: #fff;
         font-size: 18px;
     }
+
+/*Scroll*/
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/*ManageStory*/
+
+.ManageStory {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px 30px;
+}
+
+    .ManageStory h1 {
+        font-size: 40px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+.ManageStory-Show {
+    height: 92%;
+    overflow-y: scroll;
+}
+
+.ManageStory-Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+}
+
+    .ManageStory-Container img {
+        width: 15%;
+        height: auto;
+    }
+
+.ManageStory-Content {
+    width: 60%;
+}
+
+.ManageStory-Author {
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.ManageStory-StoryTitle {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.ManageStory-Description {
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.ManageStory-Day {
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.ManageStory-ListenNow {
+    width: 12%;
+    height: 40px;
+    text-decoration: none;
+    margin-right: 35px;
+}
+
+    .ManageStory-ListenNow div {
+        height: 100%;
+        font-size: 20px;
+        color: #fff;
+        background: #000;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+.ManageStory-wall {
+    border: 1px solid #000;
+    width: 100%;
+}

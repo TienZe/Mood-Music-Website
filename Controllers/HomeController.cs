@@ -8,8 +8,5 @@ namespace PBL3.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index() => View();
-        public IActionResult InitEmotion() => View();
-        public IActionResult EmotionSong() => View();
-        public IActionResult ListenStorii() => View();
     }
 }

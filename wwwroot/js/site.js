@@ -143,22 +143,6 @@
 
 var BarDown = document.querySelector(".fa-bars");
 var Down = document.querySelector(".bars-down");
-var InputChange = document.querySelectorAll(".fa-pen");
-
-var changePassword = document.getElementById("ChangePassword");
-var newPasswordRow = document.querySelector(".Manage-Profile_Show_NewPassword");
-var newPassword = document.getElementById("New_Password");
-var changePassword2 = document.getElementById("ChangePassword2");
-var confirmPasswordRow = document.querySelectorAll(".Manage-Profile_Show_NewPassword")[1];
-var confirmPassword = document.getElementById("Confirm_Password");
-var icon = document.querySelector(".iconChangePassword");
-
-var ResourcesList = document.querySelector("#Resources-list")
-var ResourcesSong = document.querySelector("#Resources-Song")
-var ResourcesStory = document.querySelector("#Resources-Story")
-var ResourcesGenre = document.querySelector("#Resources-Genre")
-var ResourcesEmotion = document.querySelector("#Resources-Emotion")
-
 
 function ToggleBar()
 {
@@ -170,44 +154,12 @@ if (BarDown) {
 }
 
 
-function EnableInput(inputId) {
-    document.getElementById(inputId).readOnly = false;
-}
-
-// Define the ToggleInput function to toggle the visibility of password input fields
 
 
-// Loop through the InputChange array and assign an event handler function to each element in the array
-InputChange.forEach(function (input) {
-    input.addEventListener("click", function () {
-        // Get the value of the data-input-id attribute of the icon
-        var inputId = input.getAttribute("data-input-id");
-        // Call the EnableInput function with inputId as the argument if the inputId is one of the specified values
-        EnableInput(inputId);
-            // Otherwise, call the ToggleInput function to toggle the visibility of the password input fields
-    });
-});
-
-function toggleNewPassword() {
-    changePassword.classList.toggle("hide");
-    newPasswordRow.classList.toggle("hide");
-    changePassword2.classList.toggle("hide");
-    confirmPasswordRow.classList.toggle("hide");
-}
-
-if (icon) {
-    icon.addEventListener("click", toggleNewPassword);
-}
 
 
-// Resource list
 
-ResourcesList.addEventListener("click", function () {
-    ResourcesSong.classList.toggle("hide");
-    ResourcesStory.classList.toggle("hide");
-    ResourcesGenre.classList.toggle("hide");
-    ResourcesEmotion.classList.toggle("hide");
-})
+
 
 
 

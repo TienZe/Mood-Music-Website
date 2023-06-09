@@ -6,5 +6,6 @@ namespace PBL3.Models.DTO
     {
         public string ItemClassName { get; set; }
         public IEnumerable<SelectListItem> SelectListOrderType { get; set; }
+        public decimal UserPoint { get; set; }
     }
 }
