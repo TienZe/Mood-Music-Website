@@ -58,7 +58,17 @@
                             <i class="fa-regular fa-circle-play"></i>
                         </a>
 
-                        <h2>@story.Name</h2>
+                        <h2>
+							@story.Name
+							@if (storyItem.AlreadyBought)
+							{
+								<span style="float : right;">
+									<i class="fas fa-check-circle" style="color : green;
+                                    font-size: 20px; margin-right : 30px"></i>
+								</span>
+							}
+						</h2>
+						<br />
                         <p>
                             @story.Description
                         </p>
@@ -83,6 +93,7 @@
 
 @section Scripts {
 	<script>
+		// Script cho trình phát nhạc audio
 		var audioPlayer = document.getElementById("audio-player");
 		var playButton = document.getElementById("play-btn");
 

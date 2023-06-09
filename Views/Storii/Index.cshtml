@@ -3,10 +3,10 @@
     Layout = "_Layout";
     ViewData["Title"] = "Storii";
     MakingOrderPopupModel popupModel = new MakingOrderPopupModel()
-    {
+            {
                 ItemClassName = "Storii-Contents",
                 SelectListOrderType = ViewBag.SelectListOrderType
-    };
+            };
 }
 
 <div class="grid">
@@ -50,13 +50,21 @@
                 //           - false : hiển thị popup order
                 <div class="Storii-Contents" story-id="@story.StoryId" already-bought="@storyItem.AlreadyBought">
                     <img src="@("/img/story/" + story.AvatarImage)" style="width:180px; height:150px"
-                            asp-append-version="true" />
+                     asp-append-version="true" />
 
                     <div class="Storii-Contents-Text">
                         <a href="#" class="link-primary" style="color:black">@story.Author</a>
                         <i class="fa-regular fa-circle-play"></i>
+
                         <p style="margin-top:10px">
                             <b style="font-size:25px">@story.Name</b>
+                            @if (storyItem.AlreadyBought)
+                            {
+                                <span style="float : right;">
+                                    <i class="fas fa-check-circle" style="color : green;
+                                    font-size: 20px; margin-right : 30px"></i>
+                                </span>
+                            }
                             <br />
 
                             @story.Description
@@ -66,8 +74,8 @@
                 // Tạo link nhảy sang nghe story nếu đã mua
                 if (storyItem.AlreadyBought)
                 {
-                    <a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory" 
-                            asp-route-storyId="@story.StoryId" class="hide" ></a>
+                    <a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory"
+               asp-route-storyId="@story.StoryId" class="hide"></a>
                 }
             }
         </div>

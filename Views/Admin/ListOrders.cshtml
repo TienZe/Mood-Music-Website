@@ -49,82 +49,43 @@
                         </td>
                     </tr>
                 }
-                <tr class="Model-table-data">
+                @*<tr class="Model-table-data">
                     <td>1</td>
                     <td>Where the crawdads sing</td>
                     <td>Nguyễn Đình Anh Tiến</td>
                     <td>Listen</td>
-                    @*<td>Pending confirmation</td>*@
+                    @*<td>Pending confirmation</td>
                     <td class="Model-table-Order-details">
                         <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
                     </td>
-                </tr>
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    @*<td>Pending confirmation</td>*@
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    @*<td>Pending confirmation</td>*@
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-                <tr class="Model-table-data">
-                    <td>1</td>
-                    <td>Where the crawdads sing</td>
-                    <td>Nguyễn Đình Anh Tiến</td>
-                    <td>Listen</td>
-                    @*<td>Pending confirmation</td>*@
-                    <td class="Model-table-Order-details">
-                        <a asp-controller="Admin" asp-action="OrderDetails">Order details</a>
-                    </td>
-                </tr>
-
+                </tr>*@
                 
             </tbody>
         </table>
 
         <div class="Model-Page">
             <div class="Model-GoToPage">
-                <a href="">Go to page: </a>
-                <input type="text" value="1" />
+                <form asp-controller="Admin" asp-action="ListOrders" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
+                           max="@Model.TotalPages" />
+                </form>
             </div>
 
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">Previous</a>
-            </div>
-
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">2</a>
-            </div>
-
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">3</a>
-            </div>
-
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">4</a>
-            </div>
-
-            <div class="Model-3dots">...</div>
-
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">Next</a>
-            </div>
-
-            <div class="Model-prev-pagenumber-next-last">
-                <a href="#">Last</a>
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Admin" page-action="ListOrders" page-data-searchString="@ViewBag.SearchString">
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById('order-search-button').addEventListener('click', function () {
+                document.getElementById('order-search-form').submit();
+            });
+        });
+
+    </script>
+}
