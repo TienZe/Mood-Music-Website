@@ -856,16 +856,13 @@ button.accept-policy {
     height: auto;
     font-size: 20px;
     background: #fff;
-    transform: translateY(-63px) translateX(200px);
+    transform: translate(-50px, 20px);
 }
 
-    .bars-down a {
-        text-decoration: none;
-    }
+.bars-down a {
+    text-decoration: none;
+}
 
-    .bars-down i {
-        font-size: 20px;
-    }
 
 .Header_navbar-item .fa-bars {
     font-size: 20px;
