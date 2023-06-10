@@ -19,7 +19,7 @@
     <li class="Header_navbar-item">
         @if (isAdmin)
         {
-            <a class="Header_navbar-link" asp-controller="Admin" asp-action="ListMembers">
+            <a class="Header_navbar-link" asp-controller="Admin" asp-action="ListMember">
                 Hello @ViewContext.HttpContext.User.Identity?.Name
             </a>
         }

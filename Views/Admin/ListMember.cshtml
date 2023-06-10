@@ -5,126 +5,16 @@
 }
 
 <style>
-
-    .MemberDetail_Searchbox_Zone {
-        margin: 2% 2%;
-        background-color: white;
-        width: 94%;
-        height: 80px;
-        border-radius: 10px;
-        z-index: 1;
-    }
-
-    .MemberDetail_Searchbox {
-        padding: 20px 20px;
-        width: 55%;
-        position: relative;
-        display: flex;
-    }
-
-    .MemberDetail_searchTerm {
-        font-size: 16px;
-        width: 100%;
-        border: 1px solid #000000;
-        border-right: none;
-        padding: 5px;
-        height: 36px;
-        outline: none;
-        color: #9DBFAF;
-    }
-
-        .MemberDetail_searchTerm:focus {
-            color: #000000;
-        }
-
-    .MemberDetail_searchButton {
-        width: 40px;
-        height: 36px;
-        border: 1px solid #000000;
-        border-left: none;
-        background: #ffffff;
-        text-align: center;
-        color: #000000;
-        cursor: pointer;
-        font-size: 20px;
-    }
-
-    .MemberList_Zone {
-        margin: 2% 2%;
-        background-color: white;
-        width: 94%;
-        height: 700px;
-        border-radius: 10px;
-        z-index: 1;
-    }
-
-    .MemberList_Header {
-        padding: 20px 20px;
-        font-weight: 700;
-        font-size: 45px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .MemberList_TableZone {
-        margin: 2% 2%;
-        height: 500px;
-        overflow-y: scroll;
-    }
-
-    .MemberList_Table {
-        margin: 25px 0;
-        font-size: 20px;
-        font-weight: 500;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        min-width: 400px;
-    }
-
-        .MemberList_Table thead tr {
-            background-color: #d2e2df;
-            color: #000000;
-            text-align: left;
-        }
-
-            .MemberList_Table thead tr th {
-                font-weight: 800;
-            }
-
-        .MemberList_Table td button {
-            border: none;
-            background: white;
-        }
-
-        .MemberList_Table tbody tr:nth-of-type(even) td button {
-            background-color: #e6e2e2;
-        }
-
-        .MemberList_Table th,
-        .MemberList_Table td {
-            padding: 10px 52px;
-        }
-
-
-        .MemberList_Table tbody tr:nth-of-type(even) {
-            background-color: #e6e2e2;
-        }
-
-        .MemberList_Table th:first-child {
-            border-radius: 10px 0 0 10px;
-        }
-
-        .MemberList_Table th:last-child {
-            border-radius: 0 10px 10px 0;
-        }
-
     .MemberDetail_Modal_Zone {
-        height: 28cm;
+        height: 100vh;
         width: 100vw;
         background: rgb(0,0,0,0.7);
         z-index: 2;
-        position: relative;
+        position: fixed;
+        top: 0;
         bottom: 1090px;
-        right: 25%;
-     color:white;
+        right: 0;
+        color: white;
         font-weight: bold;
     }
 
@@ -132,7 +22,7 @@
         width: 1200px;
         height: 450px;
         position: relative;
-        top: 40%;
+        top: 20%;
         margin: auto;
         background: white;
         font-weight: bold;
@@ -176,13 +66,12 @@
         margin-left: 20px;
         width: 570px;
         height: 100%;
-    
     }
 
     .MemberDetail_Page_Contents_RightWing {
         width: 400px;
         height: 100%;
-     position:relative;
+        position: relative;
         left: 620px;
         bottom: 350px;
     }
@@ -202,7 +91,7 @@
         height: 40px;
         background: rgb(0,0,0,0.2);
         margin-top: 12px;
-     padding-left: 10px;
+        padding-left: 10px;
         padding-top: 5px;
     }
 
@@ -232,7 +121,7 @@
         height: 40px;
         background: rgb(0,0,0,0.2);
         margin-top: 12px;
-         padding-left: 10px;
+        padding-left: 10px;
         padding-top: 5px;
     }
 
@@ -263,68 +152,70 @@
             background: linear-gradient(rgb(105, 21, 173),rgb(9, 235, 47),rgb(31, 216, 201));
         }
     }
-
 </style>
 
-<div class="MemberDetail_Searchbox_Zone">
-    <form class="MemberDetail_Searchbox" method="get" asp-controller="Admin" asp-action="ListMembers">
-        <input type="text" placeholder="Find member here - E.g: Nguyễn Đình Anh Tiến..."
-               class="MemberDetail_searchTerm" name="searchString" value="@ViewBag.SearchString" />
-        <button type="submit" class="MemberDetail_searchButton">
-            <i class="fa fa-search"></i>
-        </button>
-    </form>
-</div>
+<div class="Model-Container">
+    <div class="Model-Search-Box">
 
-<div class="MemberList_Zone">
-    <h1 class="MemberList_Header">Member list</h1>
-    <div class="MemberList_TableZone">
-        <table class="MemberList_Table">
-            <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Name</th>
-                    <th>Account</th>
-                    <th>Cart</th>
-                    <th>Register day</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+        <form id="song-search-form" class="Model-Search" method="get"
+              asp-controller="Song" asp-action="Index">
+            <input type="text" placeholder="Find member here - Eg: Nguyễn Đình Anh Tiến ..."
+                   name="searchString" value="@ViewBag.SearchString" />
+            <i id="song-search-button" class="fa-solid fa-magnifying-glass"></i>
+        </form>
 
-            <tbody>
-                @for (int i = 0; i < Model.Count; i++)
-                {
-                    AppUser user = Model[i];
-                    <tr>
-                        <td>@(Model.FirstItemIndex + i)</td>
-                        <td>@user.Name</td>
-                        <td>@user.Email</td>
-                        <td>12 Orders</td>
-                        <td>@user.RegisterDay.Date.ToString("dd/MM/yyyy")</td>
-                        <td>
-                            <a user-id="@user.Id" style="color: inherit; text-decoration: inherit;">
-                                Go to profile details
-                            </a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
 
+    <div class="Model-Show">
+        <h1>Member list</h1>
 
-    <div class="Model-Page">
-        <div class="Model-GoToPage">
-            <form asp-controller="Admin" asp-action="ListMembers" method="get">
-                <button type="submit" style="background: none; border: none;">Go to page: </button>
-                <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
-                <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
-                       max="@Model.TotalPages" />
-            </form>
+        <div class="Model-Show-Table">
+            <table class="Model-table">
+                <thead>
+                    <tr>
+                        <td class="table-STT">STT</td>
+                        <td>User name</td>
+                        <td>Account</td>
+                        <td>Cart</td>
+                        <td>Register day</td>
+                        <td class="table-Delete-Edit"></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        AppUser user = Model[i];
+                        <tr class="Model-table-data">
+                            <td>@(Model.FirstItemIndex + i)</td>
+                            <td>@user.Name</td>
+                            <td>@user.Email</td>
+                            <td>12 Orders</td>
+                            <td>@user.RegisterDay.Date.ToString("dd/MM/yyyy")</td>
+                            <td class="Model-table-data-del-edit">
+                                <p user-id="@user.Id">
+                                    Go to details
+                                </p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
 
-        <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
-             page-controller="Admin" page-action="ListMembers" page-data-searchString="@ViewBag.SearchString">
+        <div class="Model-Page">
+            <div class="Model-GoToPage">
+                <form asp-controller="Admin" asp-action="ListMember" method="get">
+                    <button type="submit" style="background: none; border: none;">Go to page: </button>
+                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
+                           max="@Model.TotalPages" />
+                </form>
+            </div>
+
+            <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
+                 page-controller="Admin" page-action="ListMember" page-data-searchString="@ViewBag.SearchString">
+            </div>
         </div>
     </div>
 </div>
@@ -357,10 +248,10 @@
 
 
                     @*<div class="MemberDetail_Page_Contents_LeftWing_Details">
-                        <span>Register Day</span>
-                        <div class="MemberDetail_Page_Contents_LeftWing_Details_Value">
-                            <p id="popup-user-registerday"></p>
-                        </div>
+                    <span>Register Day</span>
+                    <div class="MemberDetail_Page_Contents_LeftWing_Details_Value">
+                    <p id="popup-user-registerday"></p>
+                    </div>
                     </div>*@
 
                     <div class="MemberDetail_Page_Contents_LeftWing_Details">
@@ -401,7 +292,7 @@
 @section Scripts {
     <script type="text/javascript">
         // Các <a> để mở popup
-        var open_Modal = document.querySelectorAll('.MemberList_Table tr td a');
+        var open_Modal = document.querySelectorAll('.Model-table-data-del-edit p');
         // button Back
         var modal_close = document.querySelector('.MemberDetail_Page_Header a');
         // Khung popup

@@ -1361,6 +1361,11 @@ button.accept-policy {
     height: 51.6px;
 }
 
+.Model-table-data-del-edit p {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .Model-GoToDetails {
     font-size: 18px;
     color: #000;
@@ -1947,3 +1952,7 @@ textarea::-webkit-scrollbar {
     border: 1px solid #000;
     width: 100%;
 }
+
+
+/*member*/
+
