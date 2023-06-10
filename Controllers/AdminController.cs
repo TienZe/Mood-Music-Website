@@ -64,7 +64,7 @@ namespace PBL3.Controllers
                 PhoneNumber = user.PhoneNumber,
                 Age = DateTime.Now.Year - user.Birthday?.Year,
                 Gender = user.Gender.ToString(), 
-                RegisterDay = user.RegisterDay.ToString("dd-MM-yyyy")
+                RegisterDay = user.RegisterDay.ToString("dd/MM/yyyy")
             });
         }
         public IActionResult ListOrders(int? pageIndex, string searchString)
@@ -97,7 +97,7 @@ namespace PBL3.Controllers
             return View(new OrderViewModel()
             {
                 OrderName = order.Name,
-                Day = order.Day.ToString("yyyy-MM-dd HH:mm:ss"),
+                Day = order.Day.ToString("dd/MM/yyyy HH:mm:ss"),
                 Price = order.Price,
 
                 User = order.User.Name,
@@ -105,29 +105,6 @@ namespace PBL3.Controllers
                 OrderType = order.OrderType.Name.ToString(),
                 StoryImage = order.Story.AvatarImage
             });
-        }
-
-        public async Task<IActionResult> ListMember(int? pageIndex, string searchString)
-        {
-            // Server validation
-            pageIndex = (pageIndex == null || pageIndex < 1) ? 1 : pageIndex;
-
-            IEnumerable<AppUser> listMember = await userService.GetUsersInRoleAsync(Role.Member);
-            // Tiếp tục lọc (in-memory)
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                // Thực hiện filter theo emotion name
-                listMember = listMember.Where(member => (member.Name?.Contains(searchString) ?? false)
-                    || member.Email.Contains(searchString));
-            }
-            // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
-
-            // Sắp xếp
-            listMember = listMember.OrderBy(member => member.Id);
-
-            // Phân trang kết quả
-            return View(PaginatedList<AppUser>.CreateAsync(listMember, pageIndex.Value, PageSize));
         }
     }
 }

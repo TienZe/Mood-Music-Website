@@ -88,7 +88,7 @@ namespace PBL3.Controllers
 			return Json(new
 			{
 				Story = story,
-				Day = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+				Day = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"),
 				OrderTypes = listOrderTypes,
 				User = user.Name,
 				UserAccount = user.Email
