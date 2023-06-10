@@ -19,13 +19,13 @@ namespace PBL3.Repositories.Implementation
             this.signInManager = signInManager;
         }
 
-        public async Task<AppUser> GetUserAsync(ClaimsPrincipal user)
+        public Task<AppUser> GetUserAsync(ClaimsPrincipal user)
         {
-           return await userManager.GetUserAsync(user);
+           return userManager.GetUserAsync(user);
         }
-        public async Task<AppUser> FindByIdAsync(string id)
+        public Task<AppUser> FindByIdAsync(string id)
         {
-            return await userManager.FindByIdAsync(id);
+            return userManager.FindByIdAsync(id);
         }
         public async Task<IdentityResult> ChangePasswordAsync(ClaimsPrincipal user, string currentPassword, string newPassword)
         {
@@ -79,9 +79,9 @@ namespace PBL3.Repositories.Implementation
             });
         }
 
-        public async Task LogoutAsync()
+        public Task LogoutAsync()
         {
-            await signInManager.SignOutAsync();
+            return signInManager.SignOutAsync();
         }
         public async Task<IdentityResult> Register(AppUser newUser, string password)
         {
@@ -93,18 +93,18 @@ namespace PBL3.Repositories.Implementation
             }
             return res;
         }
-        public async Task<IdentityResult> UpdateUserAsync(AppUser user)
+        public Task<IdentityResult> UpdateUserAsync(AppUser user)
         {
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user));
             }
             // có validate thông qua IUserValidator và IPasswordValidator
-            return await userManager.UpdateAsync(user);
+            return userManager.UpdateAsync(user);
         }
-        public async Task<IEnumerable<AppUser>> GetUsersInRoleAsync(string roleName)
+        public Task<IList<AppUser>> GetUsersInRoleAsync(string roleName)
         {
-            return await userManager.GetUsersInRoleAsync(roleName);
+            return userManager.GetUsersInRoleAsync(roleName);
         }
     }
 }

@@ -34,7 +34,7 @@ namespace PBL3.Controllers
 				Value = ot.OrderTypeId.ToString()
 			})
 				.ToList();
-			ViewBag.SelectListOrderType = listOrderTypes;
+			ViewData["SelectListOrderType"] = listOrderTypes;
 		}
 
 		// Dựa vào tất cả stories trong CSDL và stories của User hiện tại
@@ -88,7 +88,7 @@ namespace PBL3.Controllers
 			return Json(new
 			{
 				Story = story,
-				Day = DateTime.Now.ToString("yyyy-MM-dd"),
+				Day = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
 				OrderTypes = listOrderTypes,
 				User = user.Name,
 				UserAccount = user.Email

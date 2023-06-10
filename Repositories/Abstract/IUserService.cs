@@ -8,7 +8,7 @@ namespace PBL3.Repositories.Abstract
     {
         Task<AppUser> GetUserAsync(ClaimsPrincipal user);
         Task<AppUser> FindByIdAsync(string id);
-        Task<IEnumerable<AppUser>> GetUsersInRoleAsync(string roleName);
+        Task<IList<AppUser>> GetUsersInRoleAsync(string roleName);
         Task<IdentityResult> LoginAsync(string email, string password);
         Task LogoutAsync();
         Task<IdentityResult> Register(AppUser newUser, string password);

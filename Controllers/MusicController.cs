@@ -29,10 +29,10 @@ namespace PBL3.Controllers
 			{
 				Text = e.Name,
 				Value = e.EmotionId.ToString(),
-				Selected = e.EmotionId == selectEmotion
+				Selected = (e.EmotionId == selectEmotion)
 				
 			});
-			ViewBag.SelectListEmotion = selectListEmotion;
+			ViewData["SelectListEmotion"] = selectListEmotion;
 			
 			return View("EmotionSong", listSongs);
 		}

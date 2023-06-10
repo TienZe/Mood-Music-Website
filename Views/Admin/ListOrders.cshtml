@@ -8,7 +8,7 @@
         <form id="order-search-form" class="Model-Search" method="get"
               asp-controller="Admin" asp-action="ListOrders">
             <input type="text" placeholder="Find order here - Eg: Sau cơn mưa ..."
-                   name="searchString" value="@ViewBag.SearchString" />
+                   name="searchString" value="@ViewData["SearchString"]" />
             <i id="order-search-button" class="fa-solid fa-magnifying-glass"></i>
         </form>
     </div>
@@ -67,14 +67,14 @@
             <div class="Model-GoToPage">
                 <form asp-controller="Admin" asp-action="ListOrders" method="get">
                     <button type="submit" style="background: none; border: none;">Go to page: </button>
-                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="hidden" name="searchString" value="@ViewData["SearchString"]" />
                     <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
                            max="@Model.TotalPages" />
                 </form>
             </div>
 
             <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
-                 page-controller="Admin" page-action="ListOrders" page-data-searchString="@ViewBag.SearchString">
+                 page-controller="Admin" page-action="ListOrders" page-data-searchString="@ViewData["SearchString"]!">
             </div>
         </div>
     </div>

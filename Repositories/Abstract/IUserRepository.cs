@@ -6,5 +6,6 @@ namespace PBL3.Repositories.Abstract
 	{
 		void AddRelatedStory(AppUser user, Story story);
 		void LoadRelatedStories(AppUser user);
-	}
+		void LoadRelatedOrders(AppUser user);
+    }
 }

@@ -11,7 +11,7 @@ namespace PBL3.Controllers
     public class GenreController : Controller
     {
         private readonly IRepository<Genre> repository;
-        private const int PageSize = 4;
+        private const int PageSize = 10;
         public GenreController(IRepository<Genre> repoService)
         {
             repository = repoService;
@@ -30,7 +30,7 @@ namespace PBL3.Controllers
                 listGenres = listGenres.Where(g => g.Name.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
             // Sắp xếp
             listGenres = listGenres.OrderBy(g => g.GenreId);
