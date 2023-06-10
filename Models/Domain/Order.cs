@@ -8,7 +8,7 @@ namespace PBL3.Models.Domain
         public string Name { get; set; } = string.Empty;
         [Column(TypeName = "decimal(18, 3)")]
         public decimal Price { get; set; }
-        [Column(TypeName = "date")]
+        [Column(TypeName = "DATETIME")]
         public DateTime Day { get; set; }
         public string Description { get; set; } = string.Empty;
 

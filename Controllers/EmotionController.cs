@@ -10,7 +10,7 @@ namespace PBL3.Controllers
     public class EmotionController : Controller
     {
         private readonly IEmotionRepository repository;
-        private const int PageSize = 4;
+        private const int PageSize = 10;
         public EmotionController(IEmotionRepository repoService)
         {
             repository = repoService;
@@ -29,7 +29,7 @@ namespace PBL3.Controllers
                 listEmotions = listEmotions.Where(e => e.Name.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
             // Sắp xếp
             listEmotions = listEmotions.OrderBy(e => e.EmotionId);

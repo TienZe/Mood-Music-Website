@@ -36,16 +36,16 @@
                 <label asp-for="Description">Description</label>
                 <textarea id="Description" asp-for="Description" readonly></textarea>
 
-            <div class="Details-footer">
-                <a asp-controller="Story" asp-action="Index">Back to Story page</a>
-                <button id="btn-Story">Edit information</button>
-                <a id="link-edit" asp-controller="Story" asp-action="Edit" asp-route-id="@Model.StoryId" class="invisible_input"></a>
+                <div class="Details-footer">
+                    <a asp-controller="Story" asp-action="Index">Back to Story page</a>
+                    <button id="btn-Story">Edit information</button>
+                    <a id="link-edit" asp-controller="Story" asp-action="Edit" asp-route-id="@Model.StoryId" class="invisible_input"></a>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-@SectionWriters Scripts {
+@section Scripts {
     <script>
 
         var btnStory = document.querySelector("#btn-Story");
@@ -66,4 +66,4 @@
         })
 
     </script>
-}
+    }

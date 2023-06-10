@@ -14,11 +14,14 @@ namespace PBL3.Controllers
     {
         private readonly IUserService userService;
         private readonly IOrderRepository orderRepository;
-        private const int PageSize = 4;
-        public AdminController(IUserService userService, IOrderRepository orderService) 
+        private readonly IUserRepository userRepository;
+        private const int PageSize = 10;
+        public AdminController(IUserService userService, IOrderRepository orderService
+                , IUserRepository userRepoService) 
         {
             this.userService = userService;
             this.orderRepository = orderService;
+            this.userRepository = userRepoService;
         }
         
         public async Task<IActionResult> ListMembers(int? pageIndex, string searchString)
@@ -35,8 +38,13 @@ namespace PBL3.Controllers
                     || member.Email.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
+            // Load related Orders
+            foreach (AppUser user in listMembers)
+            {
+                userRepository.LoadRelatedOrders(user);
+            }
             // Sắp xếp
             listMembers = listMembers.OrderBy(member => member.Id);
 
@@ -56,7 +64,7 @@ namespace PBL3.Controllers
                 PhoneNumber = user.PhoneNumber,
                 Age = DateTime.Now.Year - user.Birthday?.Year,
                 Gender = user.Gender.ToString(), 
-                RegisterDay = user.RegisterDay
+                RegisterDay = user.RegisterDay.ToString("dd-MM-yyyy")
             });
         }
         public IActionResult ListOrders(int? pageIndex, string searchString)
@@ -72,10 +80,10 @@ namespace PBL3.Controllers
                 listOrders = listOrders.Where(o => o.Name.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
             // Sắp xếp
-            listOrders = listOrders.OrderBy(o => o.OrderId);
+            listOrders = listOrders.OrderByDescending(o => o.Day);
 
             // Phân trang kết quả
             return View(PaginatedList<Order>.CreateAsync(listOrders, pageIndex.Value, PageSize));
@@ -89,7 +97,7 @@ namespace PBL3.Controllers
             return View(new OrderViewModel()
             {
                 OrderName = order.Name,
-                Day = order.Day.ToString("dd/MM/yyyy"),
+                Day = order.Day.ToString("yyyy-MM-dd HH:mm:ss"),
                 Price = order.Price,
 
                 User = order.User.Name,

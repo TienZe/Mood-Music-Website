@@ -53,6 +53,10 @@ namespace PBL3.Repositories.Implementation
 		{
 			context.Entry(user).Collection(u => u.Stories).Load();
 		}
+		public void LoadRelatedOrders(AppUser user)
+		{
+			context.Entry(user).Collection(u => u.Orders).Load();
+		}
 		public virtual void LogChangeTracker()
 		{
 			context.ChangeTracker.DetectChanges();

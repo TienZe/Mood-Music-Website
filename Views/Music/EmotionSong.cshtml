@@ -17,10 +17,10 @@
 
         <form id="form-select-emotion" asp-controller="Music" asp-action="Index" method="get">
             <select id="selectEmotion" class="EmotionSong-OptionEmote" 
-                asp-items="@ViewBag.SelectListEmotion" name="selectEmotion">
-                <option value="">Emotion</option>
+                asp-items="@ViewData["SelectListEmotion"] as IEnumerable<SelectListItem>" name="selectEmotion">
+                <option value="" disabled selected>Emotion</option>
             </select>
-            <span id="selectEmotionError" style="color: red; display: none;">Please select an emotion.</span>
+            <span id="selectEmotionError" style="color: red; font-size: 20px; display: none;">Please select an emotion.</span>
         </form>
         <p class="EmotionSong-lyrics">
             Amidst the twinkling stars, a gentle
@@ -116,8 +116,10 @@
 
             audioPlayer.addEventListener('ended', function () {
                 console.log("ended");
-                playButton.classList.remove("fa-circle-pause");
-                playButton.classList.add("fa-circle-play");
+                setTimeout(function(){
+                    nextButton.click();
+                }, 2000);
+                
             });
             audioPlayer.addEventListener('play', function() {
                 imageRectangles.style.display = "none";
@@ -160,8 +162,11 @@
                 console.log(song);
 
                 audioPlayer.src = '/audio/song/' + song.Source;
-                audioPlayer.play();
                 document.getElementById("songname-artist").textContent = song.Name + " - " + song.Artist;
+
+                audioPlayer.play();
+                playButton.classList.remove("fa-circle-play");
+                playButton.classList.add("fa-circle-pause");
             }
         </script>
         

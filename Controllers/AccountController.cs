@@ -83,7 +83,7 @@ namespace PBL3.Controllers
         {
             AppUser user = await userService.GetUserAsync(User);
 
-			ViewBag.Point = user.Point;
+			ViewData["Point"] = user.Point;
 			return View(new ManageProfileModel()
             {
                 Account = user.Email,
@@ -134,7 +134,7 @@ namespace PBL3.Controllers
 				return RedirectToAction(nameof(ManageProfile));
 			}
 
-			ViewBag.Point = user.Point;
+			ViewData["Point"] = user.Point;
 			return View(model);
         }
 
@@ -142,7 +142,7 @@ namespace PBL3.Controllers
         {
             AppUser user = await userService.GetUserAsync(User);
             userRepository.LoadRelatedStories(user);
-            ViewBag.Point = user.Point;
+            ViewData["Point"] = user.Point;
             return View(user.Stories);
         }
     }

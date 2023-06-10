@@ -39,7 +39,8 @@
             <label>Genre</label>
             @*Hiển thị các Genre đã chọn lên ô chứa Genre*@
             <div class="Category-Show">
-                @foreach (var item in ViewBag.Genres)
+                @foreach (var item in 
+                    (ViewData["Genres"] as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
                 {
                     int genreId = Convert.ToInt32(item.Value);
                     bool isVisible = Model?.GenreIds?.Contains(genreId) ?? false;
@@ -55,7 +56,7 @@
                 <i class="fa-solid fa-caret-down" id="List-Genre"></i>
                 <div class="hide" id="Genre-Item">
                     @foreach (var item in
-                    (ViewBag.Genres as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                        (ViewData["Genres"] as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
                     {
                         int genreId = Convert.ToInt32(item.Value);
                         bool? isChecked = Model?.GenreIds?.Contains(genreId);
@@ -75,7 +76,7 @@
             @*Hiển thị các Emotion đã chọn lên ô chứa Emotion*@
             <div class="Category-Show">
                 @foreach (var item in
-                (ViewBag.Emotions as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                (ViewData["Emotions"] as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
                 {
                     int emotionId = Convert.ToInt32(item.Value);
                     bool isVisible = Model?.EmotionIds?.Contains(emotionId) ?? false;
@@ -96,7 +97,7 @@
                 <i class="fa-solid fa-caret-down" id="List-Emotion"></i>
                 <div class="hide" id="Emotion-Item">
                     @foreach (var item in
-                    (ViewBag.Emotions as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
+                    (ViewData["Emotions"] as IEnumerable<SelectListItem>) ?? Enumerable.Empty<SelectListItem>())
                     {
                         int emotionId = Convert.ToInt32(item.Value);
                         bool isChecked = Model?.EmotionIds?.Contains(emotionId) ?? false;

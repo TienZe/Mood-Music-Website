@@ -9,7 +9,7 @@
         <form id="genre-search-form" class="Model-Search" method="get"
               asp-controller="Genre" asp-action="Index">
             <input type="text" placeholder="Find genre here - Eg: Classical ..."
-                   name="searchString" value="@ViewBag.SearchString" />
+                   name="searchString" value="@ViewData["SearchString"]" />
             <i id="genre-search-button" class="fa-solid fa-magnifying-glass"></i>
         </form>
 
@@ -60,14 +60,14 @@
             <div class="Model-GoToPage">
                 <form asp-controller="Genre" asp-action="Index" method="get">
                     <button type="submit" style="background: none; border: none;">Go to page: </button>
-                    <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                    <input type="hidden" name="searchString" value="@ViewData["SearchString"]" />
                     <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
                            max="@Model.TotalPages" />
                 </form>
             </div>
 
             <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
-                 page-controller="Genre" page-action="Index" page-data-searchString="@ViewBag.SearchString">
+                 page-controller="Genre" page-action="Index" page-data-searchString="@ViewData["SearchString"]!">
             </div>
         </div>
     </div>

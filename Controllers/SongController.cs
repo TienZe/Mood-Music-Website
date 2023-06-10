@@ -20,7 +20,7 @@ namespace PBL3.Controllers
         private readonly IRepository<Genre> genreRepository;
         private readonly IEmotionRepository emotionRepository;
         private readonly FileService fileService;
-        private const int PageSize = 4;
+        private const int PageSize = 10;
         public SongController(ISongRepository songService, IRepository<Genre> genreService
             , IEmotionRepository emotionService, FileService fileService) 
         {
@@ -43,7 +43,7 @@ namespace PBL3.Controllers
                 listSongs = listSongs.Where(s => s.Name.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
             // Sắp xếp
             listSongs = listSongs.OrderBy(s => s.SongId);
@@ -53,12 +53,12 @@ namespace PBL3.Controllers
         }
         private void AddSelectListToView()
         {
-            var emotions = emotionRepository.GetAll().Select(e => new SelectListItem()
+            var emotions = emotionRepository.GetAll().OrderBy(e => e.Name).Select(e => new SelectListItem()
                 { Text = e.Name, Value = e.EmotionId.ToString() });
-            var genres = genreRepository.GetAll().Select(g => new SelectListItem()
+            var genres = genreRepository.GetAll().OrderBy(g => g.Name).Select(g => new SelectListItem()
                 { Text = g.Name, Value = g.GenreId.ToString() });
-            ViewBag.Emotions = emotions;
-            ViewBag.Genres = genres;
+            ViewData["Emotions"] = emotions;
+            ViewData["Genres"] = genres;
         }
         private IActionResult ViewWithSelectList(object? model = null)
         {

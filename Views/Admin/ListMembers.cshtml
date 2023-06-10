@@ -269,7 +269,7 @@
 <div class="MemberDetail_Searchbox_Zone">
     <form class="MemberDetail_Searchbox" method="get" asp-controller="Admin" asp-action="ListMembers">
         <input type="text" placeholder="Find member here - E.g: Nguyễn Đình Anh Tiến..."
-               class="MemberDetail_searchTerm" name="searchString" value="@ViewBag.SearchString" />
+               class="MemberDetail_searchTerm" name="searchString" value="@ViewData["SearchString"]" />
         <button type="submit" class="MemberDetail_searchButton">
             <i class="fa fa-search"></i>
         </button>
@@ -285,7 +285,7 @@
                     <th>STT</th>
                     <th>Name</th>
                     <th>Account</th>
-                    <th>Cart</th>
+                    <th>Orders</th>
                     <th>Register day</th>
                     <th>Action</th>
                 </tr>
@@ -299,8 +299,8 @@
                         <td>@(Model.FirstItemIndex + i)</td>
                         <td>@user.Name</td>
                         <td>@user.Email</td>
-                        <td>12 Orders</td>
-                        <td>@user.RegisterDay.Date.ToString("dd/MM/yyyy")</td>
+                        <td>@user.Orders.Count</td>
+                        <td>@user.RegisterDay.Date.ToString("dd-MM-yyyy")</td>
                         <td>
                             <a user-id="@user.Id" style="color: inherit; text-decoration: inherit;">
                                 Go to profile details
@@ -317,14 +317,14 @@
         <div class="Model-GoToPage">
             <form asp-controller="Admin" asp-action="ListMembers" method="get">
                 <button type="submit" style="background: none; border: none;">Go to page: </button>
-                <input type="hidden" name="searchString" value="@ViewBag.SearchString" />
+                <input type="hidden" name="searchString" value="@ViewData["SearchString"]" />
                 <input type="number" name="pageIndex" value="@Model.PageIndex" min="1"
                        max="@Model.TotalPages" />
             </form>
         </div>
 
         <div active-page="@Model.PageIndex" total-pages="@Model.TotalPages"
-             page-controller="Admin" page-action="ListMembers" page-data-searchString="@ViewBag.SearchString">
+             page-controller="Admin" page-action="ListMembers" page-data-searchString="@ViewData["SearchString"]!">
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ namespace PBL3.Controllers
     {
         private readonly IRepository<Story> repository;
         private readonly FileService fileService;
-        private const int PageSize = 4;
+        private const int PageSize = 10;
         public StoryController(IRepository<Story> repoService, FileService fileService)
         {
             this.repository = repoService;
@@ -33,7 +33,7 @@ namespace PBL3.Controllers
                 listStories = listStories.Where(s => s.Name.Contains(searchString));
             }
             // Truyền filter hiện tại sang cho View
-            ViewBag.SearchString = searchString ?? string.Empty;
+            ViewData["SearchString"] = searchString ?? string.Empty;
 
             // Sắp xếp
             listStories = listStories.OrderBy(s => s.StoryId);
