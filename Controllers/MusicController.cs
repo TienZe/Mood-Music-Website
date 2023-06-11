@@ -14,7 +14,7 @@ namespace PBL3.Controllers
 			this.songRepository = songService;
 			this.emotionRepository = emotionService;
 		}
-		public IActionResult Index(int? selectEmotion)
+		public IActionResult Index(int? selectEmotion, string userText)
 		{
 			var listSongs = new List<Song>();
             if (selectEmotion != null)
@@ -33,6 +33,7 @@ namespace PBL3.Controllers
 				
 			});
 			ViewData["SelectListEmotion"] = selectListEmotion;
+			ViewData["UserText"] = userText;
 			
 			return View("EmotionSong", listSongs);
 		}

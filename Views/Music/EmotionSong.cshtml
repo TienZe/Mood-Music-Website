@@ -21,9 +21,12 @@
                 <option value="" disabled selected>Emotion</option>
             </select>
             <span id="selectEmotionError" style="color: red; font-size: 20px; display: none;">Please select an emotion.</span>
+
+            <textarea class="EmotionSong-lyrics" name="userText"
+                      placeholder="Can you tell me how you feel, or would you like to talk about something else?">@ViewData["UserText"]</textarea>
         </form>
         
-        <textarea class="EmotionSong-lyrics" placeholder="Can you tell me how you feel, or would you like to talk about something else?"></textarea>
+        
 
         <button form="form-select-emotion" type="submit" class="EmotionSong-btnPlayMusic">
             <img src="~/img/Disc.png" />
