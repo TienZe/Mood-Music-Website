@@ -922,12 +922,12 @@ button.accept-policy {
 
 .EmotionSong-lyrics {
     font-family: 'Clicker Script', cursive;
-    width: 80%;
+    width: 90%;
+    height: 300px;
     font-size: 24px;
-    margin: 0 auto;
-    line-height: 2.5;
-    letter-spacing: 2.5px;
     font-weight: 600;
+    border: none;
+    outline: none;
 }
 
 .EmotionSong-btnPlayMusic {
@@ -1588,7 +1588,7 @@ button.accept-policy {
     }
 
 textarea::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
 .Details-footer {
