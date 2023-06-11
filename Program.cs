@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using PBL3.Infrastructures;
 using PBL3.Models.Domain;
@@ -31,6 +33,18 @@ builder.Services.Configure<IdentityOptions>(options =>
     // User validation
     options.User.RequireUniqueEmail = true; // Mỗi Email chỉ đki đc 1 tài khoản
 });
+
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.Limits.MaxRequestBodySize = 200000000;
+});
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.ValueLengthLimit = 200000000;
+    options.MultipartBodyLengthLimit = 200000000; // default 128Mb
+    options.MultipartHeadersLengthLimit = 200000000;
+});
+
 // Custom service
 builder.Services.AddScoped<IUserService, UserService>();
 
@@ -72,6 +86,6 @@ context.Database.Migrate();
 await AppDbContext.SeedData(app.Services.CreateScope().ServiceProvider, app.Configuration);
 
 // Seed example data
-app.Services.CreateScope().ServiceProvider.GetService<SeedData>()?.SeedExampleData();
+//app.Services.CreateScope().ServiceProvider.GetService<SeedData>()?.SeedExampleData();
 
 app.Run();

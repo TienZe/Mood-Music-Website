@@ -63,7 +63,8 @@ namespace PBL3.Controllers
                     UserName = registerModel.Email,
                     Email = registerModel.Email,
                     Birthday = registerModel.BirthDay,
-                    Gender = registerModel.Gender
+                    Gender = registerModel.Gender,
+                    Point = 100
                 };
                 // Đăng kí user mới với role Role.Member
                 var res = await userService.Register(newUser, registerModel.Password!);

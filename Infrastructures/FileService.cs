@@ -65,7 +65,7 @@
         // Ném exception nếu file extension ko đúng hoặc upload file lỗi
         public string UploadImage(IFormFile image, string relativeFolderPath)
         {
-			return UploadFile(image, relativeFolderPath, new string[] { ".jpg", ".png" });
+			return UploadFile(image, relativeFolderPath, new string[] { ".jpg", ".png", ".jpeg" });
         }
 
 
