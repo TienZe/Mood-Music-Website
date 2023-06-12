@@ -86,7 +86,9 @@
         </div>
     </div>
 	@*Image của story hiện tại*@
-    <img src="@("/img/story/" + Model.Story.AvatarImage)" style="width : 425px; height : 528px"/>
+    <div class="OtherStories-currentStory">
+		<img src="@("/img/story/" + Model.Story.AvatarImage)"/>
+	</div>
 	@*<img src="~/img/Template Details.png" />*@
 </div>
 

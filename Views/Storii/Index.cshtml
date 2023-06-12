@@ -4,7 +4,7 @@
     ViewData["Title"] = "Storii";
     MakingOrderPopupModel popupModel = new MakingOrderPopupModel()
             {
-                ItemClassName = "Storii-Contents",
+                ItemClassName = "OtherStories-item",
                 SelectListOrderType = ViewData["SelectListOrderType"] as IEnumerable<SelectListItem> 
                     ?? Enumerable.Empty<SelectListItem>(),
                 UserPoint =  Model.UserPoint
@@ -41,7 +41,7 @@
 
 
         <div class="ST-R2-COL1">
-            @foreach (StoryItem storyItem in Model.StoryItems ?? Enumerable.Empty<StoryItem>())
+            @*@foreach (StoryItem storyItem in Model.StoryItems ?? Enumerable.Empty<StoryItem>())
             {
                 Story story = storyItem.Story;
                 // Hiển thị các item story, mỗi item để sử dụng partial view cần cung cấp
@@ -51,7 +51,7 @@
                 //           - true : người dùng đã mua, ta cần chuyển sang trang nghe
                 //           - false : hiển thị popup order
                 <div class="Storii-Contents" story-id="@story.StoryId" already-bought="@storyItem.AlreadyBought">
-                    <img src="@("/img/story/" + story.AvatarImage)" style="width:180px; height:150px"
+                    <img src="@("/img/story/" + story.AvatarImage)" style="width:130px; height: auto"
                      asp-append-version="true" />
 
                     <div class="Storii-Contents-Text">
@@ -72,14 +72,62 @@
                             @story.Description
                         </p>
                     </div>
+
                 </div>
+
+
+
+
                 // Tạo link nhảy sang nghe story nếu đã mua
                 if (storyItem.AlreadyBought)
                 {
                     <a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory"
                asp-route-storyId="@story.StoryId" class="hide"></a>
                 }
+            }*@
+            @foreach (StoryItem storyItem in Model.StoryItems ?? Enumerable.Empty<StoryItem>())
+            {
+                Story story = storyItem.Story;
+                // Hiển thị các item story, mỗi item để sử dụng partial view cần cung cấp
+                // + class name : để Js select các item này
+                // + story-id tương ứng : Khi 1 item được chọn, nó cần biết story gắn với nó
+                // + already-bought : dựa vào giá trị này để quyết định sự kiện click của phần div này
+                //           - true : người dùng đã mua, ta cần chuyển sang trang nghe
+                //           - false : hiển thị popup order
+                <div class="OtherStories-item" story-id="@story.StoryId" already-bought="@storyItem.AlreadyBought">
+                    <img src="@("/img/story/" + story.AvatarImage)" />
+
+                    <div class="OtherStories-contents">
+                        <a href="#">
+                            @story.Author
+                            <i class="fa-regular fa-circle-play"></i>
+                        </a>
+
+                        <h2>
+                            @story.Name
+                            @if (storyItem.AlreadyBought)
+                            {
+                                <span style="float : right;">
+                                    <i class="fas fa-check-circle" style="color : green;
+                                    font-size: 20px; margin-right : 30px"></i>
+                                </span>
+                            }
+                        </h2>
+                        <br />
+                        <p>
+                            @story.Description
+                        </p>
+                    </div>
+                </div>
+                // Tạo link nhảy sang nghe story nếu đã mua
+                if (storyItem.AlreadyBought)
+                {
+                    <a id="@("link-" + story.StoryId)" asp-controller="Storii" asp-action="ListenStory"
+                       asp-route-storyId="@story.StoryId" class="hide"></a>
+                }
             }
+            </div>
+
         </div>
 
         <div class="ST-R2-COL2">

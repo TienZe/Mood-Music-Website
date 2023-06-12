@@ -728,6 +728,7 @@ button.accept-policy {
 .Storii-Contents-Text {
     float: right;
     width: 70%;
+    height: 180px;
 }
 
 
@@ -1630,11 +1631,11 @@ textarea::-webkit-scrollbar {
 }
 
 .ListenStorii-item {
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 70px;
+    padding-left: 30px;
 }
 
     .ListenStorii-item img {
@@ -1736,9 +1737,19 @@ textarea::-webkit-scrollbar {
         margin-bottom: 0;
     }
 
+.OtherStories-currentStory {
+    width: 600px;
+    height: 550px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
 
+.OtherStories-currentStory img {
+    width: 450px;
+    height: 100%;
+}
 /*Order making*/
-
 .OrderMaking-Container {
     background: rgba(0, 0, 0, 0.6);
     position: fixed;
