@@ -13,18 +13,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
     @await RenderSectionAsync("Links", required: false)
 
+    <style>
+        .Header_navbar-Rhythm:hover {
+            color: #EBFFE1 !important;
+        }
+    </style>
 </head>
 <body>
-
     <header class="Header">
         <div class="grid">
             <nav class="Header_navbar">
-                <h1 class="Header_navbar-Rhythm">Rhythm</h1>
+                <a class="Header_navbar-Rhythm" style="font-size: 10rem; text-decoration: none;" 
+                    asp-controller="Home" asp-action="Index">Rhythm</a>
 
                 <ul class="Header_navbar-list">
-                    <li class="Header_navbar-item">
-                        <a asp-controller="Home" asp-action="Index" class="Header_navbar-link">Discover</a>
-                    </li>
                     <li class="Header_navbar-item">
                         <a asp-controller="Music" asp-action="Index" class="Header_navbar-link">Emotion Song</a>
                     </li>
