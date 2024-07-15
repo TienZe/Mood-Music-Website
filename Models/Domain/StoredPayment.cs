@@ -10,7 +10,8 @@ public class StoredPayment
     public string PayerId { get; set; }
     public string Token { get; set; }
     public string Status { get; set; }
-    public double Amount { get; set; }
+    public decimal Amount { get; set; }
+    public DateTime CreatedAt { get; set; }
 
     [ForeignKey("User")]
     public string UserId { get; set; }
