@@ -24,7 +24,7 @@ public class PayPalService
         _apiContext = new APIContext(accessToken) { Config = config };
     }
 
-    public Payment CreatePayment(string baseUrl, string intent)
+    public Payment CreatePayment(string baseUrl, string intent, decimal amount)
     {
         var payer = new Payer { payment_method = "paypal" };
 
@@ -34,18 +34,10 @@ public class PayPalService
             return_url = $"{baseUrl}/Payment/Success"
         };
 
-        var details = new Details
-        {
-            tax = "1",
-            shipping = "1",
-            subtotal = "1"
-        };
-
-        var amount = new Amount
+        var paypalAmount = new Amount
         {
             currency = "USD",
-            total = "3", // tax + shipping + subtotal
-            details = details
+            total = amount.ToString(),
         };
 
         var transactionList = new List<Transaction>
@@ -54,21 +46,7 @@ public class PayPalService
             {
                 description = "Transaction description.",
                 invoice_number = Convert.ToString((new Random()).Next(100000)),
-                amount = amount,
-                item_list = new ItemList
-                {
-                    items = new List<Item>
-                    {
-                        new Item
-                        {
-                            name = "Item Name",
-                            currency = "USD",
-                            price = "1",
-                            quantity = "1",
-                            sku = "sku"
-                        }
-                    }
-                }
+                amount = paypalAmount,
             }
         };
 
