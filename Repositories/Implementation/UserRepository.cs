@@ -57,11 +57,26 @@ namespace PBL3.Repositories.Implementation
 		{
 			context.Entry(user).Collection(u => u.Orders).Load();
 		}
+		
 		public virtual void LogChangeTracker()
 		{
 			context.ChangeTracker.DetectChanges();
 			Console.WriteLine("Tracked entities at current request : ");
 			Console.WriteLine(context.ChangeTracker.DebugView.LongView);
 		}
-	}
+
+        public bool IncreaseBalance(string userId, decimal additionalPoint)
+        {
+			var user = context.Users.Find(userId);
+			if (user is null) {
+				return false;
+			}
+
+			user.Point += additionalPoint;
+			context.Users.Update(user);
+			context.SaveChanges();
+
+			return true;
+        }
+    }
 }
