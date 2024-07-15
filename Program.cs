@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using PBL3.Infrastructures;
 using PBL3.Models.Domain;
+using PBL3.Models.DTO;
 using PBL3.Repositories.Abstract;
 using PBL3.Repositories.Implementation;
 
@@ -57,6 +58,13 @@ builder.Services.AddScoped<IRepository<Story>, Repository<Story>>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IRepository<OrderType>, Repository<OrderType>>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+
+
+// Paypal service
+builder.Services.Configure<PayPalSettings>(builder.Configuration.GetSection("PayPal"));
+builder.Services.AddSingleton<PayPalService>();
 
 // Seed data
 builder.Services.AddScoped<SeedData>();
