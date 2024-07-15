@@ -2,6 +2,7 @@
 @using System.Text.Json.Serialization;
 @model List<Song>
 @{
+    ViewData["Title"] = "Emotion Song";
     bool isEmpty = Model.Count == 0;
     var options = new JsonSerializerOptions
             {

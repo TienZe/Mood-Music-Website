@@ -1,0 +1,43 @@
+@{
+    Layout = "_LayoutUser";
+}
+
+<div class="ManageStory">
+	<h1>Add points to your account</h1>
+
+	<div class="ManageStory-Show">
+		<form class="row" asp-controller="Payment" asp-action="Payment" method="post">
+            <div class="col-sm-6 col-12">
+                <div class="mb-3">
+                    <label for="amount" class="form-label" style="font-size: 20px;">Amount</label>
+                    <input type="number" class="form-control" id="amount" name="amount" 
+                        placeholder="Enter your desired amount ($)" style="font-size: 15px;">
+                </div>
+                <div class="mb-3">
+                    <label for="convertion-rate" class="form-label" style="font-size: 20px;">Convertion rate</label>
+                    <input type="number" class="form-control" id="convertion-rate" disabled value="@(ViewData["ConvertionRate"]?.ToString() ?? "")"
+                        placeholder="Actual points that you receive (point)" style="font-size: 15px;">
+                </div>
+                <div class="mb-3">
+                    <label for="received-points" class="form-label" style="font-size: 20px;">Received points</label>
+                    <input type="number" class="form-control" id="received-points" readonly
+                        placeholder="Actual points that you receive (point)" style="font-size: 15px;">
+                </div>
+                <input type="submit" class="btn btn-success w-100" value="Checkout with Paypal" style="font-size: 15px;border-radius: 10px;height: 40px;"/>
+            </div>
+        </form>
+	</div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#amount").on("input", (e) => {
+                let amount = $(e.target).val();
+                let convertionRate = $("#convertion-rate").val();
+                let receivedPoints = amount * convertionRate;
+                $("#received-points").val(receivedPoints);
+            });
+        });
+    </script>
+}
