@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Clicker+Script&display=swap" rel="stylesheet">
     @await RenderSectionAsync("Links", required: false)
 </head>
-<body>
+<body class="d-flex flex-column" style="min-height: 100vh;">
     <header class="Header">
         <div class="grid">
             <nav class="Header_navbar">
@@ -39,25 +39,25 @@
         <div class="spliter"></div>
     </div>
 
-    <div>
+    <div style="flex-grow: 1;">
         <main role="main">
             @RenderBody()
         </main>
     </div>
     
-    @if (ViewData["Title"] == "Emotion Song")
+    @if (ViewData["HasFooterSpliter"] is not null && (bool)ViewData["HasFooterSpliter"])
     {
         <div class="grid">
             <div class="spliter"></div>
         </div>
     }
 
-    <footer class="Footer px-5" style="padding-top: 30px; padding-bottom: 30px;">
+    <footer class="Footer" style="padding: 30px 4%;">
         <div class="row">
-            <div class="col-3">
-                <img src="~/img/O.png" alt="" style="width: 100%; max-width: 300px;"/>
+            <div class="col-2">
+                <img src="~/img/O.png" alt="" style="width: 100%; max-width: 200px;"/>
             </div>
-            <div class="col-9 align-self-center">
+            <div class="col-10 align-self-center">
                 <div class="row ps-5">
                     <div class="col-4 Footer_link mx-0">
                         About us
@@ -77,7 +77,7 @@
                     <div class="col-4 Footer_link mx-0">
                         Thanks for
                     </div>
-                    <div class="col-12">
+                    <div class="col-12" style="padding-left: 0px;">
                         <p class="Footer_para mx-0 my-0" style="position: static;">
                             Trang web này được tạo ra với mục đích chia sẻ đam mê âm nhạc và tạo nên một không gian vui tươi để thư giãn và tận hưởng âm nhạc. Chúng tôi hy vọng rằng bạn sẽ tìm thấy những bài hát yêu thích của mình ở đây và mang lại cho bạn những phút giây thư giãn thật sự.
                         </p>
