@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL3.Models.Domain;
 
@@ -11,9 +12,10 @@ using PBL3.Models.Domain;
 namespace PBL3.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240715074210_RenamePaymentsTableToStoredPayments")]
+    partial class RenamePaymentsTableToStoredPayments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -399,8 +401,8 @@ namespace PBL3.Migrations
                     b.Property<string>("PaymentId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PayerId")
                         .IsRequired()

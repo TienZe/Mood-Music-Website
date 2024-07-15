@@ -76,6 +76,6 @@ namespace PBL3.Models.Domain
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderStatus> OrderStatuses { get; set; }
         public DbSet<OrderType> OrderTypes { get; set; }
-
+        public DbSet<StoredPayment> StoredPayments { get; set; }
     }
 }

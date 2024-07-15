@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PBL3.Models.Domain;
 
@@ -11,9 +12,10 @@ using PBL3.Models.Domain;
 namespace PBL3.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240715072817_CreatePaymentTable")]
+    partial class CreatePaymentTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -369,6 +371,37 @@ namespace PBL3.Migrations
                     b.ToTable("OrderTypes");
                 });
 
+            modelBuilder.Entity("PBL3.Models.Domain.Payment", b =>
+                {
+                    b.Property<string>("PaymentId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("PayerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PaymentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("PBL3.Models.Domain.Song", b =>
                 {
                     b.Property<int>("SongId")
@@ -392,37 +425,6 @@ namespace PBL3.Migrations
                     b.HasKey("SongId");
 
                     b.ToTable("Songs");
-                });
-
-            modelBuilder.Entity("PBL3.Models.Domain.StoredPayment", b =>
-                {
-                    b.Property<string>("PaymentId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("PayerId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("PaymentId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("StoredPayments");
                 });
 
             modelBuilder.Entity("PBL3.Models.Domain.Story", b =>
@@ -591,7 +593,7 @@ namespace PBL3.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PBL3.Models.Domain.StoredPayment", b =>
+            modelBuilder.Entity("PBL3.Models.Domain.Payment", b =>
                 {
                     b.HasOne("PBL3.Models.Domain.AppUser", "User")
                         .WithMany()
